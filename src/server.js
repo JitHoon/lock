@@ -1,10 +1,13 @@
 import express from "express";
 import morgan from "morgan";
 
+import globalRouter from "./routers/globalRouter";
+import userRouter from "./routers/usersRouter";
+
 const app = express();
 const PORT = 4000;
 
-const logger = (req, res, next) => {
+/*const logger = (req, res, next) => {
     console.log(`${req.method} ${req.url}`);
     // 어떤 method가 어느 url로 향하는지 알 수 있음
     // req.method = Contains a string corresponding to the HTTP method of the request: GET, POST, PUT, and so on.
@@ -31,6 +34,11 @@ app.use(morgan("dev"));
 app.use(privativeMiddleware);
 app.get("/", handleHome);
 app.get("/protected", handleProtected);
+*/
+app.use(morgan("dev"));
+
+app.use("/", globalRouter);
+app.use("/user", userRouter);
 
 const handleListening = () => console.log(`Server listening on port http://localhost:${PORT} 🫡`);
 app.listen(PORT, handleListening);
