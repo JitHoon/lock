@@ -1,11 +1,11 @@
 import express from "express";
-import { handleUserData, handleChangePw, handleQna  } from "../controllers/adminController";
+import { userData, qna, changePw  } from "../controllers/adminController";
 
 
 const adminRouter = express.Router();
 
-adminRouter.get("/userData", handleUserData);
-adminRouter.get("/changePw", handleChangePw);
-adminRouter.get("/qna", handleQna);
+adminRouter.get("/userData", userData);
+adminRouter.get("/:id(\\d+)/qna", qna);
+adminRouter.get("/:id(\\d+)/changePw", changePw);
 
-export default lockRouter;
+export default adminRouter;

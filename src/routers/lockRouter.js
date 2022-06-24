@@ -1,10 +1,8 @@
 import express from "express";
-import { handleLayout, handleApplication, handlePassword } from "../controllers/lockController";
+import { application } from "../controllers/lockController";
 
 const lockRouter = express.Router();
 
-lockRouter.get("/layout", handleLayout);
-lockRouter.get("/application", handleApplication);
-lockRouter.get("/password", handlePassword);
+lockRouter.get("/:id(\\d+)/application", application);
 
 export default lockRouter;
