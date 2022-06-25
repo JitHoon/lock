@@ -1,18 +1,20 @@
 # Locker system for Electric Engineering
 
-Global Router
-/ -> Home
-/join -> Join
-/login -> Log in
-/lockers -> Lockers layout
+- Global Router
+  / -> Home
+  /join -> Join
+  /login -> Log in
+  /lockers -> Lockers layout
 
-/user/logout -> Log out
-/user/edit -> Edit My Profile
-/user/return -> Return My present locker
-/user/remove -> Remove My Profile
-/user/:id -> See My Profile
+- User Router
+  /user/logout -> Log out
+  /user/edit -> Edit My Profile
+  /user/return -> Return My present locker
+  /user/remove -> Remove My Profile
+  /user/:id -> See My Profile
 
 - user's imformation
+
   1. student number
   2. password
   3. locker number
@@ -20,12 +22,14 @@ Global Router
   5. return : 정말로 반납하시겠습니까? 팝업 후 yes or no 로 대체
   6. qna : 문자 메세지 전송으로 대체
 
-/lock/:id/application -> user applicate a locker
-/lock/:id/application/password -> user get PW of applicated lock
+- Lock Router
+  /lock/:id/application -> user applicate a locker
+  /lock/:id/application/password -> user get PW of applicated lock
 
-/admin/userData -> Data of user
-/admin/:id/qna -> q from user and a for user
-/admin/:id/changePw -> change password of returned locker
+- Admon Router
+  /admin/userData -> Data of user
+  /admin/:id/qna -> q from user and a for user
+  /admin/:id/changePw -> change password of returned locker
 
 - Data of user
   1. student number
