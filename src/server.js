@@ -9,6 +9,7 @@ import adminRouter from "./routers/adminRouter";
 const app = express();
 const PORT = 4000;
 
+console.log(process.cwd());
 /*
 const logger = (req, res, next) => {
     console.log(`${req.method} ${req.url}`);
@@ -38,6 +39,8 @@ app.use(privativeMiddleware);
 app.get("/", handleHome);
 app.get("/protected", handleProtected);
 */
+app.set("view engine", "pug");
+app.set("views", process.cwd() + "/src/views");
 
 app.use(morgan("dev"));
 
