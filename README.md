@@ -1,38 +1,69 @@
 # Locker system for Electric Engineering
 
+## [사용자 페이지]
+
 - Global Router
-  / -> Home
+  / -> Log in 페이지로 바로 활용
   /join -> Join
-  /login -> Log in
-  /lockers -> Lockers layout
+  /findpw -> 비밀번호 찾기
 
-- User Router
-  /user/logout -> Log out
-  /user/edit -> Edit My Profile
-  /user/return -> Return My present locker
-  /user/remove -> Remove My Profile
-  /user/:id -> See My Profile
+- <사이드 바>
 
-- user's imformation
+  ### 마이페이지 버튼 (/user)
 
-  1. student number
-  2. password
-  3. locker number
-  4. period
-  5. return : 정말로 반납하시겠습니까? 팝업 후 yes or no 로 대체
-  6. qna : 문자 메세지 전송으로 대체
+  1. 내 정보 (/user/info)
+     1-1. student number (학번)
+     1-2. password 변경 (현재 비번 입력, 새비번 입력, 새비번 확인)
+     1-3. 전화번호
 
-- Lock Router
-  /lock/:id/application -> user applicate a locker
-  /lock/:id/application/password -> user get PW of applicated lock
+  2. 내 사물함 (/user/locker)
+     2-1. locker number
+     2-2. 사물함 비밀번호 확인
+     2-3. period
+     2-4. 갱신하기
+     2-5. return : 정말로 반납하시겠습니까? 팝업 후 yes or no 로 대체, 반납 기록 남기기
 
-- Admon Router
-  /admin/userData -> Data of user
-  /admin/:id/qna -> q from user and a for user
-  /admin/:id/changePw -> change password of returned locker
+  3. 로그아웃, 회원 탈퇴
 
-- Data of user
-  1. student number
-  2. password
-  3. lock number
-  4. period
+  ### 사물함 신청 버튼 (/main)
+
+  - 버튼이 신청 버튼만 있음
+
+  ### 피드백 코멘트 버튼 (/feedback)
+
+  - 댓글 기능으로 구현
+
+  ### 제작자 소개란 버튼 (/intro)
+
+  - 제작자 소개, 발표 영상 등 프로젝트 설명
+
+## <관리자 페이지>
+
+- <사이드 바>
+
+  ### 개발자 정보 버튼 (/dev)
+
+  1. 개발자 정보
+     1-1. 이름
+     1-2. 전화번호
+
+  2. 로그아웃
+
+  ### 사물함 열람 버튼 (/main)
+
+  - 사용자 사물함 신청 페이지 모습과 동일
+  - 버튼이 신청 버튼 -> 강제 해지, 열람 버튼
+
+  - 사물함 열람버튼 클릭 시
+    1. 사물함을 눌렀을 때 사용 정보를 나열 ()
+       1-0. 사물함 번호
+       1-1. 비고
+       1-2. 날짜
+       1-3. 만료 예정 날짜
+       1-4. student number (길면 없애기)
+       1-5. 이름
+       1-6. phone number
+
+  ### 피드백 코멘트 확인 버튼 (/feedback)
+
+  - 댓글 기능으로 구현
