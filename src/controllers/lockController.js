@@ -1,1 +1,0 @@
-export const application = (req, res) => res.send("Application");
