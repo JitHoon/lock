@@ -1,7 +1,13 @@
 doctype html
+
 html(lang="ko")
     head
-        block title
+        title #{pageTitle} | Locker
+        link(rel="stylesheet" href="https://unpkg.com/mvp.css")
     body
-        block content
-    include partials/footer.pug
+        header
+            h1 🔒 CNU Electrical Engineering Locker System
+            h2  #{pageTitle}
+        main
+            block content
+    include partials/footer
