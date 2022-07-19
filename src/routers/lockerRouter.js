@@ -3,6 +3,6 @@ import { locker } from "../controllers/lockerController";
 
 const lockerRouter = express.Router();
 
-lockerRouter.get("/locker", locker);
+lockerRouter.get("/", locker);
 
 export default lockerRouter;
