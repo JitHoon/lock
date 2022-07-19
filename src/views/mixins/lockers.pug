@@ -1,0 +1,6 @@
+mixin lockers(lockers)
+    div
+        h4
+            a(href="/locker/" + lockers.id)=lockers.number
+        ul
+            li #{lockers.available}
