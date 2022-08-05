@@ -3,7 +3,6 @@ extends base
 block content
     if locker.available
         h3  빈 사물함 입니다. 🙂 아래 신청 버튼을 통해 사물함을 신청해 보세요.
+        a(href=`${locker.id}/password`) 비밀번호 확인하기 &rarr;
     else
         h1  이미 사용중인 사물함입니다...😲!
-
-    a(href=`${locker.id}/password`) 비밀번호 확인하기 &rarr;
