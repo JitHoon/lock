@@ -1,10 +1,12 @@
 import express from "express";
-import { home, qna, getQ, postQ } from "../controllers/globalController";
+import { home, qna, seeQ, getUploadQ, postUploadQ, getEditQ, postEditQ } from "../controllers/globalController";
 
 const globalRouter = express.Router();
 
 globalRouter.route("/").get(home);
 globalRouter.route("/qna").get(qna);
-globalRouter.route("/question").get(getQ).post(postQ);
+globalRouter.route("/qna/:id(\\d+)").get(seeQ);
+globalRouter.route("/uploadq").get(getUploadQ).post(postUploadQ);
+globalRouter.route("/editq").get(getEditQ).post(postEditQ);
 
 export default globalRouter;

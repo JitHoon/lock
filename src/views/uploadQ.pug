@@ -1,0 +1,7 @@
+extends base.pug
+
+block content
+    form(method="POST")
+        input(name="title", placeholder="Title", required, type="text")
+        input(name="content", placeholder="Content", required, type="text")
+        input(value="질문 올리기", type="submit")
