@@ -1,0 +1,10 @@
+extends base
+include mixins/questions
+
+block content
+    each question in questions
+        +questions(question)
+    else
+        li Sorry nothing found.
+    h1 
+    a(href="/question") 질문하기 &rarr;
