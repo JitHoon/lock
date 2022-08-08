@@ -35,8 +35,17 @@ export const getUploadQ = (req, res) => {
     return res.render("uploadQ", { pageTitle: "Upload Video" });
   };
   
-  export const postUploadQ = (req, res) => {
-    // here we will add a video to the videos array.
+export const postUploadQ = (req, res) => {
+    const { title, content } = req.body;
+    const newQuestion = {
+        number : questions.length + 1,
+        title,
+        content,
+        id: questions.length + 1,
+    };
+
+    questions.push(newQuestion);
+    
     return res.redirect("/qna");
   };
 
