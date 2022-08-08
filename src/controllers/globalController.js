@@ -1,6 +1,8 @@
 import req from "express/lib/request";
 import res from "express/lib/response";
+import Question from "../models/Question";
 
+/* fake array DB
 let questions = [
     {
         number : 1,
@@ -17,13 +19,20 @@ let questions = [
         id: 2,
     }
 ];
+*/
 
 export const home = (req, res) => {
     return res.render("home", {pageTitle : "Home"});
-}
+};
+
+const handleSearch = (error, questions) => {
+    console.log("errors", error);
+    console.log("questions", questions);
+};
 
 export const qna = (req, res) => {
-    return res.render("qna", {pageTitle : "Q & A", questions});
+    Question.find({}, handleSearch);
+    return res.render("qna", {pageTitle : "Q & A", questions : []});
 };
 
 export const seeQ = (req, res) => {
@@ -31,31 +40,22 @@ export const seeQ = (req, res) => {
     const question = questions[id-1];
 
     return res.render("seeQ", {pageTitle : `Question No. ${question.number}`, question});
-}
+};
 
 export const getUploadQ = (req, res) => {
     return res.render("uploadQ", { pageTitle: "Upload Video" });
-  };
+};
   
 export const postUploadQ = (req, res) => {
-    const { title, content } = req.body;
-    const newQuestion = {
-        number : questions.length + 1,
-        title,
-        content,
-        id: questions.length + 1,
-    };
-
-    questions.push(newQuestion);
-    
+    const { title, content } = req.body;  
     return res.redirect("/qna");
-  };
+};
 
 export const getEditQ = (req, res) => {
     const { id } = req.params;
     const question = questions[id-1];
 
-    return res.render("editQ", {pageTitle : "Question", question});
+    return res.render("editQ", {pageTitle : "Question", questions : []});
 };
 
 export const postEditQ = (req, res) => {
