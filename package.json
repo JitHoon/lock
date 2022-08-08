@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "lock system for Electronic Engineering",
   "scripts": {
-    "lock": "nodemon --exec babel-node src/server.js"
+    "lock": "nodemon --exec babel-node src/init.js"
   },
   "repository": {
     "type": "git",

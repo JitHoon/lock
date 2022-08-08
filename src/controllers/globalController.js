@@ -6,12 +6,14 @@ let questions = [
         number : 1,
         title : "사물함 비밀번호를 바꿔도 되나요?",
         content : "사물함 비밀번호를 원하는 번호로 바꿔도 되나요?",
+        createdAt : 220808 ,
         id: 1,
     },
     {
         number : 2,
         title : "사물함 무기한 연장 신청 가능한가요?",
         content : "가능?",
+        createdAt : 220807 ,
         id: 2,
     }
 ];

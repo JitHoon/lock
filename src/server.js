@@ -1,4 +1,3 @@
-import "./db";
 import express from "express";
 import morgan from "morgan";
 
@@ -6,7 +5,6 @@ import globalRouter from "./routers/globalRouter";
 import lockerRouter from "./routers/lockerRouter";
 
 const app = express();
-const PORT = 4000;
 
 /*
 console.log(process.cwd());
@@ -51,5 +49,4 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/", globalRouter);
 app.use("/locker", lockerRouter);
 
-const handleListening = () => console.log(`Server listening on port http://localhost:${PORT} 🫡`);
-app.listen(PORT, handleListening);
+export default app;
