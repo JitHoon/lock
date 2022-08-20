@@ -48,5 +48,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/", globalRouter);
 app.use("/locker", lockerRouter);
+app.use("/qna", qnaRouter);
 
 export default app;
