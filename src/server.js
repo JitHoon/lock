@@ -3,6 +3,7 @@ import morgan from "morgan";
 
 import globalRouter from "./routers/globalRouter";
 import lockerRouter from "./routers/lockerRouter";
+import qnaRouter from "./routers/qnaRouter";
 
 const app = express();
 

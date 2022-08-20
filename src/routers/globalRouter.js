@@ -1,5 +1,5 @@
 import express from "express";
-import { home, qna, seeQ, getUploadQ, postUploadQ, getEditQ, postEditQ } from "../controllers/globalController";
+import { home } from "../controllers/globalController";
 
 const globalRouter = express.Router();
 

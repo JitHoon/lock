@@ -1,11 +1,11 @@
 import express from "express";
 import { qna, seeQ, getUploadQ, postUploadQ, getEditQ, postEditQ } from "../controllers/qnaController";
 
-const globalRouter = express.Router();
+const qnaRouter = express.Router();
 
-globalRouter.route("/").get(qna);
-globalRouter.route("/:id(\\d+)").get(seeQ);
-globalRouter.route("/uploadq").get(getUploadQ).post(postUploadQ);
-globalRouter.route("/editq").get(getEditQ).post(postEditQ);
+qnaRouter.route("/").get(qna);
+qnaRouter.route("/:id(\\d+)").get(seeQ);
+qnaRouter.route("/uploadq").get(getUploadQ).post(postUploadQ);
+qnaRouter.route("/editq").get(getEditQ).post(postEditQ);
 
 export default qnaRouter;
