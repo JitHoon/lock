@@ -23,7 +23,7 @@ let questions = [
 
 
 const handleSearch = (error, questions) => {
-    console.log("errors", error);
+    console.log("errors", error); 
     console.log("questions", questions);
 };
 
