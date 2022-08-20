@@ -7,3 +7,5 @@ globalRouter.route("/").get(qna);
 globalRouter.route("/:id(\\d+)").get(seeQ);
 globalRouter.route("/uploadq").get(getUploadQ).post(postUploadQ);
 globalRouter.route("/editq").get(getEditQ).post(postEditQ);
+
+export default qnaRouter;
