@@ -2,6 +2,10 @@ extends base.pug
 
 block content
     form(method="POST")
-        input(name="title", placeholder="Title", required, type="text")
-        input(name="content", placeholder="Content", required, type="text")
+        input(placeholder="Title", required, type="text", name="title",)
+        input(placeholder="Content", required, type="text", name="content")
+        input(placeholder="Hashtags, separated by ,", required, type="text", name="hashtags")
         input(value="질문 올리기", type="submit")
+
+    if errorMessage
+        span=errorMessage

@@ -21,15 +21,16 @@ let questions = [
 ];
 */
 
-
+/*
 const handleSearch = (error, questions) => {
     console.log("errors", error); 
     console.log("questions", questions);
 };
+*/
 
-export const qna = (req, res) => {
-    Question.find({}, handleSearch);
-    return res.render("qna", {pageTitle : "Q & A", questions : []});
+export const qna = async (req, res) => {
+    const questions = await Question.find({});
+    return res.render("qna", {pageTitle : "Q & A", questions });
 };
 
 export const seeQ = (req, res) => {
@@ -43,9 +44,21 @@ export const getUploadQ = (req, res) => {
     return res.render("uploadQ", { pageTitle: "Upload Video" });
 };
   
-export const postUploadQ = (req, res) => {
-    const { title, content } = req.body;  
+export const postUploadQ = async (req, res) => {
+    const { title, content, hashtags} = req.body;
+
+    try { await Question.create({
+        number: 0, // (수정 1)
+        title,
+        writer : "사람", // (수정 2)
+        content,
+        hashtags: hashtags.split(",").map((word) => `#${word}`),
+    });
+
     return res.redirect("/qna");
+    } catch (error) {
+        return res.render("uploadQ", { pageTitle: "Upload Video", errorMessage: error._message });
+  }
 };
 
 export const getEditQ = (req, res) => {
