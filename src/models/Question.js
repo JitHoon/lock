@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+ 
 // 질문 데이터 : 번호, 제목, 작성자, 내용, 등록일, meta : 조회수 // hashtags 고민
 const questionSchema = new mongoose.Schema({
   number: Number, // 비디오 숫자 어떻게 넘버링하는지 확인하기 (수정 1)

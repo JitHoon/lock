@@ -33,16 +33,16 @@ export const qna = async (req, res) => {
     return res.render("qna", {pageTitle : "Q & A", questions });
 };
 
-export const seeQ = (req, res) => {
+export const seeQ = async (req, res) => {
     const { id } = req.params;
-    const question = questions[id-1];
+    const question = await Question.findById(id);
 
-    return res.render("seeQ", {pageTitle : `Question No. ${question.number}`, question});
+    return res.render("seeQ", {pageTitle : `Question : ${question.title}`, question});
 };
 
 export const getUploadQ = (req, res) => {
     return res.render("uploadQ", { pageTitle: "Upload Video" });
-};
+}; 
   
 export const postUploadQ = async (req, res) => {
     const { title, content, hashtags} = req.body;

@@ -1,5 +1,6 @@
 extends base
 
 block content
-    h2=question.title
-    h4=question.content
+    div
+        p=question.content
+        small=question.createdAt

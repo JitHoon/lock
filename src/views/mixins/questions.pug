@@ -1,4 +1,7 @@
 mixin questions(questions)
     div
-        h4="질문 " + questions.number+1 // (수정 1)
+        h4="질문 " + questions.number+1 
         a(href="/qna/" + questions.id)=questions.title
+        h4 
+        small=questions.createdAt
+        hr
