@@ -4,3 +4,7 @@ block content
     div
         p=question.content
         small=question.createdAt
+    nav
+        ul
+            li       
+                a(href=`${question.id}/editq`) 수정하기 &rarr;

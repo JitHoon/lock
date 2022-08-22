@@ -65,11 +65,14 @@ export const postUploadQ = async (req, res) => {
   }
 };
 
-export const getEditQ = (req, res) => {
+export const getEditQ = async (req, res) => {
     const { id } = req.params;
-    const question = questions[id-1];
+    const question = await Question.findById(id);
 
-    return res.render("editQ", {pageTitle : "Question", questions : []});
+    if (!question) {
+        return res.render("404", { pageTitle: "Question not found." });
+    }
+    return res.render("editQ", {pageTitle : "Edit Question", question});
 };
 
 export const postEditQ = (req, res) => {
