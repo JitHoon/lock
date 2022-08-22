@@ -37,13 +37,17 @@ export const seeQ = async (req, res) => {
     const { id } = req.params;
     const question = await Question.findById(id);
 
+    if (!question) {
+        return res.render("404", { pageTitle: "Question not found." });
+    }
     return res.render("seeQ", {pageTitle : `Question : ${question.title}`, question});
+
 };
 
 export const getUploadQ = (req, res) => {
     return res.render("uploadQ", { pageTitle: "Upload Video" });
 }; 
-  
+
 export const postUploadQ = async (req, res) => {
     const { title, content, hashtags} = req.body;
 
