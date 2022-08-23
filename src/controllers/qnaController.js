@@ -13,7 +13,7 @@ export const seeQ = async (req, res) => {
     const question = await Question.findById(id);
 
     if (!question) {
-        return res.render("404", { pageTitle: "Question not found." });
+        return res.status(404).render("404", { pageTitle: "Question not found." });
     }
     return res.render("seeQ", {pageTitle : `Question : ${question.title}`, question});
 
@@ -45,7 +45,7 @@ export const getEditQ = async (req, res) => {
     const question = await Question.findById(id); // 질문 데이터 object를 찾아 가져오는 model
 
     if (!question) {
-        return res.render("404", { pageTitle: "Question not found." });
+        return res.status(404).render("404", { pageTitle: "Question not found." });
     }
     return res.render("editQ", {pageTitle : "Edit Question", question});
 };
@@ -58,7 +58,7 @@ export const postEditQ = async (req, res) => {
     const question = await Question.exists({ _id: id }); // 질문 데이터 존재 여부만 판단하는 model
 
     if (!question) {
-        return res.render("404", { pageTitle: "Question not found." });
+        return res.status(404).rrender("404", { pageTitle: "Question not found." });
     }
     await Question.findByIdAndUpdate(id, {
         title,
