@@ -1,6 +1,8 @@
 import "./db";
-import "./models/Question";
+import "./models/User";
 import "./models/Locker";
+import "./models/Question";
+
 import app from "./server";
 
 const PORT = 4000;
