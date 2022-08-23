@@ -15,5 +15,14 @@ const questionSchema = new mongoose.Schema({
 // 우리가 제공해주는 데이터 : number, createdAt, views
 // 사용자가 제공하는 데이터 : title, writer, content, hashtags : array 형태
 
+
+questionSchema.static("formatHashtags", function (hashtags) {
+  return hashtags
+    .split(",")
+    .map((word) => (word.startsWith("#") ? word : `#${word}`));
+});
+
+
 const Question = mongoose.model("Question", questionSchema);
+
 export default Question;

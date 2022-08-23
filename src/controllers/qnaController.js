@@ -2,32 +2,6 @@ import req from "express/lib/request";
 import res from "express/lib/response";
 import Question from "../models/Question";
 
-/* fake array DB
-let questions = [
-    {
-        number : 1,
-        title : "사물함 비밀번호를 바꿔도 되나요?",
-        content : "사물함 비밀번호를 원하는 번호로 바꿔도 되나요?",
-        createdAt : 220808 ,
-        id: 1,
-    },
-    {
-        number : 2,
-        title : "사물함 무기한 연장 신청 가능한가요?",
-        content : "가능?",
-        createdAt : 220807 ,
-        id: 2,
-    }
-];
-*/
-
-/*
-const handleSearch = (error, questions) => {
-    console.log("errors", error); 
-    console.log("questions", questions);
-};
-*/
-
 export const qna = async (req, res) => {
     const questions = await Question.find({});
     return res.render("qna", {pageTitle : "Q & A", questions });
@@ -56,7 +30,7 @@ export const postUploadQ = async (req, res) => {
         title,
         writer : "사람", // (수정 2)
         content,
-        hashtags: hashtags.split(",").map((word) => `#${word}`),
+        hashtags: Question.formatHashtags(hashtags),
     });
 
     return res.redirect("/qna");
@@ -88,9 +62,7 @@ export const postEditQ = async (req, res) => {
     await Question.findByIdAndUpdate(id, {
         title,
         content,
-        hashtags: hashtags
-          .split(",")
-          .map((word) => (word.startsWith("#") ? word : `#${word}`)),
+        hashtags: Question.formatHashtags(hashtags),
       });
     return res.redirect("/qna");
 };
