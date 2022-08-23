@@ -1,7 +1,7 @@
 import express from "express";
 import morgan from "morgan";
 
-import globalRouter from "./routers/globalRouter";
+import rootRouter from "./routers/rootRouter";
 import lockerRouter from "./routers/lockerRouter";
 import qnaRouter from "./routers/qnaRouter";
 
@@ -47,7 +47,7 @@ app.set("views", process.cwd() + "/src/views");
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/", globalRouter);
+app.use("/", rootRouter);
 app.use("/locker", lockerRouter);
 app.use("/qna", qnaRouter);
 
