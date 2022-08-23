@@ -1,0 +1,11 @@
+extends base
+include mixins/questions
+
+block content
+    form(method="GET")
+        input(placeholder="Search by title",name="keyword", type="text")
+        input(type="submit", value="Search now")
+
+    div
+        each question in questions 
+            +questions(question) 

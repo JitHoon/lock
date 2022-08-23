@@ -3,7 +3,8 @@ import res from "express/lib/response";
 import Question from "../models/Question";
 
 export const qna = async (req, res) => {
-    const questions = await Question.find({});
+    const questions = await Question.find({}).sort({ createdAt: "desc" });
+
     return res.render("qna", {pageTitle : "Q & A", questions });
 };
 
@@ -66,3 +67,25 @@ export const postEditQ = async (req, res) => {
       });
     return res.redirect("/qna");
 };
+
+export const deleteQ = async (req, res) => {
+    const { id } = req.params;
+    await Question.findByIdAndDelete(id);
+
+    return res.redirect("/qna");
+  };
+
+export const search = async (req, res) => {
+    const { keyword } = req.query;
+    
+    let questions = [];
+    if (keyword) {
+        questions = await Question.find({
+            title: {
+              $regex: new RegExp(keyword, "ig"),
+            },
+        });
+    }
+
+    return res.render("search", { pageTitle: "Search", questions});
+  };
