@@ -36,8 +36,11 @@ export const postUploadQ = async (req, res) => {
 
     return res.redirect("/qna");
     } catch (error) {
-        return res.render("uploadQ", { pageTitle: "Upload Video", errorMessage: error._message });
-  }
+        return res.status(400).render("uploadQ", { 
+            pageTitle: "Upload Video", 
+            errorMessage: error._message 
+        });
+    }
 };
 
 export const getEditQ = async (req, res) => {
