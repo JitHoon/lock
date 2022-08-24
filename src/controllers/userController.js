@@ -13,7 +13,7 @@ export const postJoin = async (req, res) => {
           pageTitle,
           errorMessage: "Password confirmation does not match.",
         });
-      }
+    }
     
     // 중복 아이디 에러 메시지
     const exists = await User.exists({ $or: [{ studentID }, { phoneNumber }] });
@@ -30,7 +30,6 @@ export const postJoin = async (req, res) => {
             userName,
             studentID,
             password,
-            password2,
             phoneNumber,
         });
         return res.redirect("/login");
