@@ -67,6 +67,9 @@ export const postLogin = async (req, res) => {
       });
     }
 
+    req.session.loggedIn = true;
+    req.session.user = user;
+
     return res.redirect("/");
 };
 

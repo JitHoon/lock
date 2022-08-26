@@ -2,7 +2,7 @@ doctype html
 
 html(lang="ko")
     head
-        title #{pageTitle} | Locker
+        title #{siteName} | #{pageTitle}
         link(rel="stylesheet" href="https://unpkg.com/mvp.css")
     body
         header
@@ -12,14 +12,24 @@ html(lang="ko")
                 ul
                     li
                         a(href="/") Home
-                    li
-                        a(href="/join")  Join
+                    if loggedIn
+                        li
+                            a(href="/logout") Logout
+                    else
+                        li
+                            a(href="/join") Join
+                        li
+                            a(href="/login") Login
                     li
                         a(href="/locker") Locker
                     li
                         a(href="/qna") Q&A
                     li
                         a(href="/search") Search
+                    if loggedIn
+                        li
+                            a(href="/my-profile") #{loggedInUser.userName}
+                    
         main
             block content
     include partials/footer
