@@ -8,7 +8,7 @@ export const postJoin = async (req, res) => {
     const { userName, studentID, password, password2, phoneNumber } = req.body;
     const pageTitle = "Join";
 
-    // 비밀번호 재확인 오류 메시지
+    // 비밀번호 재확인 오류 메시지 
     if (password !== password2) {
         return res.status(400).render("join", {
           pageTitle,
