@@ -1,5 +1,6 @@
 import User from "../models/User";
 import bcrypt from "bcrypt";
+// import fetch from "node-fetch";
 
 export const getJoin = (req, res) => res.render("join", { pageTitle: "Join" });
 
@@ -78,20 +79,41 @@ export const startGithubLogin = (req, res) => {
   const baseUrl = "https://github.com/login/oauth/authorize";
 
   const config = {
-    client_id: "44d920837a719a291d50",
+    client_id:  process.env.GH_CLIENT,
     scope: "read:user user:email",
   };
 
   const params = new URLSearchParams(config).toString(); // url string 합치기
 
   const finalUrl = `${baseUrl}?${params}`;
-  
+
   return res.redirect(finalUrl);
 };
 
-
 // 깃허브 로그인 후 페이지
-export const finishGithubLogin = (req, res) => {};
+export const finishGithubLogin =  async (req, res) => {
+  const baseUrl = "https://github.com/login/oauth/access_token"; // github가 준 url code를 access code로 변환하기위한 url
+  
+  const config = {
+    client_id: process.env.GH_CLIENT,
+    client_secret: process.env.GH_SECRET,
+    code: req.query.code,
+  }; // access url 변환과 함게 보낼 parameters
+
+  const params = new URLSearchParams(config).toString();
+  const finalUrl = `${baseUrl}?${params}`;
+
+  const data = await fetch(finalUrl, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+    },
+  });
+
+  const json = await data.json();
+  console.log(json);
+  res.send(JSON.stringify(json));
+};
 
 /*
 export const edit = (req, res) => res.send("Edit User");
