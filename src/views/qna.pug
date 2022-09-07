@@ -2,13 +2,13 @@ extends base
 include mixins/questions
 
 block content
+    nav
+        ul
+            li       
+                a(href="qna/uploadq") 질문하기 &rarr;
+                
     each question in questions
         +questions(question)
     else
         li Sorry nothing found.
     h1 
-
-    nav
-        ul
-            li       
-                a(href="qna/uploadq") 질문하기 &rarr;

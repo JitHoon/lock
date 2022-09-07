@@ -26,9 +26,13 @@ html(lang="ko")
                         a(href="/qna") Q&A
                     li
                         a(href="/search") Search
+
                     if loggedIn
                         li
                             a(href="/my-profile") #{loggedInUser.userName}
+
+                        li
+                            a(href="/users/edit") Edit Profile
                     
         main
             block content
