@@ -71,7 +71,14 @@ export const postLogin = async (req, res) => {
     req.session.loggedIn = true;
     req.session.user = user;
 
+    console.log(user);
+
     return res.redirect("/");
+};
+
+export const logout = (req, res) => {
+  req.session.destroy();
+  return res.redirect("/");
 };
 
 // 깃허브 로그인 요청 페이지
@@ -133,6 +140,5 @@ export const finishGithubLogin =  async (req, res) => {
 /*
 export const edit = (req, res) => res.send("Edit User");
 export const remove = (req, res) => res.send("Remove User");
-export const logout = (req, res) => res.send("Log out");
 export const see = (req, res) => res.send("See User");
 */
