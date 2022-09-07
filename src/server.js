@@ -4,6 +4,7 @@ import session from "express-session";
 import MongoStore from "connect-mongo";
 
 import rootRouter from "./routers/rootRouter";
+import userRouter from "./routers/userRouter";
 import lockerRouter from "./routers/lockerRouter";
 import qnaRouter from "./routers/qnaRouter";
 
@@ -61,6 +62,7 @@ app.use(
 
 app.use(localsMiddleware);
 app.use("/", rootRouter);
+app.use("/users", userRouter);
 app.use("/locker", lockerRouter);
 app.use("/qna", qnaRouter);
 
