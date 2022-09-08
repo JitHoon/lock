@@ -4,6 +4,5 @@ block content
     form(method="POST")
         p=loggedInUser.userName
         p=loggedInUser.studentID
-        input(placeholder="Password", name="password", type="password", required, value=loggedInUser.password)
         input(placeholder="phoneNumber", name="phoneNumber", type="number", required, value=loggedInUser.phoneNumber)
         input(type="submit", value="Update Profile")
