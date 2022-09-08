@@ -10,4 +10,4 @@ rootRouter.route("/join").get(getJoin).post(postJoin);
 rootRouter.route("/login").get(getLogin).post(postLogin);
 rootRouter.route("/search").get(search);
 
-export default rootRouter;
+export default rootRouter; 

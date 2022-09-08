@@ -137,6 +137,7 @@ export const finishGithubLogin =  async (req, res) => {
 
 };
 
+// edit-profile 
 export const getEdit = (req, res) => {
   return res.render("edit-profile", { pageTitle: "Edit Profile" });
 };
