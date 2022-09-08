@@ -4,3 +4,19 @@ export const localsMiddleware = (req, res, next) => {
     res.locals.loggedInUser = req.session.user || {}; // 로그인 전 undefined, 로그인 후 유저 정보 불러와짐
     next();
   };
+
+export const protectorMiddleware = (req, res, next) => {
+  if (req.session.loggedIn) {
+    return next(); // 유저가 사용을 계속 유지
+  } else {
+    return res.redirect("/login");
+  }
+};
+  
+export const publicOnlyMiddleware = (req, res, next) => {
+  if (!req.session.loggedIn) {
+    return next(); // 유저가 사용을 계속 유지
+  } else {
+    return res.redirect("/");
+  }
+};
