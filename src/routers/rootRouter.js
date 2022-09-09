@@ -1,6 +1,7 @@
 import express from "express";
 import { home } from "../controllers/rootController";
-import { getJoin, postJoin, getLogin, postLogin } from "../controllers/userController";
+import { getJoin, postJoin,
+    getLogin, postLogin } from "../controllers/userController";
 import { search } from "../controllers/qnaController";
 import { publicOnlyMiddleware } from "../middlewares"
 

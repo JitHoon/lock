@@ -2,6 +2,7 @@ import User from "../models/User";
 import bcrypt from "bcrypt";
 // import fetch from "node-fetch";
 
+// [rootRouter]
 export const getJoin = (req, res) => res.render("users/join", { pageTitle: "Join" });
 
 export const postJoin = async (req, res) => {
@@ -76,8 +77,48 @@ export const postLogin = async (req, res) => {
     return res.redirect("/");
 };
 
+// [useRouter]
 export const logout = (req, res) => {
   req.session.destroy();
+  return res.redirect("/");
+};
+
+// edit-profile 
+export const getEdit = (req, res) => {
+  return res.render("users/edit-profile", { pageTitle: "Edit Profile" });
+};
+
+export const postEdit = async (req, res) => {
+
+  const {
+    session: {
+      user: { _id },
+    },
+    body: { phoneNumber }, // edit-profile에 선언된 name에서 불러온 변수들
+  } = req;
+  // 아래 변수 선언들을 위와같이 ES6로 개선 가능
+  // const id = req.session.user.id
+  // const  {password, phoneNumber } = req.body;
+
+  
+
+  const updatedUser = await User.findByIdAndUpdate( 
+    _id, { phoneNumber }, 
+    { new: true } 
+    // findByIdAndUpdate의 option으로 mongoose에게 가장 최근에 업데이트된 object를 가져오라는 option
+    );
+
+  req.session.user = updatedUser;
+  return res.redirect("/users/edit");
+};
+
+// change password
+export const getChangePassword = (req, res) => {
+  return res.render("users/change-password", { pageTitle: "Change Password" });
+};
+
+export const postChangePassword = (req, res) => {
+  // send notification
   return res.redirect("/");
 };
 
@@ -137,34 +178,6 @@ export const finishGithubLogin =  async (req, res) => {
 
 };
 
-// edit-profile 
-export const getEdit = (req, res) => {
-  return res.render("users/edit-profile", { pageTitle: "Edit Profile" });
-};
-
-export const postEdit = async (req, res) => {
-
-  const {
-    session: {
-      user: { _id },
-    },
-    body: { phoneNumber }, // edit-profile에 선언된 name에서 불러온 변수들
-  } = req;
-  // 아래 변수 선언들을 위와같이 ES6로 개선 가능
-  // const id = req.session.user.id
-  // const  {password, phoneNumber } = req.body;
-
-  
-
-  const updatedUser = await User.findByIdAndUpdate( 
-    _id, { phoneNumber }, 
-    { new: true } 
-    // findByIdAndUpdate의 option으로 mongoose에게 가장 최근에 업데이트된 object를 가져오라는 option
-    );
-
-  req.session.user = updatedUser;
-  return res.redirect("/users/edit");
-};
 
 /*
 export const edit = (req, res) => res.send("Edit User");
