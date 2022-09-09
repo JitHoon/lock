@@ -15,19 +15,19 @@ const handleSearch = (error, lockers) => {
 
 export const locker = (req, res) => {
     Locker.find({}, handleSearch);
-    return res.render("locker", {pageTitle : "Lockers", lockers : []});
+    return res.render("locker/locker", {pageTitle : "Lockers", lockers : []});
 };
 
 export const seeLocker = (req, res) => {
     const { id } = req.params;
     const locker = lockers[id-1];
 
-    return res.render("seeLocker", {pageTitle : `No. ${locker.number} Locker`, locker});
+    return res.render("locker/seeLocker", {pageTitle : `No. ${locker.number} Locker`, locker});
 };
 
 export const seePassword = (req, res) => {
     const { id } = req.params;
     const locker = lockers[id-1];
 
-    return res.render("seePassword", {pageTitle : `No. ${locker.number} Locker's Password`, locker});
+    return res.render("locker/seePassword", {pageTitle : `No. ${locker.number} Locker's Password`, locker});
 };

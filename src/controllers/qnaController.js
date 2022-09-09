@@ -5,7 +5,7 @@ import Question from "../models/Question";
 export const qna = async (req, res) => {
     const questions = await Question.find({}).sort({ createdAt: "desc" });
 
-    return res.render("qna", {pageTitle : "Q & A", questions });
+    return res.render("qna/qna", {pageTitle : "Q & A", questions });
 };
 
 export const seeQ = async (req, res) => {
@@ -15,12 +15,12 @@ export const seeQ = async (req, res) => {
     if (!question) {
         return res.status(404).render("404", { pageTitle: "Question not found." });
     }
-    return res.render("seeQ", {pageTitle : `Question : ${question.title}`, question});
+    return res.render("qna/seeQ", {pageTitle : `Question : ${question.title}`, question});
 
 };
 
 export const getUploadQ = (req, res) => {
-    return res.render("uploadQ", { pageTitle: "Upload Video" });
+    return res.render("qna/uploadQ", { pageTitle: "Upload Video" });
 }; 
 
 export const postUploadQ = async (req, res) => {
@@ -36,7 +36,7 @@ export const postUploadQ = async (req, res) => {
 
     return res.redirect("/qna");
     } catch (error) {
-        return res.status(400).render("uploadQ", { 
+        return res.status(400).render("qna/uploadQ", { 
             pageTitle: "Upload Video", 
             errorMessage: error._message 
         });
@@ -50,7 +50,7 @@ export const getEditQ = async (req, res) => {
     if (!question) {
         return res.status(404).render("404", { pageTitle: "Question not found." });
     }
-    return res.render("editQ", {pageTitle : "Edit Question", question});
+    return res.render("qna/editQ", {pageTitle : "Edit Question", question});
 };
 
 export const postEditQ = async (req, res) => {
@@ -61,7 +61,7 @@ export const postEditQ = async (req, res) => {
     const question = await Question.exists({ _id: id }); // 질문 데이터 존재 여부만 판단하는 model
 
     if (!question) {
-        return res.status(404).rrender("404", { pageTitle: "Question not found." });
+        return res.status(404).render("404", { pageTitle: "Question not found." });
     }
     await Question.findByIdAndUpdate(id, {
         title,
@@ -90,5 +90,5 @@ export const search = async (req, res) => {
         });
     }
 
-    return res.render("search", { pageTitle: "Search", questions});
+    return res.render("qna/search", { pageTitle: "Search", questions});
   };

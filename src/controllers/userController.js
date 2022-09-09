@@ -2,7 +2,7 @@ import User from "../models/User";
 import bcrypt from "bcrypt";
 // import fetch from "node-fetch";
 
-export const getJoin = (req, res) => res.render("join", { pageTitle: "Join" });
+export const getJoin = (req, res) => res.render("users/join", { pageTitle: "Join" });
 
 export const postJoin = async (req, res) => {
     const { userName, studentID, password, password2, phoneNumber } = req.body;
@@ -10,7 +10,7 @@ export const postJoin = async (req, res) => {
 
     // 비밀번호 재확인 오류 메시지 
     if (password !== password2) {
-        return res.status(400).render("join", {
+        return res.status(400).render("users/join", {
           pageTitle,
           errorMessage: "Password confirmation does not match.",
         });
@@ -19,7 +19,7 @@ export const postJoin = async (req, res) => {
     // 중복 아이디 에러 메시지
     const exists = await User.exists({ $or: [{ studentID }, { phoneNumber }] });
     if (exists) {
-    return res.status(400).render("join", {
+    return res.status(400).render("users/join", {
         pageTitle,
         errorMessage: "This studentID/phoneNumber is already taken.",
         });
@@ -33,9 +33,9 @@ export const postJoin = async (req, res) => {
             password,
             phoneNumber,
         });
-        return res.redirect("/login");
+        return res.redirect("users/login");
     } catch (error) {
-        return res.status(400).render("join", {
+        return res.status(400).render("users/join", {
             pageTitle: "Join", 
             errorMessage: error._message 
         });
@@ -43,7 +43,7 @@ export const postJoin = async (req, res) => {
 };
 
 export const getLogin = (req, res) => {
-    res.render("Login", {pageTitle: "Login"});
+    res.render("users/Login", {pageTitle: "Login"});
 };
 
 export const postLogin = async (req, res) => {
@@ -53,7 +53,7 @@ export const postLogin = async (req, res) => {
     // 존재하지 않는 아이디 에러 메시지
     const user = await User.findOne({ studentID });
     if (!user) {
-      return res.status(400).render("login", {
+      return res.status(400).render("users/login", {
         pageTitle,
         errorMessage: "An account with this username does not exists.",
       });
@@ -62,7 +62,7 @@ export const postLogin = async (req, res) => {
     // 비밀번호 불일치 에러 메시지
     const ok = await bcrypt.compare(password, user.password);
     if (!ok) {
-      return res.status(400).render("login", {
+      return res.status(400).render("users/login", {
         pageTitle,
         errorMessage: "Wrong password",
       });
@@ -132,14 +132,14 @@ export const finishGithubLogin =  async (req, res) => {
     ).json();
     console.log(userRequest);
   } else {
-    return res.redirect("/login");
+    return res.redirect("users/login");
   }
 
 };
 
 // edit-profile 
 export const getEdit = (req, res) => {
-  return res.render("edit-profile", { pageTitle: "Edit Profile" });
+  return res.render("users/edit-profile", { pageTitle: "Edit Profile" });
 };
 
 export const postEdit = async (req, res) => {
@@ -153,6 +153,8 @@ export const postEdit = async (req, res) => {
   // 아래 변수 선언들을 위와같이 ES6로 개선 가능
   // const id = req.session.user.id
   // const  {password, phoneNumber } = req.body;
+
+  
 
   const updatedUser = await User.findByIdAndUpdate( 
     _id, { phoneNumber }, 
