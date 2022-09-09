@@ -53,6 +53,7 @@ export const postLogin = async (req, res) => {
 
     // 존재하지 않는 아이디 에러 메시지
     const user = await User.findOne({ studentID });
+
     if (!user) {
       return res.status(400).render("users/login", {
         pageTitle,
@@ -62,6 +63,7 @@ export const postLogin = async (req, res) => {
     
     // 비밀번호 불일치 에러 메시지
     const ok = await bcrypt.compare(password, user.password);
+
     if (!ok) {
       return res.status(400).render("users/login", {
         pageTitle,
@@ -71,16 +73,31 @@ export const postLogin = async (req, res) => {
 
     req.session.loggedIn = true;
     req.session.user = user;
-
-    console.log(user);
-
-    return res.redirect("/");
+    req.session.save(function(err) {
+      if (err) {
+        return res.render("/500", { pageTitle: "500 loginSeverError" });
+      } else return res.redirect("/");
+    });
+    
+    /*
+    if (req.session.loggedIn) {
+      console.log("wait1");
+      req.session.user = user;
+      console.log("wait2");
+      await new Promise(r => setTimeout(r, 1500));
+      console.log("wait3");
+      return res.redirect("/");
+    }
+    */
 };
 
 // [useRouter]
-export const logout = (req, res) => {
-  req.session.destroy();
-  return res.redirect("/");
+export const logout = async (req, res) => {
+  req.session.destroy(function(err) {
+    if (err) {
+      return res.render("/500", { pageTitle: "500 logoutSeverError" });
+    } else return res.redirect("/");
+  })
 };
 
 // edit-profile 
