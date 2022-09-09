@@ -34,7 +34,7 @@ export const postJoin = async (req, res) => {
             password,
             phoneNumber,
         });
-        return res.redirect("users/login");
+        return res.redirect("/login");
     } catch (error) {
         return res.status(400).render("users/join", {
             pageTitle: "Join", 
@@ -44,7 +44,7 @@ export const postJoin = async (req, res) => {
 };
 
 export const getLogin = (req, res) => {
-    res.render("users/Login", {pageTitle: "Login"});
+    res.render("users/login", {pageTitle: "Login"});
 };
 
 export const postLogin = async (req, res) => {
@@ -75,7 +75,7 @@ export const postLogin = async (req, res) => {
     req.session.user = user;
     req.session.save(function(err) {
       if (err) {
-        return res.render("/500", { pageTitle: "500 loginSeverError" });
+        return res.status(500).render("/500", { pageTitle: "500 loginSeverError" });
       } else return res.redirect("/");
     });
     
@@ -95,7 +95,7 @@ export const postLogin = async (req, res) => {
 export const logout = async (req, res) => {
   req.session.destroy(function(err) {
     if (err) {
-      return res.render("/500", { pageTitle: "500 logoutSeverError" });
+      return res.status(500).render("/500", { pageTitle: "500 logoutSeverError" });
     } else return res.redirect("/");
   })
 };
@@ -134,9 +134,50 @@ export const getChangePassword = (req, res) => {
   return res.render("users/change-password", { pageTitle: "Change Password" });
 };
 
-export const postChangePassword = (req, res) => {
-  // send notification
-  return res.redirect("/");
+export const postChangePassword = async (req, res) => {
+  // session과 body에서 user id와 사용자가 입력한 form 정보 불러오기
+  const {
+    session: {
+      user: { _id },
+    },
+    body: { oldPW, newPW1, newPW2 },
+  } = req;
+
+  // db에서 user id 찾아오기 
+  const user = await User.findById(_id);
+
+  // form에서 받은 기존 비번과 db에서 불러온 user 기존 비번 비교하기
+  // 아래에서 user.save()만 해주기 때문에 db가 먼저 변경되므로 
+  // 처음부터 session에있는 비번이 아닌 db에 있는 비번과 비교해준다.
+  // 처음부터 session에 있는 비번과 비교했다면 
+  // db는 물론 session 데이터도 함께 업데이트해야하는 번거로운 과정을 거쳐야한다.
+  // session 비교를 하지 않는 이유는 session에 업데이트된 값을 사용자에게 바로 보여줄 필요가 없는 상황이기 때문이다.
+  const ok = await bcrypt.compare(oldPW, user.password);
+
+  // 기존 비번이 일치하지 않을 때 에러문
+  if (!ok) {
+    return res.status(400).render("users/change-password", {
+      pageTitle: "Change Password",
+      errorMessage: "The current password is incorrect",
+    });
+  }
+
+  // 새비밀번호 확인이 일치하지 않을 때 에러문
+  if (newPW1 != newPW2) {
+    return res.status(400).render("users/change-password", {
+      pageTitle: "Change Password",
+      errorMessage: "The password does not match the confirmation",
+    });
+  }
+
+  // db에서 불러온 user 비밀번호를 새비밀번호로 업데이트
+  user.password = newPW1;
+
+  // save()는 비동기식 함수이므로 새로운 데이터가 서버에 저장될 때까지 동기식 처리
+  await user.save();
+
+  // 재 로그인 유도를 위한 로그아웃
+  return res.redirect("/users/logout");
 };
 
 // 깃허브 로그인 요청 페이지
