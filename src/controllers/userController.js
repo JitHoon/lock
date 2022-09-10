@@ -100,8 +100,11 @@ export const logout = async (req, res) => {
   })
 };
 
-export const myProfile = (req, res) => {
-  return res.render("users/myProfile", { pageTitle: "My Profile" });
+export const myProfile = async (req, res) => {
+  const { id } = req.params;
+  const user = await User.findById(id);
+
+  return res.render("users/myProfile", { pageTitle: user.userName + "'s Profile", user, });
 };
 
 // edit-profile 
@@ -128,7 +131,7 @@ export const postEdit = async (req, res) => {
     );
 
   req.session.user = updatedUser;
-  return res.redirect("/users/:id");
+  return res.redirect("/users/:id/edit");
 };
 
 // change password

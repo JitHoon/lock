@@ -4,12 +4,13 @@ import { logout,
     getEdit, postEdit,
     getChangePassword, postChangePassword,
     startGithubLogin, finishGithubLogin } from "../controllers/userController";
-import { protectorMiddleware } from "../middlewares"
+import { protectorMiddleware, publicOnlyMiddleware } from "../middlewares"
 
 const userRouter = express.Router();
 
 userRouter.get("/logout", protectorMiddleware, logout);
 userRouter.route("/:id")
+    .all(protectorMiddleware)
     .get(myProfile)
 userRouter.route("/:id/edit")
     .all(protectorMiddleware)
