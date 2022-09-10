@@ -29,10 +29,7 @@ html(lang="ko")
 
                     if loggedIn
                         li
-                            a(href="/my-profile") #{loggedInUser.userName}
-
-                        li
-                            a(href="/users/edit") Edit Profile
+                            a(href=`/users/${loggedInUser._id}`) #{loggedInUser.userName}
                     
         main
             block content

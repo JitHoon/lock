@@ -1,0 +1,14 @@
+extends ../base
+
+block content
+    form(method="POST")
+        label(for="") 이름
+        p=loggedInUser.userName
+        label(for="") 학번
+        p=loggedInUser.studentID
+        label(for="") 전화번호
+        p=loggedInUser.phoneNumber
+    
+    nav 
+        li
+            a(href=`/users/${loggedInUser._id}/edit`) Edit Profile &rarr;

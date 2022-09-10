@@ -2,8 +2,11 @@ extends ../base
 
 block content
     form(method="POST")
+        label(for="") 이름
         p=loggedInUser.userName
+        label(for="") 학번
         p=loggedInUser.studentID
+        label(for="phoneNumber") 전화번호
         input(placeholder="phoneNumber", name="phoneNumber", type="number", required, value=loggedInUser.phoneNumber)
         input(type="submit", value="Update Profile")
-        a(href="change-password") Change Password &rarr;
+        a(href="changePassword") Change Password &rarr;
