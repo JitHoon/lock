@@ -6,9 +6,9 @@ block content
         small=question.createdAt
 
     div
-        small Uploaded by #{owner.userName}
+        small Uploaded by #{question.owner.userName}
 
-    if String(question.owner) === String(loggedInUser._id)
+    if String(question.owner.id) === String(loggedInUser._id)
         nav
             ul
                 li
