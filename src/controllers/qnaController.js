@@ -30,24 +30,32 @@ export const postUploadQ = async (req, res) => {
         user: { _id },
       } = req.session;
 
-    const { title, content, hashtags} = req.body;
+    const { title, content, hashtags } = req.body;
 
-    try { await Question.create({
-        number: 0, // (수정 1)
-        title,
-        writer : "사람", // (수정 2)
-        content,
-        hashtags: Question.formatHashtags(hashtags),
-        owner: _id,
-    });
-
-    return res.redirect("/qna");
-    } catch (error) {
-        return res.status(400).render("qna/uploadQ", { 
-            pageTitle: "Upload Video", 
-            errorMessage: error._message 
+    try { 
+        const newQuestion = await Question.create({
+            number: 0, // (수정 1)
+            title,
+            content,
+            hashtags: Question.formatHashtags(hashtags),
+            owner: _id,
         });
-    }
+
+        // user 불러와서 User에 추가한 questions의 list에 해당 유저가 업로드한 비디오 정보 추가 
+        const user = await User.findById(_id);
+        user.questions.push(newQuestion._id);
+
+        // save 함수가 불러오면서 비밀번호가 또 해싱되는 문제 발생
+        user.save();
+
+        return res.redirect("/qna");
+
+        } catch (error) {
+            return res.status(400).render("qna/uploadQ", { 
+                pageTitle: "Upload Video", 
+                errorMessage: error._message 
+            });
+        }
 };
 
 export const getEditQ = async (req, res) => {
