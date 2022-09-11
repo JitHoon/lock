@@ -11,6 +11,7 @@ const questionSchema = new mongoose.Schema({
     views: { type: Number, default: 0, required: true },
   },
   hashtags: [{ type: String }],
+  owner: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "User" },
 });
 // 우리가 제공해주는 데이터 : number, createdAt, views
 // 사용자가 제공하는 데이터 : title, writer, content, hashtags : array 형태

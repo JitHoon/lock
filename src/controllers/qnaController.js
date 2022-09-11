@@ -24,6 +24,11 @@ export const getUploadQ = (req, res) => {
 }; 
 
 export const postUploadQ = async (req, res) => {
+    // user id를 question db에 추가
+    const {
+        user: { _id },
+      } = req.session;
+
     const { title, content, hashtags} = req.body;
 
     try { await Question.create({
@@ -32,6 +37,7 @@ export const postUploadQ = async (req, res) => {
         writer : "사람", // (수정 2)
         content,
         hashtags: Question.formatHashtags(hashtags),
+        owner: _id,
     });
 
     return res.redirect("/qna");

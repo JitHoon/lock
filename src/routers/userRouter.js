@@ -10,7 +10,7 @@ const userRouter = express.Router();
 
 userRouter.get("/logout", protectorMiddleware, logout);
 userRouter.route("/:id")
-    .all(protectorMiddleware)
+.all(protectorMiddleware)
     .get(myProfile)
 userRouter.route("/:id/edit")
     .all(protectorMiddleware)
