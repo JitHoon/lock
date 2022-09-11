@@ -5,6 +5,9 @@ block content
         p=question.content
         small=question.createdAt
 
+    div
+        small Uploaded by #{owner.userName}
+
     if String(question.owner) === String(loggedInUser._id)
         nav
             ul

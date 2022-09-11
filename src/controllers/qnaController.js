@@ -1,6 +1,7 @@
 import req from "express/lib/request";
 import res from "express/lib/response";
 import Question from "../models/Question";
+import User from "../models/User";
 
 export const qna = async (req, res) => {
     const questions = await Question.find({}).sort({ createdAt: "desc" });
@@ -11,11 +12,12 @@ export const qna = async (req, res) => {
 export const seeQ = async (req, res) => {
     const { id } = req.params;
     const question = await Question.findById(id);
+    const owner = await User.findById(question.owner); // owner는 user의 id와 동일하기 때문
 
     if (!question) {
         return res.status(404).render("404", { pageTitle: "Question not found." });
     }
-    return res.render("qna/seeQ", {pageTitle : `Question : ${question.title}`, question});
+    return res.render("qna/seeQ", {pageTitle : `Question : ${question.title}`, question, owner});
 
 };
 
