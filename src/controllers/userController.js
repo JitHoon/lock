@@ -131,7 +131,7 @@ export const postEdit = async (req, res) => {
     );
 
   req.session.user = updatedUser;
-  return res.redirect("/users/:id/edit");
+  return res.redirect(`/users/${req.session.user._id}`);
 };
 
 // change password
