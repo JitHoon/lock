@@ -7,6 +7,7 @@ html(lang="ko")
     body
         header
             h1 🔒 CNU Electrical Engineering Locker System
+            h2  #{pageTitle}
             nav
                 ul
                     li
@@ -29,8 +30,6 @@ html(lang="ko")
                     if loggedIn
                         li
                             a(href=`/users/${loggedInUser._id}`) #{loggedInUser.userName}
-            
-            h2  #{pageTitle}
                     
         main
             block content
