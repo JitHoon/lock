@@ -61,6 +61,7 @@ app.use(
 );
 
 app.use(localsMiddleware);
+app.use("/static", express.static("assets")); // 브라우저를 위한 url
 app.use("/", rootRouter);
 app.use("/users", userRouter);
 app.use("/locker", lockerRouter);
