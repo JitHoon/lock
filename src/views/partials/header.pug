@@ -1,0 +1,24 @@
+header
+    h1 🔒 CNU Electrical Engineering Locker System
+    h2  #{pageTitle}
+        nav
+            ul
+                li
+                    a(href="/") Home
+                if loggedIn
+                    li
+                        a(href="/users/logout") Logout
+                else
+                    li
+                        a(href="/join") Join
+                    li
+                        a(href="/login") Login
+                li
+                    a(href="/locker") Locker
+                li
+                    a(href="/qna") Q&A
+                li
+                    a(href="/search") Searc 
+                if loggedIn
+                    li
+                        a(href=`/users/${loggedInUser._id}`) #{loggedInUser.userName}
