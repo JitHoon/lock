@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 const lockerSchema = new mongoose.Schema({
+  Alphabet: String, // 새로 추가했으므로 db 등록시 주의하기
   number: Number,
   password: Number,
   available: Boolean,

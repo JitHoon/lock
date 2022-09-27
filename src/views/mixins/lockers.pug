@@ -1,6 +1,4 @@
 mixin lockers(lockers)
     div
         h4
-            a(href="/locker/" + lockers.id)=lockers.number
-        ul
-            h5  #{lockers.available === true ? "사용가능" : "사용중"}
+            a(href="/locker/" + lockers.Alphabet)=lockers.Alphabet

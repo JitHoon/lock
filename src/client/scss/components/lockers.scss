@@ -1,0 +1,7 @@
+// lockers mixin 알파벳만 보여지는 박스 차후 긴 직사각형으로
+
+.lockers-mixin {
+    display: grid;
+    gap: 50px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
