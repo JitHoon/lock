@@ -1,27 +1,27 @@
 header
     h1
-        a(href="/")
+        a(href="/").header__logo
             i.fa-solid.fa-school-lock
         
-        CNU  Electrical Engineering Locker System
+        CNU  전자공학과 사물함 시스템 | #{pageTitle}
 
-    h2  #{pageTitle}
-        nav
-            ul
-                if loggedIn
-                    li
-                        a(href="/users/logout") Logout
-                else
-                    li
-                        a(href="/join") Join
-                    li
-                        a(href="/login") Login
+    nav
+        ul
+            if loggedIn
+                li
+                    a(href="/search")
+                        i.fas.fa-search 
                 li
                     a(href="/locker") Locker
                 li
                     a(href="/qna") Q&A
                 li
-                    a(href="/search") Searc 
-                if loggedIn
-                    li
-                        a(href=`/users/${loggedInUser._id}`) #{loggedInUser.userName}
+                    a(href=`/users/${loggedInUser._id}`) #{loggedInUser.userName}
+                li
+                    a(href="/users/logout") Logout
+            else
+                li
+                    a(href="/join").header__btn  Join
+                li
+                    a(href="/login") Login
+    
