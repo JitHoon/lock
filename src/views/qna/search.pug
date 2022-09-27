@@ -2,10 +2,13 @@ extends ../base
 include ../mixins/questions
 
 block content
-    form(method="GET")
-        input(placeholder="Search by title",name="keyword", type="text")
-        input(type="submit", value="Search now")
+    form(method="GET").search__form
+        input(placeholder="제목으로 질문 검색하기",name="keyword", type="text")
+        button
+            i.fas.fa-search
 
-    div
+    div.question-grid
         each question in questions 
-            +questions(question) 
+            +questions(question)
+        else
+            span.empty__message 검색된 질문이 없습니다.🥲
