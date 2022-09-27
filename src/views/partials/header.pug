@@ -1,10 +1,13 @@
 header
-    h1 🔒 CNU Electrical Engineering Locker System
+    h1
+        a(href="/")
+            i.fa-solid.fa-school-lock
+        
+        CNU  Electrical Engineering Locker System
+
     h2  #{pageTitle}
         nav
             ul
-                li
-                    a(href="/") Home
                 if loggedIn
                     li
                         a(href="/users/logout") Logout
