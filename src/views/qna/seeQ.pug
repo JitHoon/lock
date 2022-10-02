@@ -9,9 +9,7 @@ block content
         small Uploaded by #{question.owner.userName}
 
     if String(question.owner.id) === String(loggedInUser._id)
-        nav
-            ul
-                li
-                    a(href=`${question.id}/editq`) 수정하기 &rarr;
-                    br
-                    a(href=`${question.id}/delete`) 삭제하기 &rarr;
+        div.arrow-switch
+            a(href=`${question.id}/editq`) 수정하기 &rarr;
+        div.arrow-switch
+            a(href=`${question.id}/delete`) 삭제하기 &rarr;

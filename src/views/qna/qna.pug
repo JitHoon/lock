@@ -2,10 +2,8 @@ extends ../base
 include ../mixins/questions
 
 block content
-    nav
-        ul
-            li       
-                a(href="qna/uploadq") 질문하기 &rarr;
+    div.arrow-switch
+        a(href="qna/uploadq") 질문하기 &rarr;
                 
     each question in questions
         +questions(question)

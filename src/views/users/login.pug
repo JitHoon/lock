@@ -9,9 +9,6 @@ block content
         input(name="password", placeholder="비밀번호", type="password", required)
         input(type="submit", value="로그인하기")
 
-        br
-        a(href="users/github/start") Continue with Github &rarr;
-
-        div
-            span Don't have an account? 
-            a(href="/join") Create one now &rarr;
+        div.arrow-switch
+            span 계정이 없으신 가요? 
+            a(href="/join")  회원가입하기 &rarr;

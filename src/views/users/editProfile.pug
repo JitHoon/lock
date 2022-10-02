@@ -9,4 +9,6 @@ block content
         label(for="phoneNumber") 전화번호
         input(placeholder="phoneNumber", name="phoneNumber", type="number", required, value=loggedInUser.phoneNumber)
         input(type="submit", value="Update Profile")
-        a(href="changePassword") Change Password &rarr;
+
+        div.arrow-switch
+            a(href="changePassword") 비밀번호 변경하기 &rarr;

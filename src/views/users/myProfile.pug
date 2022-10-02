@@ -10,9 +10,8 @@ block content
         label(for="") 전화번호
         p=loggedInUser.phoneNumber
     
-    nav 
-        li
-            a(href=`/users/${loggedInUser._id}/edit`) Edit Profile &rarr;
+        div.arrow-switch
+            a(href=`/users/${loggedInUser._id}/edit`) 프로필 수정하기 &rarr;
 
     div
         each question in user.questions
