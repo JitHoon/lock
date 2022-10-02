@@ -23,3 +23,7 @@ block content
 
             div.arrow-switch__myProfile
                 a(href=`/users/${loggedInUser._id}/edit`) 번호 수정하기 &rarr;
+
+    div
+        each question in user.questions
+            +questions(question)

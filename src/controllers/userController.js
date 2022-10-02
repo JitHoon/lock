@@ -134,6 +134,13 @@ export const postEdit = async (req, res) => {
   return res.redirect(`/users/${req.session.user._id}`);
 };
 
+export const getQ = async(req, res) => {
+  const { id } = req.params;
+  const user = await User.findById(id).populate("questions");
+
+  return res.render("users/myQuestion", { pageTitle: "My Questions", user, });
+};
+
 // change password
 export const getChangePassword = (req, res) => {
   return res.render("users/changePassword", { pageTitle: "Change Password" });
