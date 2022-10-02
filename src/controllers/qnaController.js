@@ -138,7 +138,7 @@ export const search = async (req, res) => {
             title: {
               $regex: new RegExp(keyword, "ig"),
             },
-        });
+        }).populate("owner");
     }
 
     return res.render("qna/search", { pageTitle: "Search", questions});
