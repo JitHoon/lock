@@ -1,33 +1,16 @@
+import req from "express/lib/request";
+import res from "express/lib/response";
 import Locker from "../models/Locker";
+import User from "../models/User";
 
-/* fake array DB
-let lockers = [
-    {number : 1, available : true, id : 1, password : 1034},
-    {number : 2, available : false, id : 2, password : 1204},
-    {number : 3, available : true, id : 3, password : 1230}
-];
-*/
+export const mainLocker = async (req, res) => {return res.render("home", {pageTitle : "Home"});};
 
-const handleSearch = (error, lockers) => {
-    console.log("errors", error);
-    console.log("lockers", lockers);
-};
-
-export const locker = (req, res) => {
-    Locker.find({}, handleSearch);
-    return res.render("locker/locker", {pageTitle : "Lockers", lockers : []});
-};
-
-export const seeLocker = (req, res) => {
+export const alphabetLocker = (req, res) => {
     const { id } = req.params;
-    const locker = lockers[id-1];
 
-    return res.render("locker/seeLocker", {pageTitle : `No. ${locker.number} Locker`, locker});
+    return res.render("home", {pageTitle : "알파벳 사물함"});
 };
 
-export const seePassword = (req, res) => {
-    const { id } = req.params;
-    const locker = lockers[id-1];
-
-    return res.render("locker/seePassword", {pageTitle : `No. ${locker.number} Locker's Password`, locker});
-};
+export const numberLocker = async (req, res) => {return res.render("home", {pageTitle : "숫자 사물함"});};
+export const getAplly = async (req, res) => {return res.render("home", {pageTitle : "사물함 신청"});};
+export const postAplly = async (req, res) => {return res.render("home", {pageTitle : "사물함 신청"});};

@@ -3,7 +3,10 @@ import morgan from "morgan";
 import session from "express-session";
 import MongoStore from "connect-mongo";
 
+
+// adminRouter 추가후 201701703 유저만 post 가능하도록 만드는 middleware 만들기
 import rootRouter from "./routers/rootRouter";
+import adminRouter from "./routers/adminRouter";
 import userRouter from "./routers/userRouter";
 import lockerRouter from "./routers/lockerRouter";
 import qnaRouter from "./routers/qnaRouter";
@@ -63,6 +66,7 @@ app.use(
 app.use(localsMiddleware);
 app.use("/static", express.static("assets")); // 브라우저를 위한 url
 app.use("/", rootRouter);
+app.use("/admin", adminRouter);
 app.use("/users", userRouter);
 app.use("/locker", lockerRouter);
 app.use("/qna", qnaRouter);

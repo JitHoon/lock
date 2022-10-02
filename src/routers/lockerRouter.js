@@ -1,11 +1,20 @@
 import express from "express";
-import { locker, seeLocker, seePassword } from "../controllers/lockerController";
-import { protectorMiddleware } from "../middlewares"
+import { mainLocker, alphabetLocker, numberLocker,
+    getAplly, postAplly } from "../controllers/lockerController";
+import { protectorMiddleware } from "../middlewares";
 
 const lockerRouter = express.Router();
 
-lockerRouter.route("/").get(locker);
-lockerRouter.route("/:id(\\d+)").all(protectorMiddleware).get(seeLocker);
-lockerRouter.route("/:id(\\d+)/password").all(protectorMiddleware).get(seePassword);
+lockerRouter.route("/").get(mainLocker);
+lockerRouter.route("/alphabet")
+.all(protectorMiddleware)
+.get(alphabetLocker);
+lockerRouter.route("/alphabet/:id([0-9a-f]{24})")
+.all(protectorMiddleware)
+.get(numberLocker);
+lockerRouter.route("/alphabet/:id([0-9a-f]{24})/apply")
+.all(protectorMiddleware)
+.get(getAplly)
+.post(postAplly);
 
 export default lockerRouter;
