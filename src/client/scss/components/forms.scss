@@ -22,8 +22,8 @@ input {
     width: 90%;
   }
 
-  input[type="submit"],
-.social__btn {
+
+input[type="submit"] {
   border-radius: 5px;
   padding: 12px 20px;
   background-color: white;
@@ -33,10 +33,29 @@ input {
   display: block;
 }
 
-.arrow-switch{
-    text-align: center;
-  margin-top: 40px;
-  a {
-    text-decoration: underline;
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
   }
+
+.arrow-switch{
+    display:flex;
+    text-align: center;
+    margin-top: 20px;
+    a {
+        margin-left: 10px;
+        text-decoration: underline;
+    }
+}
+
+.arrow-switch__myProfile {
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 14px;
+    background-color: white;
+    color: rgba($color: $bg, $alpha: 1);
+    text-align: center;
+    cursor: pointer;
+    display: block;
 }

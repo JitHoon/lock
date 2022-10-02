@@ -2,13 +2,13 @@ extends ../base
 
 block content
     form(method="POST")
-        label(for="") 이름
-        p=loggedInUser.userName
-        label(for="") 학번
-        p=loggedInUser.studentID
-        label(for="phoneNumber") 전화번호
-        input(placeholder="phoneNumber", name="phoneNumber", type="number", required, value=loggedInUser.phoneNumber)
-        input(type="submit", value="Update Profile")
+        div.center
+            div.profile__data
+                label(for="phoneNumber") 폰번호
+                input(placeholder="phoneNumber", name="phoneNumber", type="number", required, value="0"+loggedInUser.phoneNumber).edit__phonenum
+            
+        input(type="submit", value="수정하기")
 
+    div.center
         div.arrow-switch
             a(href="changePassword") 비밀번호 변경하기 &rarr;

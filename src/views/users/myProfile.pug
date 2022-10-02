@@ -3,15 +3,26 @@ include ../mixins/questions
 
 block content
     form(method="POST")
-        label(for="") 이름
-        p=loggedInUser.userName
-        label(for="") 학번
-        p=loggedInUser.studentID
-        label(for="") 전화번호
-        p=loggedInUser.phoneNumber
-    
-        div.arrow-switch
-            a(href=`/users/${loggedInUser._id}/edit`) 프로필 수정하기 &rarr;
+        div.center
+            div.profile__data
+                label(for="") 이름
+                p=loggedInUser.userName
+            div.profile__data
+                label(for="") 학번
+                p=loggedInUser.studentID
+            div.profile__data
+                label(for="") 폰번호
+                p="0"+loggedInUser.phoneNumber
+
+        div.center    
+            div.arrow-switch__myProfile
+                a(href=`/users/${loggedInUser._id}/edit`) 내 사물함 &rarr;
+
+            div.arrow-switch__myProfile
+                a(href=`/users/${loggedInUser._id}/edit`) 내 질문 &rarr;
+
+            div.arrow-switch__myProfile
+                a(href=`/users/${loggedInUser._id}/edit`) 번호 수정하기 &rarr;
 
     div
         each question in user.questions

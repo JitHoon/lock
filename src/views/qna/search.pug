@@ -6,12 +6,13 @@ block content
         input(placeholder="제목으로 질문 검색하기",name="keyword", type="text")
         button
             i.fas.fa-search
+    
+    div.center
+        div.arrow-switch
+            a(href="qna/uploadq") 질문하기 &rarr;
 
     div.question-grid
         each question in questions 
             +questions(question)
         else
             span.empty__message 검색된 질문이 없습니다.🥲
-
-    div.arrow-switch
-        a(href="qna/uploadq") 질문하기 &rarr;
