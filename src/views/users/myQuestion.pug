@@ -22,7 +22,14 @@ block content
                 a(href=`/users/${loggedInUser._id}/q`) 내 질문 &rarr;
 
             div.arrow-switch__myProfile
-                a(href=`/users/${loggedInUser._id}/edit`) 번호, 비번 변경하기 &rarr;
+                a(href=`/users/${loggedInUser._id}/edit`) 폰 번호 변경 &rarr;
+
+            div.arrow-switch__myProfile
+                a(href=`/users/${loggedInUser._id}/changePassword`) 비번 변경 &rarr;
+
+    div.center    
+        div.arrow-switch
+            a(href=`/users/${loggedInUser._id}`) 뒤로가기 &larr;
 
     div
         each question in user.questions

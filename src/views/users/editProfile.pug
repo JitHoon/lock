@@ -8,7 +8,7 @@ block content
                 input(placeholder="phoneNumber", name="phoneNumber", type="number", required, value="0"+loggedInUser.phoneNumber).edit__phonenum
             
         input(type="submit", value="수정하기")
-
-    div.center
+        
+    div.center    
         div.arrow-switch
-            a(href="changePassword") 비밀번호 변경하기 &rarr;
+            a(href=`/users/${loggedInUser._id}`) 뒤로가기 &larr;
