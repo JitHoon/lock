@@ -44,15 +44,14 @@ export const postUploadQ = async (req, res) => {
         // user 불러와서 User에 추가한 questions의 list에 해당 유저가 업로드한 비디오 정보 추가 
         const user = await User.findById(_id);
         user.questions.push(newQuestion._id);
-
         // save 함수가 불러오면서 비밀번호가 또 해싱되는 문제 발생
-        user.save();
+        user.save(); 
 
         return res.redirect("/qna");
 
         } catch (error) {
             return res.status(400).render("qna/uploadQ", { 
-                pageTitle: "Upload Video", 
+                pageTitle: "Upload Question", 
                 errorMessage: error._message 
             });
         }
@@ -125,7 +124,7 @@ export const deleteQ = async (req, res) => {
         return res.status(403).redirect("/");
     }
 
-    await Question.findByIdAndDelete(id);
+    await Question.findByIdAndDelete(id); // 그냥 pop() 사용해도 되는지 확인하기
     return res.redirect("/qna");
   };
 

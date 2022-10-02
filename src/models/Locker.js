@@ -1,26 +1,95 @@
 import mongoose from "mongoose";
 
 const lockerSchema = new mongoose.Schema({
-  Alphabet: String, // 새로 추가했으므로 db 등록시 주의하기
+  alphabet: String, // 새로 추가했으므로 db 등록시 주의하기
   number: Number,
-  password: Number,
-  available: Boolean,
+  lockerPW: Number,
+  appPW: {type: Number, required: true, trim:true, unique : true },
+  owner: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    // const locker = await Locker.findById(id).populate("owner");
+    // if(locker) 사물함 신청 버튼 숨기기 (사물함 버튼 색깔 변화)
 });
 
-// admin id만 보이는 페이지를 하나 파서 사물함들을 db에 등록하고
-// 사물함 번호, 비밀번호를 db에 등록한다.
+// <1>
+// admin id만 보이는 사물함 db 등록 버튼을 하나 파서 사물함들을 db에 등록하고
+// 이를통해 사물함 영어, 사물함 숫자, 사뭄함 비밀번호를 db에 등록한다.
 
-// 한 사용자가 사물함 신청을 누르면
-// 0. available = true 라면 
-// 1. available = false로 바꾸고
-// 2. 사용자 db와 사물함 db를 연결한다. (질문 기능 참고)
-// 3. 사용자에게 비밀번호와 사용기한을 띄워준다.
+// 결과
+// - alphabet
+// - number
+// - lockerPW
+// 위 세가지 데이터를 미리 입력 받을 수 있으며
+// 향후 비밀번호 변경가능 기능까지 추가하기 (해싱은 차후에)
 
-// 0. available = false 인 사물함은 모든 사람들이 클릭할 수 없도록 만든다.
-// 1. 신청을 한 사용자(사물함 db와 연결되어있다는 걸 판단하고)는 사물함 버튼을 클릭할 수 없도록 만든다.
+/* <1> locker controller
+export const postAdmin = async (req, res) => {}
+*/
 
-// 0. 반납 버튼을 누른다면 로그아웃 방법처럼 혹인 질문 삭제 방법처럼 db연동을 없애고
-// 1. available = true로 변경해준다.
+// <2>
+// 0. 한 사용자가 본인확인 비밀번호를 입력하고 사물함 신청을 누르면
+// 1. 사용자의 비밀번호가 일치하는지 확인하고
+// 2. 사용자 db (locker)와 사물함 db (owner)을 서로 _id로 연결한다. 
+
+// 결과
+// - appPW를 필수적으로 입력받음
+// - 사용자 db (locker)와 사물함 db (owner)을 서로 _id로 연결
+
+/* <2> locker controller
+export const postApp = async (req, res) => {
+  const pageTitle = "사물함 신청하기";
+
+  // user의 고유 _id를 불러옴
+  const {
+      user: { _id },
+    } = req.session;
+
+  // lockerApp.pug 에서 POST 요청하는 데이터들을 불러옴
+  const { appPW } = req.body;
+
+  // 1. 
+  const ok = await bcrypt.compare(appPW, user.password);
+
+  if (!ok) {
+    return res.status(400).render("locker/locker_id/apply", {
+      pageTitle,
+      errorMessage: "잘못된 비밀번호입니다.",
+    });
+  }
+
+  try { 
+    // 3. 
+    // POST 요청이 되면 Locker db에 새롭게 appPW와 POST를 요청한 유저의 _id가 추가됨!!
+      const newLocker = await Locker.create({
+          appPW,
+          owner: _id,
+      });
+
+      // user _id를 불러와서
+      const user = await User.findById(_id);
+
+      // 3. 
+      // User _id에 해당하는 locker list에 POST를 요청한 유저의 new _id를 추가
+      user.locker.push(newLocker._id);
+
+      // 데이터 저장
+      user.save(); 
+
+      return res.redirect("/locker");
+
+      } catch (error) {
+          return res.status(400).render("locker/locker_id/apply", { 
+              pageTitle, 
+              errorMessage: error._message 
+          });
+      }
+};
+*/
+
+// <3>
+// 사용해지 controller
+// db에 등록한다.
+
+// qnaController, deleteQ 참고
 
 
 const Locker = mongoose.model("Locker", lockerSchema);
