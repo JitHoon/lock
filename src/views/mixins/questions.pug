@@ -1,6 +1,6 @@
 mixin questions(questions)
     div
-        h4="질문 " + questions.number+1 
+        h4="질문 "
         a(href="/qna/" + questions.id)=questions.title
         ul
             each hashtag in questions.hashtags

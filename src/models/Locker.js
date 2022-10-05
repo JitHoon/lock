@@ -1,13 +1,16 @@
 import mongoose from "mongoose";
 
 const lockerSchema = new mongoose.Schema({
-  alphabet: String, // 새로 추가했으므로 db 등록시 주의하기
-  number: Number,
-  lockerPW: Number,
-  appPW: {type: Number, required: true, trim:true, unique : true },
+  lockerNum: String, // A2
+  lockerPW: Number, // 1234
+  createdAt: { type: Date, required: true, default: Date.now },
   owner: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-    // const locker = await Locker.findById(id).populate("owner");
-    // if(locker) 사물함 신청 버튼 숨기기 (사물함 버튼 색깔 변화)
+  // alphabet: String, // 새로 추가했으므로 db 등록시 주의하기
+  // number: Number,
+  // appPW: {type: Number, required: true, trim:true, unique : true },
+  
+  // const locker = await Locker.findById(id).populate("owner");
+  // if(locker) 사물함 신청 버튼 숨기기 (사물함 버튼 색깔 변화)
 });
 
 // <1>
@@ -15,29 +18,24 @@ const lockerSchema = new mongoose.Schema({
 // 이를통해 사물함 영어, 사물함 숫자, 사뭄함 비밀번호를 db에 등록한다.
 
 // 결과
-// - alphabet
-// - number
+// - lockerNum
 // - lockerPW
-// 위 세가지 데이터를 미리 입력 받을 수 있으며
-// 향후 비밀번호 변경가능 기능까지 추가하기 (해싱은 차후에)
+// 위 두 가지 데이터를 미리 입력 받고
+// 비밀번호 변경 가능 기능까지 추가하기
 
 /* <1> locker controller
 export const postAdmin = async (req, res) => {}
 */
 
 // <2>
-// 0. 한 사용자가 본인확인 비밀번호를 입력하고 사물함 신청을 누르면
-// 1. 사용자의 비밀번호가 일치하는지 확인하고
+// 0. 한 사용자가 사물함 신청을 누르면
 // 2. 사용자 db (locker)와 사물함 db (owner)을 서로 _id로 연결한다. 
 
 // 결과
-// - appPW를 필수적으로 입력받음
 // - 사용자 db (locker)와 사물함 db (owner)을 서로 _id로 연결
 
 /* <2> locker controller
-export const postApp = async (req, res) => {
-  const pageTitle = "사물함 신청하기";
-
+export const postAplly = async (req, res) => {
   // user의 고유 _id를 불러옴
   const {
       user: { _id },
@@ -50,7 +48,7 @@ export const postApp = async (req, res) => {
   const ok = await bcrypt.compare(appPW, user.password);
 
   if (!ok) {
-    return res.status(400).render("locker/locker_id/apply", {
+    return res.status(400).render("locker/locker_id/", {
       pageTitle,
       errorMessage: "잘못된 비밀번호입니다.",
     });
@@ -60,7 +58,6 @@ export const postApp = async (req, res) => {
     // 3. 
     // POST 요청이 되면 Locker db에 새롭게 appPW와 POST를 요청한 유저의 _id가 추가됨!!
       const newLocker = await Locker.create({
-          appPW,
           owner: _id,
       });
 
@@ -77,10 +74,8 @@ export const postApp = async (req, res) => {
       return res.redirect("/locker");
 
       } catch (error) {
-          return res.status(400).render("locker/locker_id/apply", { 
-              pageTitle, 
-              errorMessage: error._message 
-          });
+
+         return res.status(400).redirect("/");
       }
 };
 */
