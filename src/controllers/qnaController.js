@@ -3,11 +3,20 @@ import res from "express/lib/response";
 import Question from "../models/Question";
 import User from "../models/User";
 
-export const qna = async (req, res) => {
-    const questions = await Question.find({}).sort({ createdAt: "desc" });
+export const mainQ = async (req, res) => {
+    const { keyword } = req.query;
+    
+    let questions = [];
+    if (keyword) {
+        questions = await Question.find({
+            title: {
+              $regex: new RegExp(keyword, "ig"),
+            },
+        }).populate("owner");
+    }
 
-    return res.render("qna/qna", {pageTitle : "Q & A", questions });
-};
+    return res.render("qna/mainQ", { pageTitle: "Search", questions});
+  };
 
 export const seeQ = async (req, res) => {
     const { id } = req.params;
@@ -135,19 +144,4 @@ export const deleteQ = async (req, res) => {
     //console.log(question);
     
     return res.redirect("/qna");
-  };
-
-export const search = async (req, res) => {
-    const { keyword } = req.query;
-    
-    let questions = [];
-    if (keyword) {
-        questions = await Question.find({
-            title: {
-              $regex: new RegExp(keyword, "ig"),
-            },
-        }).populate("owner");
-    }
-
-    return res.render("qna/search", { pageTitle: "Search", questions});
   };
