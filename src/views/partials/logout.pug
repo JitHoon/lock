@@ -1,0 +1,8 @@
+nav
+    ul
+        if loggedIn
+            li
+                a(href="/users/logout").header__btn Logout
+        else
+            li
+                a(href="/users/login").header__btn Login

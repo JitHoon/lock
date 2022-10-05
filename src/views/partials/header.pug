@@ -4,24 +4,3 @@ header
             i.fa-solid.fa-school-lock
         
         CNU  전자공학과 사물함 시스템 | #{pageTitle}
-
-    nav
-        ul
-            if loggedIn
-                li
-                    a(href="/search")
-                        i.fas.fa-search 
-                li
-                    a(href="/locker") 사물함
-                li
-                    a(href="/qna") Q&A
-                li
-                    a(href=`/users/${loggedInUser._id}`) #{loggedInUser.userName}님 프로필
-                li
-                    a(href="/users/logout") Logout
-            else
-                li
-                    a(href="/join").header__btn  Join
-                li
-                    a(href="/login") Login
-    
