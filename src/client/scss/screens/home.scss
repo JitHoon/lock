@@ -1,0 +1,13 @@
+.loginCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: rgba($color: $bg, $alpha: 0.7);
+    border-radius: 10px;
+    border: 1px solid rgba($color: #fff, $alpha: 0.1); 
+}

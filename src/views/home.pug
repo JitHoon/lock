@@ -1,3 +1,12 @@
 extends base
 
 block content
+    div.loginCard
+        if loggedIn
+            div
+                li
+                    a(href="/users/logout").header__btn Logout
+        else
+            div
+                li
+                    a(href="/users/login").header__btn Login
