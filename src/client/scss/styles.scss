@@ -5,6 +5,8 @@
 // Conponents (블락)
 @import "./components/header.scss";
 @import "./components/logout.scss";
+@import "./components/pageTitle.scss";
+
 @import "./components/locker.scss";
 @import "./components/lockers.scss";
 @import "./components/footer.scss";
@@ -30,6 +32,5 @@ body {
 main {
   max-width: 1200px;
   width: 100%;
-  margin: 0 auto;
-  margin-top: 50px;
+  margin: 50px auto;
 }

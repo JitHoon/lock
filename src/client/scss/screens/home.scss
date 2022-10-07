@@ -1,13 +1,29 @@
 .homeCard__shape {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    flex-direction:row; 
+    justify-content:space-around;
     align-items: center;
 
-    max-width: 60%;
-    margin: 20px auto;
-    padding: 30px;
-    background-color: rgba($color: $bg, $alpha: 0.7);
+    max-width:80%;
+    margin: 50px auto;
+    padding: 50px;
+
+    background-color: rgba($color: rgb(150, 151, 233), $alpha: 0.1);
     border-radius: 10px;
-    border: 3px solid rgba($color: #fff, $alpha: 0.1); 
+    border: 3px solid rgba($color: #fff, $alpha: 0.3); 
+}
+
+.homeCard__locker {
+    font-size: 100px;
+    margin: 250px 0px;
+}
+
+.homeCard__imf {
+    font-size: 50px;
+    margin: 30px 0px;
+}
+
+.homeCard__qna {
+    font-size: 60px;
+    margin: 30px 0px;
 }

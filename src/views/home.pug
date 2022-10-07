@@ -2,16 +2,18 @@ extends base
 
 block content
     if loggedIn
-        div.homeCard__shape
-            a(href="/locker").header__btn Locker
+        a(href="/locker").homeCard__shape
+            i.fa-solid.fa-unlock-keyhole.homeCard__locker
+                span  Locker
 
-        div.homeCard__shape
-            a(href="/qna").header__btn Q&A
-        
-        div.homeCard__shape
-            a(href=`/users/${loggedInUser._id}`).header__btn 내 정보
+        a(href=`/users/${loggedInUser._id}`).homeCard__shape
+            i.fa-solid.fa-user.homeCard__imf
+                span  User's Profile
+
+        a(href="/qna").homeCard__shape
+            span.homeCard__qna  Q & A
     else
         div.homeCard__shape
-            i.fa-solid.fa-school-lock
-            a(href="/users/join").header__btn Join
-            a(href="/users/login").header__btn Login
+            i.fa-solid.fa-school-lock.homeCard__img
+            a(href="/users/join").homeCard__btn Join
+            a(href="/users/login").homeCard__btn Login
