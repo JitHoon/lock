@@ -1,12 +1,17 @@
 extends base
 
 block content
-    div.loginCard
-        if loggedIn
-            div
-                li
-                    a(href="/users/logout").header__btn Logout
-        else
-            div
-                li
-                    a(href="/users/login").header__btn Login
+    if loggedIn
+        div.homeCard__shape
+            a(href="/locker").header__btn Locker
+
+        div.homeCard__shape
+            a(href="/qna").header__btn Q&A
+        
+        div.homeCard__shape
+            a(href=`/users/${loggedInUser._id}`).header__btn 내 정보
+    else
+        div.homeCard__shape
+            i.fa-solid.fa-school-lock
+            a(href="/users/join").header__btn Join
+            a(href="/users/login").header__btn Login

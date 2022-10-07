@@ -3,7 +3,10 @@ import res from "express/lib/response";
 import Locker from "../models/Locker";
 import User from "../models/User";
 
-export const mainLocker = async (req, res) => {return res.render("home", {pageTitle : "전체 사물함"});};
+export const mainLocker = async (req, res) => {
+    
+    return res.render("locker/mainLocker", {pageTitle : "전체 사물함"});
+};
 
 export const alphabetLocker = (req, res) => {
     const { id } = req.params;

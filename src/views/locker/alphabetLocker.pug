@@ -1,9 +1,0 @@
-extends ../base
-include ../mixins/lockers
-
-block content
-    div.locker-grid
-        each locker in lockers
-            +lockers(locker)
-        else
-            span.empty__message No lockers found
