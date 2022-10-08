@@ -1,15 +1,23 @@
 extends ../base
 
 block content
-    div
-        p=question.content
-        small=question.createdAt
+    div#questionContainer(data-id=question._id)
+        div
+            p=question.content
+            small=question.createdAt
 
-    div
-        small Uploaded by #{question.owner.userName}
+        div
+            small Uploaded by #{question.owner.userName}
 
-    if String(question.owner.id) === String(loggedInUser._id)
-        div.arrow-switch
-            a(href=`${question.id}/editq`) 수정하기 &rarr;
-        div.arrow-switch
-            a(href=`${question.id}/delete`) 삭제하기 &rarr;
+        if String(question.owner.id) === String(loggedInUser._id)
+            div.arrow-switch
+                a(href=`${question.id}/editq`) 수정하기 &rarr;
+            div.arrow-switch
+                a(href=`${question.id}/delete`) 삭제하기 &rarr;
+        if loggedIn
+            div.Question__comments
+                form.Question__comment-form#commentForm
+                    textarea(cols="50", rows="4", placeholder="Write a comment..")
+                    button Add Comment
+
+
