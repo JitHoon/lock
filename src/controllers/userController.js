@@ -3,11 +3,11 @@ import bcrypt from "bcrypt";
 // import fetch from "node-fetch";
 
 // [rootRouter]
-export const getJoin = (req, res) => res.render("users/join", { pageTitle: "Join" });
+export const getJoin = (req, res) => res.render("users/join", { pageTitle: "__ Join __" });
 
 export const postJoin = async (req, res) => {
     const { userName, studentID, password, password2, phoneNumber } = req.body;
-    const pageTitle = "Join";
+    const pageTitle = "__ Join __";
 
     // 비밀번호 재확인 오류 메시지 
     if (password !== password2) {
@@ -37,7 +37,7 @@ export const postJoin = async (req, res) => {
         return res.redirect("/login");
     } catch (error) {
         return res.status(400).render("users/join", {
-            pageTitle: "Join", 
+            pageTitle: "__ Join __", 
             errorMessage: error._message 
         });
     }
@@ -49,7 +49,7 @@ export const getLogin = (req, res) => {
 
 export const postLogin = async (req, res) => {
     const { studentID, password } = req.body;
-    const pageTitle = "Login";
+    const pageTitle = "__ Login __";
 
     // 존재하지 않는 아이디 에러 메시지
     const user = await User.findOne({ studentID });
