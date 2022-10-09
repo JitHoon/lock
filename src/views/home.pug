@@ -4,16 +4,19 @@ block content
     if loggedIn
         a(href="/locker").homeCard__shape
             i.fa-solid.fa-unlock-keyhole.homeCard__locker
-                span  Locker
+                span  사물함 신청
 
         a(href=`/users/${loggedInUser._id}`).homeCard__shape
             i.fa-solid.fa-user.homeCard__imf
-                span  User's Profile
+                span  User 님 프로필
 
         a(href="/qna").homeCard__shape
             span.homeCard__qna  Q & A
     else
-        div.homeCard__shape
-            i.fa-solid.fa-school-lock.homeCard__img
-            a(href="/users/join").homeCard__btn Join
-            a(href="/users/login").homeCard__btn Login
+        img(src='public/CNU-logo.png' href="/users/login" style='width:100%; height:100%; object-fit:cover;').homeLogo
+        
+        a(href="/users/login").homeCard__shape
+            span.homeCard__login  로그인
+
+        a(href="/join").homeCard__shape
+            span.homeCard__join  회원가입
