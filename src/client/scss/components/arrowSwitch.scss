@@ -1,0 +1,21 @@
+.arrow-switch{
+    display:block;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 35px;
+    a {
+        margin-left: 50px;
+        text-decoration: underline;
+    }
+}
+
+.arrow-switch__myProfile {
+    border-radius: 5px;
+    padding: 9px 14px;
+    font-size: 13px;
+    background-color: white;
+    color: rgba($color: $bg, $alpha: 1);
+    text-align: center;
+    cursor: pointer;
+    display: block;
+}
