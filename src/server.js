@@ -72,6 +72,7 @@ app.use(
 
 app.use(localsMiddleware);
 app.use("/static", express.static("assets")); // 브라우저를 위한 url
+app.use("/public", express.static("public"));
 app.use("/", rootRouter);
 app.use("/admin", adminRouter);
 app.use("/users", userRouter);
