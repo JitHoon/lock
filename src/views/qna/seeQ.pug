@@ -1,7 +1,6 @@
 extends ../base
 
 block content
-    div#questionContainer(data-id=question._id)
         div
             p=question.content
             small=question.createdAt
@@ -14,10 +13,11 @@ block content
                 a(href=`${question.id}/editq`) 수정하기 &rarr;
             div.arrow-switch
                 a(href=`${question.id}/delete`) 삭제하기 &rarr;
-        if loggedIn
-            div.Question__comments
-                form.Question__comment-form#commentForm
-                    textarea(cols="50", rows="4", placeholder="Write a comment..")
-                    button Add Comment
+        div#questionContainer(data-id=question._id)
+            if loggedIn
+                div.question__comments
+                    form.question__comment-form#commentForm
+                        textarea(cols="50", rows="4", placeholder="Write a comment..")
+                        button Add Comment
 
 

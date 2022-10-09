@@ -145,3 +145,11 @@ export const deleteQ = async (req, res) => {
     
     return res.redirect("/qna");
   };
+
+  export const createComment = (req, res) => {
+    console.log(req.params);
+    console.log(req.body);
+    console.log(req.body.text);
+    console.log(req.session.user);
+    res.end();
+  }
