@@ -15,9 +15,17 @@ block content
                 a(href=`${question.id}/delete`) 삭제하기 &rarr;
         div#questionContainer(data-id=question._id)
             if loggedIn
-                div.question__comments
+                div.arrow-switch
                     form.question__comment-form#commentForm
                         textarea(cols="50", rows="4", placeholder="Write a comment..")
                         button Add Comment
+            div.question_garden_grid
+                each comment in question.comments
+                    i.question_garden_comment
+                        i.fas.fa-comment
+                        | #{comment.text}
+        div.center    
+        div.arrow-switch
+            a(href="/qna") 뒤로가기 &larr;
 
 

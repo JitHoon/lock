@@ -6,3 +6,7 @@ block content
         input(placeholder="Content", required, type="text", name="content", value=question.content)
         input(placeholder="Hashtags, separated by ,", required, type="text", name="hashtags", value=question.hashtags.join())
         input(value="질문 수정하기",type="submit")
+
+    div.center    
+        div.arrow-switch
+            a(href="/qna") 뒤로가기 &larr;

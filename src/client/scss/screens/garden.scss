@@ -1,0 +1,18 @@
+.question_garden_grid{
+    gap: 5px;
+    display: flex;
+    flex-direction:column;
+    max-width: 320px;
+    width: 100%;
+    margin:0 auto;
+    margin-top:20px;
+    .question_garden_comment{
+        padding: 5px;
+        text-align: left;
+        border-radius: 9999px;
+        background-color: white;
+        color: black;
+        margin-bottom:10px;
+
+    }
+  }
