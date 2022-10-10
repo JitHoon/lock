@@ -21,9 +21,12 @@ block content
                         button Add Comment
             div.question_garden_grid
                 each comment in question.comments
-                    i.question_garden_comment
+                    i.question_garden_comment(data-id=comment.id)
                         i.fas.fa-comment
-                        | #{comment.text}
+                        if String(question.owner.id) === String(loggedInUser._id)
+                            span  #{comment.text} ❌
+                        else
+                            span  #{comment.text}
         div.center    
         div.arrow-switch
             a(href="/qna") 뒤로가기 &larr;

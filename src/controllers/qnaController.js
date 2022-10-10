@@ -171,5 +171,5 @@ export const deleteQ = async (req, res) => {
     question.save();
 
     console.log(user, text, id);
-    res.sendStatus(201);
+    res.status(201).json({newCommentId: comment._id});
   }
