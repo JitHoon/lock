@@ -1,16 +1,19 @@
 .search__form {
-    padding: 35px 150px;
+    max-width:85%;
+    margin: 0px auto;
     display: flex;
     position: relative;
+    flex-direction:row; 
     align-items: center;
     input {
       all: unset;
-      padding: 15px 20px;
+      padding: 15px;
       border-radius: 5px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      background-color: black;
+      text-align: center;
+      border: 1px solid $white;
+      background-color: rgba($color: rgb(150, 151, 233), $alpha: 0.1);
       margin-bottom: 5px;
-      font-size: 16px;
+      font-size: 30px;
       color: white;
       width: 90%;
     }
@@ -19,9 +22,8 @@
     }
     button {
       position: absolute;
-      right: 135px;
-      top: 45px;
-      font-size: 27px;
+      right: 0%;
+      font-size: 35px;
       background-color: rgba(0, 0, 0, 0);
       text-align: center;
       cursor: pointer;

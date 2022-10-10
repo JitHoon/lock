@@ -1,0 +1,35 @@
+form {
+  max-width:85%;
+  margin: 0px auto;
+  display: flex;
+  position: relative;
+  flex-direction:column; 
+  align-items: center;
+
+  input {
+    all: unset;
+    margin: 25px;
+    padding: 35px;
+    border-radius: 5px;
+    text-align: center;
+    border: 1px solid $white;
+    background-color: rgba($color: rgb(255, 255, 255), $alpha: 0);
+    margin-bottom: 5px;
+    font-size: 40px;
+    color: white;
+    width: 90%;
+  }
+}
+
+
+input[type="submit"] {
+  margin: 50px;
+  padding: 40px;
+  font-size: 45px;
+  border-radius: 5px;
+  background-color: white;
+  color: rgba($color: $bg, $alpha: 1);
+  text-align: center;
+  cursor: pointer;
+  display: block;
+}
