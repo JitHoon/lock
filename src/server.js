@@ -53,13 +53,20 @@ app.set("view engine", "pug");
 app.set("views", process.cwd() + "/src/views");
 
 app.use(morgan("dev"));
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true })); 
+//pug 속 input을 req.body로 server가 이해할 수 있게 전달해주는 middleware
+//app.use(express.text()); 
+//text를 보내면 backend에서 이해할 수 있도록 하는 middleware
+//comment backend로 전달하는 용
+app.use(express.json());
+//string -> JSon화 해서 "text": "something" -> text : "something"
 app.use(
     session({
+        store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
         secret: process.env.COOKIE_SECRET,
         resave: false,
         saveUninitialized: false,
-        store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
+        
     })
 );
 

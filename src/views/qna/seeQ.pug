@@ -1,15 +1,34 @@
 extends ../base
 
 block content
-    div
-        p=question.content
-        small=question.createdAt
+        div
+            p=question.content
+            small=question.createdAt
 
-    div
-        small Uploaded by #{question.owner.userName}
+        div
+            small Uploaded by #{question.owner.userName}
 
-    if String(question.owner.id) === String(loggedInUser._id)
+        if String(question.owner.id) === String(loggedInUser._id)
+            div.arrow-switch
+                a(href=`${question.id}/editq`) 수정하기 &rarr;
+            div.arrow-switch
+                a(href=`${question.id}/delete`) 삭제하기 &rarr;
+        div#questionContainer(data-id=question._id)
+            if loggedIn
+                div.arrow-switch
+                    form.question__comment-form#commentForm
+                        textarea(cols="50", rows="4", placeholder="Write a comment..")
+                        button Add Comment
+            div.question_garden_grid
+                each comment in question.comments
+                    i.question_garden_comment(data-id=comment.id)
+                        i.fas.fa-comment
+                        if String(question.owner.id) === String(loggedInUser._id)
+                            span  #{comment.text} ❌
+                        else
+                            span  #{comment.text}
+        div.center    
         div.arrow-switch
-            a(href=`${question.id}/editq`) 수정하기 &rarr;
-        div.arrow-switch
-            a(href=`${question.id}/delete`) 삭제하기 &rarr;
+            a(href="/qna") 뒤로가기 &larr;
+
+

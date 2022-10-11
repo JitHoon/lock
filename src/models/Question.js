@@ -9,6 +9,7 @@ const questionSchema = new mongoose.Schema({
     views: { type: Number, default: 0, required: true },
   },
   hashtags: [{ type: String }],
+  comments: [{type:mongoose.Schema.Types.ObjectId, required:true, ref:"Comment"}],
   owner: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "User" }, 
 });
 // 우리가 제공해주는 데이터 : number, createdAt, views

@@ -2,6 +2,7 @@ import req from "express/lib/request";
 import res from "express/lib/response";
 import Question from "../models/Question";
 import User from "../models/User";
+import Comment from "../models/Comment";
 
 export const mainQ = async (req, res) => {
     const { keyword } = req.query;
@@ -20,7 +21,7 @@ export const mainQ = async (req, res) => {
 
 export const seeQ = async (req, res) => {
     const { id } = req.params;
-    const question = await Question.findById(id).populate("owner");
+    const question = await Question.findById(id).populate("owner").populate("comments");
 
     if (!question) {
         return res.status(404).render("404", { pageTitle: "Question not found." });
@@ -145,3 +146,30 @@ export const deleteQ = async (req, res) => {
     
     return res.redirect("/qna");
   };
+
+  export const createComment = async (req, res) => {
+    // console.log(req.params); //질문의 id
+    // console.log(req.body); //사용자의 댓글 내용
+    // console.log(req.body.text);
+    // console.log(req.session.user); //사용자의 정보
+    const {
+        session:{user},
+        body:{text},
+        params: {id},
+    } = req;
+    const question = await Question.findById(id);
+    if(!question){
+        return res.sendStatus(404);
+    }
+    const comment = await Comment.create({
+        text,
+        owner: user._id,
+        questions:id,
+    });
+
+    question.comments.push(comment._id);
+    question.save();
+
+    console.log(user, text, id);
+    res.status(201).json({newCommentId: comment._id});
+  }

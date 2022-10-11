@@ -7,5 +7,9 @@ block content
         input(placeholder="Hashtags, separated by ,", required, type="text", name="hashtags")
         input(value="질문 올리기", type="submit")
 
+    div.center    
+        div.arrow-switch
+            a(href="/qna") 뒤로가기 &larr;
+            
     if errorMessage
         span=errorMessage
