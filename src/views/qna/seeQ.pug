@@ -23,8 +23,9 @@ block content
                 each comment in question.comments
                     i.question_garden_comment(data-id=comment.id)
                         i.fas.fa-comment
-                        if String(question.owner.id) === String(loggedInUser._id)
-                            span  #{comment.text} ❌
+                        if String(comment.owner) === String(loggedInUser._id)
+                            span  #{comment.text} 
+                            button.delete_comment ❌
                         else
                             span  #{comment.text}
         div.center    

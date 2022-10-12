@@ -161,15 +161,42 @@ export const deleteQ = async (req, res) => {
     if(!question){
         return res.sendStatus(404);
     }
+    const commentUser = await User.findById(user._id);
     const comment = await Comment.create({
         text,
         owner: user._id,
-        questions:id,
+        questions: id,
     });
 
     question.comments.push(comment._id);
+    commentUser.comments.push(comment._id);
+    commentUser.save();
     question.save();
+    req.session.user = commentUser;
 
     console.log(user, text, id);
-    res.status(201).json({newCommentId: comment._id});
+    res.status(201).json({
+        newCommentId: comment._id,
+    });
+  }
+
+  export const deleteComment = async(req,res) => {
+    const { params: { id },
+    body: { questionId },
+    session:{ user }
+    } = req;
+    const question = await Question.findById(questionId);
+    const commentUser = await User.findById(user._id);
+    if(user.comments.indexOf(id) < 0) {
+        req.flash("info", "Not authorized");
+        return res.sendStatus(403);
+    }
+    commentUser.comments.splice(commentUser.comments.indexOf(id), 1);
+    question.comments.splice(question.comments.indexOf(id), 1);
+
+    await question.save();
+    await commentUser.save();   
+    await Comment.findByIdAndDelete(id);
+
+    return res.sendStatus(201);
   }
