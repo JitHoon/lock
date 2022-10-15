@@ -1,9 +1,7 @@
 mixin questions(questions)
-    div
-        h4="질문 "
-        a(href="/qna/" + questions.id)=questions.title
-        ul
-            each hashtag in questions.hashtags
-                li=hashtag
-        small=questions.createdAt
-        hr
+    a(href="/qna/" + questions.id).question-grid
+        div
+            div.question-content=questions.content
+            div.question-createdAt=questions.createdAt
+        
+        div.question-views="views"

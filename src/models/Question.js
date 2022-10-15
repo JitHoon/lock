@@ -2,13 +2,11 @@ import mongoose from "mongoose";
 
 // 질문 데이터 : 번호, 제목, 작성자, 내용, 등록일, meta : 조회수 // hashtags 고민
 const questionSchema = new mongoose.Schema({
-  title: { type: String, required: true },
   content: { type: String, required: true },
   createdAt: { type: Date, required: true, default: Date.now },
   meta: {
     views: { type: Number, default: 0, required: true },
   },
-  hashtags: [{ type: String }],
   owner: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "User" }, 
 });
 // 우리가 제공해주는 데이터 : number, createdAt, views

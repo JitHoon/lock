@@ -10,7 +10,7 @@
       padding: 40px;
       border-radius: 5px;
       text-align: center;
-      border: 1px solid $white;
+      border: 3px solid rgba($color: #fff, $alpha: 0.7); 
       background-color: rgba($color: rgb(150, 151, 233), $alpha: 0.1);
       margin-bottom: 5px;
       font-size: 40px;
@@ -35,24 +35,16 @@
     display: flex;
     justify-content:space-evenly;
     flex-direction:row;
+    a {
+      padding: 30px;
+      border-radius: 5px;
+      width: 30%;
+      text-align: center;
+      color: $white;
+      span {
+        font-size: 40px;
+        font-weight: 700;
+        text-decoration: underline;
+      }
   }
-
-  .postQ__bnt {
-    padding: 30px;
-    border-radius: 5px;
-    width: 30%;
-    text-align: center;
-    color: $white;
-    span {
-      font-size: 40px;
-      font-weight: 700;
-      text-decoration: underline;
-    }
-  }
-
-  .question-grid{
-    padding: 35px 175px;
-    display: grid;
-    gap: 50px;
-    grid-template-columns: repeat(1, minmax(0, 1fr));
   }

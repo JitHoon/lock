@@ -5,7 +5,7 @@ import User from "../models/User";
 
 export const mainQ = async (req, res) => {
      const questions = await Question.find({}).sort({ createdAt: "desc" });
-    return res.render("qna/mainQ", { pageTitle: "Q&A", questions });
+    return res.render("qna/mainQ", { pageTitle: "__ Q&A __", questions });
   };
 
   export const searchQ = async (req, res) => {
@@ -14,13 +14,13 @@ export const mainQ = async (req, res) => {
     let questions = [];
     if (keyword) {
         questions = await Question.find({
-            title: {
+            content: {
               $regex: new RegExp(keyword, "ig"),
             },
         }).populate("owner");
     }
 
-    return res.render("qna/searchQ", { pageTitle: "Q&A", questions});
+    return res.render("qna/searchQ", { pageTitle: "__ Q&A __", questions});
   };
 
 export const seeQ = async (req, res) => {
@@ -36,7 +36,7 @@ export const seeQ = async (req, res) => {
 };
 
 export const getUploadQ = (req, res) => {
-    return res.render("qna/uploadQ", { pageTitle: "Upload Video" });
+    return res.render("qna/uploadQ", { pageTitle: "__ Upload Qusestion __" });
 }; 
 
 export const postUploadQ = async (req, res) => {
@@ -45,13 +45,11 @@ export const postUploadQ = async (req, res) => {
         user: { _id },
       } = req.session;
 
-    const { title, content, hashtags } = req.body;
+    const { content } = req.body;
 
     try { 
         const newQuestion = await Question.create({
-            title,
             content,
-            hashtags: Question.formatHashtags(hashtags),
             owner: _id,
         });
 
@@ -95,11 +93,9 @@ export const postEditQ = async (req, res) => {
     // Question : 우리가 만든 질문 model
     // question : 데이터베이스에서 검색한 질문 object
     const { id } = req.params;
-    const { title, content, hashtags } = req.body;
+    const { content } = req.body;
     await Question.findByIdAndUpdate(id, {
-        title,
         content,
-        hashtags: Question.formatHashtags(hashtags),
     });
 
     // 질문 데이터 존재 여부만 판단하는 model

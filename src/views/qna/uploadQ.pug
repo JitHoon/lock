@@ -2,9 +2,7 @@ extends ../base
 
 block content
     form(method="POST")
-        input(placeholder="Title", required, type="text", name="title",)
-        input(placeholder="Content", required, type="text", name="content")
-        input(placeholder="Hashtags, separated by ,", required, type="text", name="hashtags")
+        input(placeholder="질문 내용", required, type="text", name="content")
         input(value="질문 올리기", type="submit")
 
     if errorMessage

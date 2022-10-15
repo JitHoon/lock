@@ -8,13 +8,12 @@ block content
             i.fas.fa-search
 
     div.bnt__postQ
-        a(href="/qna").postQ__bnt
+        a(href="/qna")
             span 모든 질문
-        a(href="/qna/uploadq").postQ__bnt
+        a(href="/qna/uploadq")
             span 질문하기
 
-    div.question-grid
-        each question in questions 
-            +questions(question)
-        else
-            span.empty__message 검색된 질문이 없습니다.🥲
+    each question in questions 
+        +questions(question)
+    else
+        span.empty__message 검색된 질문이 없습니다.🥲
