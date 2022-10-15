@@ -2,7 +2,7 @@ extends ../base
 include ../mixins/questions
 
 block content
-    form(method="GET" action="/qna/searchQ").search__form
+    form(method="GET").search__form
         input(placeholder="제목으로 질문 검색하기",name="keyword", type="text")
         button
             i.fas.fa-search

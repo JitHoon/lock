@@ -4,8 +4,13 @@ import Question from "../models/Question";
 import User from "../models/User";
 
 export const mainQ = async (req, res) => {
+     const questions = await Question.find({}).sort({ createdAt: "desc" });
+    return res.render("qna/mainQ", { pageTitle: "Q&A", questions });
+  };
+
+  export const searchQ = async (req, res) => {
     const { keyword } = req.query;
-    
+
     let questions = [];
     if (keyword) {
         questions = await Question.find({
@@ -15,7 +20,7 @@ export const mainQ = async (req, res) => {
         }).populate("owner");
     }
 
-    return res.render("qna/mainQ", { pageTitle: "Search", questions});
+    return res.render("qna/searchQ", { pageTitle: "Q&A", questions});
   };
 
 export const seeQ = async (req, res) => {
@@ -25,8 +30,6 @@ export const seeQ = async (req, res) => {
     if (!question) {
         return res.status(404).render("404", { pageTitle: "Question not found." });
     }
-
-    console.log(question);
 
     return res.render("qna/seeQ", {pageTitle : `Question : ${question.title}`, question });
 

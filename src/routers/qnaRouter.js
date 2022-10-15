@@ -1,5 +1,5 @@
 import express from "express";
-import { mainQ,
+import { mainQ, searchQ, getMyQ,
     seeQ,
     getUploadQ, postUploadQ,
     getEditQ, postEditQ, 
@@ -9,8 +9,11 @@ import { protectorMiddleware } from "../middlewares"
 const qnaRouter = express.Router();
 
 qnaRouter 
-    .route("/") // 질문 메인 페이지 (+검색바)
+    .route("/") // 질문 메인 페이지
     .get(mainQ);
+qnaRouter 
+    .route("/searchQ") // 질문 검색 페이지
+    .get(searchQ);
 qnaRouter
     .route("/:id([0-9a-f]{24})") // 질문 답변 확인 페이지
     .all(protectorMiddleware)

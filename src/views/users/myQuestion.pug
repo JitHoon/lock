@@ -31,6 +31,8 @@ block content
         div.arrow-switch
             a(href=`/users/${loggedInUser._id}`) 뒤로가기 &larr;
 
-    div
+    div.question-grid
         each question in user.questions
-            +questions(question) 
+            +questions(question)
+        else
+            span.empty__message 내 질문이 없습니다.🥲

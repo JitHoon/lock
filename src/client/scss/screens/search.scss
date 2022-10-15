@@ -1,5 +1,5 @@
 .search__form {
-    max-width:85%;
+    max-width:90%;
     margin: 0px auto;
     display: flex;
     position: relative;
@@ -7,13 +7,13 @@
     align-items: center;
     input {
       all: unset;
-      padding: 15px;
+      padding: 40px;
       border-radius: 5px;
       text-align: center;
       border: 1px solid $white;
       background-color: rgba($color: rgb(150, 151, 233), $alpha: 0.1);
       margin-bottom: 5px;
-      font-size: 30px;
+      font-size: 40px;
       color: white;
       width: 90%;
     }
@@ -22,11 +22,31 @@
     }
     button {
       position: absolute;
-      right: 0%;
-      font-size: 35px;
+      right: 5%;
+      font-size: 45px;
       background-color: rgba(0, 0, 0, 0);
       text-align: center;
       cursor: pointer;
+    }
+  }
+
+  .bnt__postQ {
+    margin: 50px;
+    display: flex;
+    justify-content:space-evenly;
+    flex-direction:row;
+  }
+
+  .postQ__bnt {
+    padding: 30px;
+    border-radius: 5px;
+    width: 30%;
+    text-align: center;
+    color: $white;
+    span {
+      font-size: 40px;
+      font-weight: 700;
+      text-decoration: underline;
     }
   }
 
