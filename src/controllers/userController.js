@@ -57,7 +57,7 @@ export const postLogin = async (req, res) => {
     if (!user) {
       return res.status(400).render("users/login", {
         pageTitle,
-        errorMessage: "An account with this username does not exists.",
+        errorMessage: "존재하지 않는 아이디 입니다.",
       });
     }
     
@@ -67,7 +67,7 @@ export const postLogin = async (req, res) => {
     if (!ok) {
       return res.status(400).render("users/login", {
         pageTitle,
-        errorMessage: "Wrong password",
+        errorMessage: "잘못된 비밀번호 입니다.",
       });
     }
 
@@ -199,6 +199,7 @@ export const postChangePassword = async (req, res) => {
   return res.redirect("/users/logout");
 };
 
+
 // 깃허브 로그인 요청 페이지
 export const startGithubLogin = (req, res) => {
   const baseUrl = "https://github.com/login/oauth/authorize";
@@ -254,6 +255,7 @@ export const finishGithubLogin =  async (req, res) => {
   }
 
 };
+
 
 
 /*
