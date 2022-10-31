@@ -13,7 +13,7 @@ export const postJoin = async (req, res) => {
     if (password !== password2) {
         return res.status(400).render("users/join", {
           pageTitle,
-          errorMessage: "Password confirmation does not match.",
+          errorMessage: "재확인 비밀번호가 일치하지 않습니다.",
         });
     }
     
@@ -22,7 +22,7 @@ export const postJoin = async (req, res) => {
     if (exists) {
     return res.status(400).render("users/join", {
         pageTitle,
-        errorMessage: "This studentID/phoneNumber is already taken.",
+        errorMessage: "이미 회원가입된 학번입니다.",
         });
     }
 
