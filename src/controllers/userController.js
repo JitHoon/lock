@@ -3,11 +3,11 @@ import bcrypt from "bcrypt";
 // import fetch from "node-fetch";
 
 // [rootRouter]
-export const getJoin = (req, res) => res.render("users/join", { pageTitle: "__ Join __" });
+export const getJoin = (req, res) => res.render("users/join", { pageTitle: "| Join |" });
 
 export const postJoin = async (req, res) => {
     const { userName, studentID, password, password2, phoneNumber } = req.body;
-    const pageTitle = "__ Join __";
+    const pageTitle = "| Join |";
 
     // 비밀번호 재확인 오류 메시지 
     if (password !== password2) {
@@ -22,7 +22,7 @@ export const postJoin = async (req, res) => {
     if (exists) {
     return res.status(400).render("users/join", {
         pageTitle,
-        errorMessage: "이미 회원가입된 학번입니다.",
+        errorMessage: "이미 회원가입된 학번 혹은 전화번호 입니다.",
         });
     }
 
@@ -37,19 +37,19 @@ export const postJoin = async (req, res) => {
         return res.redirect("/login");
     } catch (error) {
         return res.status(400).render("users/join", {
-            pageTitle: "__ Join __", 
+            pageTitle: "| Join |", 
             errorMessage: error._message 
         });
     }
 };
 
 export const getLogin = (req, res) => {
-    res.render("users/login", {pageTitle: "__ Login __"});
+    res.render("users/login", {pageTitle: "| Login |"});
 };
 
 export const postLogin = async (req, res) => {
     const { studentID, password } = req.body;
-    const pageTitle = "__ Login __";
+    const pageTitle = "| Login |";
 
     // 존재하지 않는 아이디 에러 메시지
     const user = await User.findOne({ studentID });
@@ -104,7 +104,7 @@ export const myProfile = async (req, res) => {
   const { id } = req.params;
   const user = await User.findById(id).populate("questions");
 
-  return res.render("users/myProfile", { pageTitle: user.userName + "'s Profile", user, });
+  return res.render("users/myProfile", { pageTitle: "| " + user.userName + "'s Profile |", user, });
 };
 
 // edit-profile 
