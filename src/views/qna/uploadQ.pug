@@ -5,5 +5,9 @@ block content
         input(placeholder="질문 내용", required, type="text", name="content")
         input(value="질문 올리기", type="submit")
 
+    div.center    
+        div.arrow-switch
+            a(href="/qna") 뒤로가기 &larr;
+
     if errorMessage
         span=errorMessage

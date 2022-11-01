@@ -3,7 +3,8 @@ import { mainQ, searchQ, getMyQ,
     seeQ,
     getUploadQ, postUploadQ,
     getEditQ, postEditQ, 
-    deleteQ, } from "../controllers/qnaController";
+    deleteQ, 
+    createComment, deleteComment } from "../controllers/qnaController";
 import { protectorMiddleware } from "../middlewares"
 
 const qnaRouter = express.Router();
@@ -32,5 +33,13 @@ qnaRouter
     .route("/:id([0-9a-f]{24})/delete") // 질문 삭제 페이지
     .all(protectorMiddleware)
     .get(deleteQ);
+qnaRouter
+    .route("/:id([0-9a-f]{24})/comment")
+    .all(protectorMiddleware)
+    .post(createComment);
+qnaRouter
+    .route("/:id([0-9a-f]{24})/commentdelete")
+    .all(protectorMiddleware)
+    .delete(deleteComment);
 
 export default qnaRouter;

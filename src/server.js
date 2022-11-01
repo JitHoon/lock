@@ -54,12 +54,13 @@ app.set("views", process.cwd() + "/src/views");
 
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(
     session({
+        store: MongoStore.create({ mongoUrl: process.env.DB_URL }), 
         secret: process.env.COOKIE_SECRET,
         resave: false,
         saveUninitialized: false,
-        store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
     })
 );
 

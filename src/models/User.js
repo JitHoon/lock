@@ -8,6 +8,7 @@ const userSchema = new mongoose.Schema({
     phoneNumber: {type: Number, required: true, trim:true, unique : true },
     questions: [{ type: mongoose.Schema.Types.ObjectId, ref: "Question" }],
     locker: [{ type: mongoose.Schema.Types.ObjectId, ref: "Locker" }], 
+    comments: [{type:mongoose.Schema.Types.ObjectId, ref:"Comment"}], 
 
   /*
   export const myProfile = async (req, res) => {

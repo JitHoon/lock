@@ -3,6 +3,7 @@ import "./db";
 import "./models/User";
 import "./models/Locker";
 import "./models/Question";
+import "./models/Comment";
 
 import app from "./server";
 
