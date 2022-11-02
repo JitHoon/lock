@@ -1,25 +1,22 @@
 extends ../base
 
 block content
-    div
+    div.seeQ-grid
         p=question.content
-        small=question.createdAt
-
-    div
-        small Uploaded by #{question.owner.userName}
 
     if String(question.owner.id) === String(loggedInUser._id)
-        div.arrow-switch
-            a(href=`${question.id}/editq`) 수정하기 &rarr;
-        div.arrow-switch
-            a(href=`${question.id}/delete`) 삭제하기 &rarr;
+        div.bnt__postQ
+            a(href=`${question.id}/editq`)
+                span 수정하기
+            a(href=`${question.id}/delete`)
+                span 삭제하기
 
     div#questionContainer(data-id=question._id)
         if loggedIn
-            div.arrow-switch
-                form.question__comment-form#commentForm
-                    textarea(cols="50", rows="4", placeholder="Write a comment..")
-                    button Add Comment
+            form.question__comment-form#commentForm
+                textarea(cols="50", rows="4", placeholder="댓글 작성하기,,,")
+                button 댓글 달기
+                
         div.question_garden_grid
             each comment in question.comments
                 i.question_garden_comment(data-id=comment.id)
@@ -29,6 +26,6 @@ block content
                         button.delete_comment ❌
                     else
                         span  #{comment.text}
-    div.center    
+
     div.arrow-switch
         a(href="/qna") 뒤로가기 &larr;

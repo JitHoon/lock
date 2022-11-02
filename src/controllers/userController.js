@@ -109,7 +109,7 @@ export const myProfile = async (req, res) => {
 
 // edit-profile 
 export const getEdit = (req, res) => {
-  return res.render("users/editProfile", { pageTitle: "Edit Profile" });
+  return res.render("users/editProfile", { pageTitle: "| Edit Phone Num |" });
 };
 
 export const postEdit = async (req, res) => {
@@ -143,7 +143,7 @@ export const getMyQ = async(req, res) => {
 
 // change password
 export const getChangePassword = (req, res) => {
-  return res.render("users/changePassword", { pageTitle: "Change Password" });
+  return res.render("users/changePassword", { pageTitle: "| Change Password |" });
 };
 
 export const postChangePassword = async (req, res) => {
@@ -169,16 +169,16 @@ export const postChangePassword = async (req, res) => {
   // 기존 비번이 일치하지 않을 때 에러문
   if (!ok) {
     return res.status(400).render("users/changePassword", {
-      pageTitle: "Change Password",
-      errorMessage: "The current password is incorrect",
+      pageTitle: "| Change Password |",
+      errorMessage: "현재 비밀번호와 일치하지 않습니다.",
     });
   }
 
   // 새비밀번호 확인이 일치하지 않을 때 에러문
   if (newPW1 != newPW2) {
     return res.status(400).render("users/changePassword", {
-      pageTitle: "Change Password",
-      errorMessage: "The password does not match the confirmation",
+      pageTitle: "| Change Password |",
+      errorMessage: "재확인 비밀번호가 일치하지 않습니다.",
     });
   }
 

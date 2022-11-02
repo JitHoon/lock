@@ -2,11 +2,7 @@ extends ../base
 
 block content
     form(method="POST")
-        div.center
-            div.profile__data
-                label(for="phoneNumber") 폰번호
-                input(placeholder="phoneNumber", name="phoneNumber", type="number", required, value="0"+loggedInUser.phoneNumber).edit__phonenum
-            
+        input(placeholder="phoneNumber", name="phoneNumber", type="number", required, value="0"+loggedInUser.phoneNumber)
         input(type="submit", value="수정하기")
         
     div.center    

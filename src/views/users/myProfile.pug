@@ -15,7 +15,13 @@ block content
                 p="0"+loggedInUser.phoneNumber
 
     a(href=`/users/${loggedInUser._id}/edit`).homeCard__shape
+        span.phoneNum__change  사물함 반납
+
+    a(href=`/users/${loggedInUser._id}/edit`).homeCard__shape
         span.phoneNum__change  폰 번호 변경
 
     a(href=`/users/${loggedInUser._id}/changePassword`).homeCard__shape
         span.PW__change  비밀번호 변경
+
+    div.arrow-switch
+        a(href="/").arrow-switch 뒤로가기 &larr;

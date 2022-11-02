@@ -100,7 +100,7 @@ export const postEditQ = async (req, res) => {
     });
 
     // 질문 데이터 존재 여부만 판단하는 model
-    const question = await Question.exists({ _id: id });
+    const question = await Question.findById(id);
     if (!question) {
         return res.status(404).render("404", { pageTitle: "Question not found." });
     }
@@ -122,7 +122,7 @@ export const deleteQ = async (req, res) => {
     // console.log(id);
 
     const question = await Question.findById(id);
-    // console.log(question);
+    console.log(question);
     // console.log(question.owner);
 
     if (!question) {
@@ -138,9 +138,7 @@ export const deleteQ = async (req, res) => {
      return res.status(403).redirect("/");
     }
 
-    await Question.findOneAndDelete(question.owner); // 그냥 pop() 사용해도 되는지 확인하기
-    // 그냥 pop() 사용해도 되는지 확인하기
-
+    await Question.findByIdAndRemove(id);
     //console.log(question);
     
     return res.redirect("/qna");

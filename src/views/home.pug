@@ -8,7 +8,7 @@ block content
 
         a(href=`/users/${loggedInUser._id}`).homeCard__shape
             i.fa-solid.fa-user.homeCard__imf
-                span  User 님 프로필
+                span= " " + loggedInUser.userName + "님의 프로필"
 
         a(href="/qna").homeCard__shape
             span.homeCard__qna  Q & A
