@@ -1,6 +1,7 @@
 import "dotenv/config";
 import "./db";
 import "./models/User";
+import "./models/Admin";
 import "./models/Locker";
 import "./models/Question";
 import "./models/Comment";
