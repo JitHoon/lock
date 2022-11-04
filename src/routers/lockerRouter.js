@@ -1,6 +1,7 @@
 import express from "express";
 import { mainLocker, alphabetLocker,
-    getAplly, postAplly } from "../controllers/lockerController";
+    getAplly, postAplly,
+    getUploadLocker, postUploadLocker } from "../controllers/lockerController";
 import { protectorMiddleware } from "../middlewares";
 
 const lockerRouter = express.Router();
@@ -17,6 +18,11 @@ lockerRouter
 .all(protectorMiddleware)
 .get(getAplly)
 .post(postAplly); // 버튼 구현
+lockerRouter
+.route("/uploadLocker") // 사물함 업로드 페이지
+.all(protectorMiddleware)
+.get(getUploadLocker)
+.post(postUploadLocker);
 
 
 export default lockerRouter;

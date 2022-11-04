@@ -4,6 +4,8 @@ const lockerSchema = new mongoose.Schema({
   lockerNum: String, // A2
   lockerPW: Number, // 1234
   createdAt: { type: Date, required: true, default: Date.now },
+  available: { type: Boolean, default: true},
+  admin: { type: mongoose.Schema.Types.ObjectId, ref: "Admin" },
   owner: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   // alphabet: String, // 새로 추가했으므로 db 등록시 주의하기
   // number: Number,

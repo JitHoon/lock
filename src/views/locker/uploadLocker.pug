@@ -1,0 +1,10 @@
+extends ../base
+
+block content
+    form(method="POST")
+        input(placeholder="사물함 번호", required, type="text", name="lockerNum")
+        input(placeholder="사물함 비밀번호", required, type="password", name="lockerPW")
+        input(value="사물함 등록하기", type="submit")
+
+    div.arrow-switch
+        a(href="/").arrow-switch 뒤로가기 &larr;
