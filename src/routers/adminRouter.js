@@ -1,12 +1,12 @@
 import express from "express";
-import { getAdmin, postAdmin, } from "../controllers/adminController";
+import { getAdJoin, postAdJoin, } from "../controllers/adminController";
 import { protectorMiddleware,} from "../middlewares";
 
 const adminRouter = express.Router();
 
 adminRouter.route("/")
 .all(protectorMiddleware)
-.get(getAdmin)
-.post(postAdmin);
+.get(getAdJoin)
+.post(postAdJoin);
 
 export default adminRouter;
