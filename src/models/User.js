@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
     password: {type: String, required: true, trim:true },
     phoneNumber: {type: Number, required: true, trim:true, unique : true },
     questions: [{ type: mongoose.Schema.Types.ObjectId, ref: "Question" }],
-    locker: [{ type: mongoose.Schema.Types.ObjectId, ref: "Locker" }], 
+    locker: { type: mongoose.Schema.Types.ObjectId, ref: "Locker" }, 
     comments: [{type:mongoose.Schema.Types.ObjectId, ref:"Comment"}], 
 
   /*
