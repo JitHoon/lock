@@ -2,7 +2,7 @@ extends ../base
 
 block content
     div.seeQ-grid
-        p=question.content
+        p= "Q. " + question.content 
 
     if String(question.owner.id) === String(loggedInUser._id)
         div.bnt__postQ
