@@ -2,12 +2,13 @@ import express from "express";
 import { mainLocker, alphabetLocker,
     getAplly, postAplly,
     getUploadLocker, postUploadLocker } from "../controllers/lockerController";
-import { protectorMiddleware } from "../middlewares";
+import { publicOnlyMiddleware, protectorMiddleware } from "../middlewares";
 
 const lockerRouter = express.Router();
 
 lockerRouter
 .route("/") // 사물함 전체 사진
+.all(protectorMiddleware)
 .get(mainLocker);
 lockerRouter
 .route("/alphabet") // 3*3 사물함 보여줌

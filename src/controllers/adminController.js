@@ -24,7 +24,7 @@ export const postAdJoin = async (req, res) => {
             password,
             phoneNumber,
         });
-        return res.redirect("/login");
+        return res.redirect("/admin/adlogin");
     } catch (error) {
         return res.status(400).render("admin/adJoin", {
             pageTitle: "| Admin Join |", 
@@ -33,9 +33,7 @@ export const postAdJoin = async (req, res) => {
     }
 };
 
-export const getAdLogin = (req, res) => {
-    res.render("admin/adLogin", {pageTitle: "| Admin Login |"});
-};
+export const getAdLogin = (req, res) => res.render("admin/adLogin", {pageTitle: "| Admin Login |"});
 
 export const postAdLogin = async (req, res) => {
     const { studentID, password } = req.body;
@@ -66,6 +64,14 @@ export const postAdLogin = async (req, res) => {
     req.session.save(function(err) {
       if (err) {
         return res.status(500).render("/500", { pageTitle: "500 loginSeverError" });
-      } else return res.redirect("/");
+      } else return res.redirect("/admin/adlocker");
     });
+};
+
+export const getAdLocker = (req, res) => {
+    res.render("admin/adLogin", {pageTitle: "| Admin Login |"});
+};
+
+export const postAdLocker = (req, res) => {
+    res.render("admin/adLogin", {pageTitle: "| Admin Login |"});
 };

@@ -1,18 +1,24 @@
 import express from "express";
 import { getAdJoin, postAdJoin,
-    getAdLogin, postAdLogin } from "../controllers/adminController";
-import { protectorMiddleware,} from "../middlewares";
+    getAdLogin, postAdLogin,
+    getAdLocker, postAdLocker } from "../controllers/adminController";
+import { protectorMiddleware, publicOnlyMiddleware,} from "../middlewares";
 
 const adminRouter = express.Router();
 
 adminRouter.route("/adjoin")
-.all(protectorMiddleware)
+.all(publicOnlyMiddleware)
 .get(getAdJoin)
 .post(postAdJoin);
 
 adminRouter.route("/adlogin")
-.all(protectorMiddleware)
+.all(publicOnlyMiddleware)
 .get(getAdLogin)
 .post(postAdLogin);
+
+adminRouter.route("/adlocker")
+.all(protectorMiddleware)
+.get(getAdLocker)
+.post(postAdLocker);
 
 export default adminRouter;

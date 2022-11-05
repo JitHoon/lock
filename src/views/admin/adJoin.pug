@@ -1,0 +1,33 @@
+extends ../base
+
+block content
+    if errorMessage
+        div.error-message
+            span=errorMessage
+        
+        form(method="POST")
+            input(name="userName", placeholder="이름", type="text", required)
+            input(name="studentID", placeholder="학번", type="number", required)
+            input(name="password", placeholder="비밀번호", type="password", required)
+            input(name="password2", placeholder="비밀번호 재확인", type="password", required)
+            input(name="phoneNumber", placeholder="핸드폰 번호", type="number", required)
+            input(type="submit", value="회원가입하기")
+    
+        div.center
+            div.arrow-switch
+                span 계정이 있다면? 
+                a(href="/admin/adlogin")  관리자 로그인하기 &rarr; 
+                
+    else
+        form(method="POST")
+            input(name="userName", placeholder="이름", type="text", required)
+            input(name="studentID", placeholder="학번", type="number", required)
+            input(name="password", placeholder="비밀번호", type="password", required)
+            input(name="password2", placeholder="비밀번호 재확인", type="password", required)
+            input(name="phoneNumber", placeholder="핸드폰 번호", type="number", required)
+            input(type="submit", value="회원가입하기")
+        
+        div.center
+            div.arrow-switch
+                span 계정이 있다면? 
+                a(href="/admin/adlogin")  관리자 로그인하기 &rarr; 
