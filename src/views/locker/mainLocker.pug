@@ -2,8 +2,8 @@ extends ../base
 include ../mixins/lockers
 
 block content
-    div.homeCard__shape
-        a(href="/locker/uploadLocker").arrow-switch 사물함 DB 업로드
-
     div.arrow-switch
         a(href="/").arrow-switch 뒤로가기 &larr;
+    
+    a(href="/admin/adlocker").homeCard__shape
+            span.homeCard__join  사물함 데이터 등록

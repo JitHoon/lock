@@ -1,11 +1,12 @@
 import mongoose from "mongoose";
 
 const lockerSchema = new mongoose.Schema({
-  lockerNum: String, // A2
-  lockerPW: Number, // 1234
-  createdAt: { type: Date, required: true, default: Date.now },
-  available: { type: Boolean, default: true},
+  lockerNum: {type: String, required: true, trim:true, unique : true},// A2
+  lockerPW: {type: Number, required: true, trim:true, unique : true}, // 1234
   admin: { type: mongoose.Schema.Types.ObjectId, ref: "Admin" },
+  available: { type: Boolean, default: true},
+  signupAt: { type: Date, default: 0},
+  returnAt: { type: Date, default: 0},
   owner: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   // alphabet: String, // 새로 추가했으므로 db 등록시 주의하기
   // number: Number,

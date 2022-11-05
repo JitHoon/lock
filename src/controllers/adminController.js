@@ -64,14 +64,38 @@ export const postAdLogin = async (req, res) => {
     req.session.save(function(err) {
       if (err) {
         return res.status(500).render("/500", { pageTitle: "500 loginSeverError" });
-      } else return res.redirect("/admin/adlocker");
+      } else return res.redirect("/");
     });
 };
 
 export const getAdLocker = (req, res) => {
-    res.render("admin/adLogin", {pageTitle: "| Admin Login |"});
+  res.render("admin/adLocker", {pageTitle: "| POST Locker DB |"});
 };
 
-export const postAdLocker = (req, res) => {
-    res.render("admin/adLogin", {pageTitle: "| Admin Login |"});
+export const postAdLocker = async (req, res) => {
+    const {
+        admin: { _id },
+      } = req.session;
+
+    const { lockerNum, lockerPW } = req.body;
+
+    try { 
+        const newLocker = await Locker.create({
+            lockerNum,
+            lockerPW,
+            admin: _id,
+        });
+        const admin = await Admin.findById(_id);
+        admin.lockers.push(newLocker._id);
+        admin.save(); 
+
+        return res.redirect("/locker");
+
+        } catch (error) {
+            console.log(error._message)
+            return res.status(400).render("admin/adLocker", { 
+                pageTitle: "| POST Locker DB |", 
+                errorMessage: error._message
+            });
+        }
 };
