@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 const lockerSchema = new mongoose.Schema({
+  createdAt: { type: Date, required: true, default: Date.now  }, // 정렬에 써먹으려고
   lockerNum: {type: String, required: true, trim:true, unique : true},// A2
   lockerPW: {type: Number, required: true, trim:true, unique : true}, // 1234
   admin: { type: mongoose.Schema.Types.ObjectId, ref: "Admin" },
