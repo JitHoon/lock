@@ -102,7 +102,7 @@ export const logout = async (req, res) => {
 
 export const myProfile = async (req, res) => {
   const { id } = req.params;
-  const user = await User.findById(id).populate("questions");
+  const user = await User.findById(id);
 
   return res.render("users/myProfile", { pageTitle: "| " + user.userName + "'s Profile |", user, });
 };
@@ -132,13 +132,6 @@ export const postEdit = async (req, res) => {
 
   req.session.user = updatedUser;
   return res.redirect(`/users/${req.session.user._id}`);
-};
-
-export const getMyQ = async(req, res) => {
-  const { id } = req.params;
-  const user = await User.findById(id).populate("questions");
-
-  return res.render("users/myQuestion", { pageTitle: "My Questions", user, });
 };
 
 // change password

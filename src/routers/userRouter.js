@@ -2,7 +2,6 @@ import express from "express";
 import { logout,
     myProfile, 
     getEdit, postEdit,
-    getMyQ,
     getChangePassword, postChangePassword,
     startGithubLogin, finishGithubLogin } from "../controllers/userController";
 import { protectorMiddleware, publicOnlyMiddleware } from "../middlewares"
@@ -17,9 +16,6 @@ userRouter.route("/:id/edit")
     .all(protectorMiddleware)
     .get(getEdit)
     .post(postEdit);
-userRouter.route("/:id/q")
-    .all(protectorMiddleware)
-    .get(getMyQ)
 userRouter
     .route("/:id/changePassword")
     .all(protectorMiddleware)

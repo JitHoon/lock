@@ -7,11 +7,23 @@ export const mainLocker = async (req, res) => {
     return res.render("locker/mainLocker", {pageTitle : "전체 사물함"});
 };
 
+/* 사물함 db 불러오는 방법 참고
+
+export const getMyQ = async(req, res) => {
+    const { id } = req.params;
+    const user = await User.findById(id).populate("questions");
+  
+    return res.render("users/myQuestion", { pageTitle: "My Questions", user, });
+  };
+
+*/
+
 export const alphabetLocker = (req, res) => {
     const { id } = req.params;
 
     return res.render("home", {pageTitle : "3*3 숫자 사물함"});
 };
+
 
 export const getAplly = async (req, res) => {return res.render("home", {pageTitle : "숫자 사물함 클릭 후"});};
 
