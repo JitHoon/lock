@@ -1,3 +1,4 @@
 mixin lockers(lockers)
-    div.lockers-mixin
-        a(href="/locker/" + lockers.id)=lockers.Alphabet
+    
+    a(href="/locker/alphabet").question-grid
+        div.question-content=lockers.lockerNum

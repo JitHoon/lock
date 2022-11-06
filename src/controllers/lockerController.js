@@ -1,12 +1,12 @@
-import req from "express/lib/request";
-import res from "express/lib/response";
 import Locker from "../models/Locker";
 import User from "../models/User";
+import Admin from "../models/Admin";
 
 export const mainLocker = async (req, res) => {
-    return res.render("locker/mainLocker", {pageTitle : "전체 사물함"});
-};
+    const lockers = await Locker.find({}).sort({ lockerNum: "asc" });
 
+    return res.render("locker/mainLocker", {pageTitle : "| 사물함 신청 |", lockers});
+};
 /* 사물함 db 불러오는 방법 참고
 
 export const getMyQ = async(req, res) => {
@@ -19,8 +19,6 @@ export const getMyQ = async(req, res) => {
 */
 
 export const alphabetLocker = (req, res) => {
-    const { id } = req.params;
-
     return res.render("home", {pageTitle : "3*3 숫자 사물함"});
 };
 
