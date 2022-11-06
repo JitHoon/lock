@@ -36,22 +36,3 @@
     font-size: 40px;
     color: rgba(255, 255, 255, 0.843);
   }
-
-  .bnt__postQ {
-    margin: 50px;
-    display: flex;
-    justify-content:space-evenly;
-    flex-direction:row;
-    a {
-      padding: 30px;
-      border-radius: 5px;
-      width: 30%;
-      text-align: center;
-      color: $white;
-      span {
-        font-size: 40px;
-        font-weight: 700;
-        text-decoration: underline;
-      }
-  }
-  }
