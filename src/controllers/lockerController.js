@@ -5,7 +5,10 @@ import Admin from "../models/Admin";
 export const mainLocker = async (req, res) => {
     const lockers = await Locker.find({}).sort({ lockerNum: "asc" });
 
-    return res.render("locker/mainLocker", {pageTitle : "| 사물함 신청 |", lockers});
+    console.log(lockers[0]._id);
+    console.log(Object.values(lockers[0].lockerNum));
+
+    return res.render("locker/mainLocker", {pageTitle : "| 사물함 신청 |", lockers,});
 };
 /* 사물함 db 불러오는 방법 참고
 
@@ -18,11 +21,14 @@ export const getMyQ = async(req, res) => {
 
 */
 
-export const alphabetLocker = (req, res) => {
-    return res.render("home", {pageTitle : "3*3 숫자 사물함"});
+export const getSignup = async (req, res) => {
+    const { id } = req.params;
+    
+    const locker = await Locker.findById(id); // 질문 데이터 object를 찾아 가져오는 model
+
+    return res.render("locker/signUpLocker", {pageTitle : "| 사물함 신청 페이지 |", locker});
 };
 
-
-export const getAplly = async (req, res) => {return res.render("home", {pageTitle : "숫자 사물함 클릭 후"});};
-
-export const postAplly = async (req, res) => {return res.render("home", {pageTitle : "사물함 신청 버튼"});};
+export const postSignup = async (req, res) => {
+    return res.render("home", {pageTitle : "| 사물함 신청 페이지 |"});
+};

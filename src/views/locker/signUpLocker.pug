@@ -1,0 +1,7 @@
+extends ../base
+
+block content
+    form(method="POST")
+        input(placeholder="사물함 번호 띄우고", required, type="text", name="lockerNum")
+        input(placeholder="사물함 번호 재확인", required, type="password", name="lockerPW")
+        input(value="사물함 신청하기", type="submit")
