@@ -62,7 +62,7 @@ block content
                 each i in [181,182,183,184,185,186,187,188,189]
                     +33box(i)
 
-    span.signup__comment= "기존 사물함을 반납 후 신청하세요."
+    div.signup__comment= "기존 사물함을 반납 후 신청하세요."
 
-    a(href="/").homeCard__shape
+    a(href=`/users/${user._id}`).homeCard__shape
         span.homeCard__join  사물함 반납하러 가기

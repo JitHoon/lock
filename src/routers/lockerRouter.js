@@ -1,6 +1,7 @@
 import express from "express";
 import { mainLocker,
-    getSignup, postSignup, } from "../controllers/lockerController";
+    getSignup, postSignup,
+    getReturn, postReturn } from "../controllers/lockerController";
 import { publicOnlyMiddleware, protectorMiddleware } from "../middlewares";
 
 const lockerRouter = express.Router();
@@ -14,5 +15,10 @@ lockerRouter
 .all(protectorMiddleware)
 .get(getSignup)
 .post(postSignup);
+lockerRouter
+.route("/:id([0-9a-f]{24})/return") // 사물함 신청 페이지
+.all(protectorMiddleware)
+.get(getReturn)
+.post(postReturn);
 
 export default lockerRouter;

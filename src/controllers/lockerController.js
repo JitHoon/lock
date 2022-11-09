@@ -19,14 +19,20 @@ export const getMyQ = async(req, res) => {
 */
 
 export const getSignup = async (req, res) => {
+    const {
+        user: { _id },
+      } = req.session;
     const { id } = req.params;
+    const user = await User.findById(_id);
     const locker = await Locker.findById(id);
     const lockers = await Locker.find({}).sort({ lockerNum: "asc" });
+
+    console.log(user);
 
     if(req.session.user.availableLocker){
         return res.render("locker/signUpLocker", {pageTitle : "| " +locker.lockerNum + " 사물함 신청 |", locker, lockers});
     }else{
-        return res.render("locker/alertLocker", {pageTitle : "| " +locker.lockerNum + " 사물함 신청 |", locker, lockers});
+        return res.render("locker/alertLocker", {pageTitle : "| " +locker.lockerNum + " 사물함 반납 |", locker, lockers, user});
     }
 };
 
@@ -78,4 +84,65 @@ export const postSignup = async (req, res) => {
                 errorMessage: "사물함 신청 실패, 010-4671-0338 로 문의 주세요."
             });
         }
+};
+
+export const getReturn = async (req, res) => {
+    const {
+        user: { _id },
+      } = req.session;
+    const { id } = req.params;
+    const user = await User.findById(_id).populate("lockers");
+    const locker = await Locker.findById(id);
+    const pageTitle = "| " + user.userName + "님의 " + locker.lockerNum + " 사물함 반납 |";
+
+    return res.render("locker/returnLocker", {pageTitle, locker, user});
+};
+
+export const postReturn = async (req, res) => {
+    const {
+        user: { _id },
+      } = req.session;
+    const { id } = req.params;
+    const user = await User.findById(_id).populate("lockers");
+    const locker = await Locker.findById(id);
+    const { lockerNum } = req.body;
+    const pageTitle = "| " + user.userName + "님의 " + locker.lockerNum + " 사물함 반납 |";
+
+    if (locker.lockerNum !== lockerNum) {
+        return res.status(400).render("locker/returnLocker", {
+        pageTitle, locker, user,
+        errorMessage: "사물함 번호가 일치하지 않습니다.",
+        });
+    }
+
+    try {
+        const returnLocker = await Locker.findByIdAndUpdate(id,
+            {   
+                owner: null,
+                available: true,
+                returnAt: Date.now()
+            },
+            { new: true }
+        );
+        
+        req.session.locker = returnLocker;
+
+        const returnUser = await User.findByIdAndUpdate(_id,
+            {   
+                lockers: null,
+                availableLocker: true,
+            },
+            { new: true }
+        );
+
+        req.session.user = returnUser;
+
+        return res.redirect(`/users/${req.session.user._id}`);
+    } catch (error) {
+        console.log(error);
+        return res.status(400).render("locker/returnLocker", { 
+            pageTitle, locker, user,
+            errorMessage: "사물함 반납 실패, 010-4671-0338 로 문의 주세요."
+        });
+    }
 };

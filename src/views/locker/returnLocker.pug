@@ -1,0 +1,11 @@
+extends ../base
+
+block content
+    form(method="POST")
+        if errorMessage
+            span.signup__comment= errorMessage
+        else
+            span.signup__comment= "아래 칸에 " + locker.lockerNum + " 입력 후 반납 버튼을 클릭"
+
+        input(placeholder= user.lockers.lockerNum, required, type="text", name="lockerNum")
+        input(value="사물함 반납하기", type="submit")

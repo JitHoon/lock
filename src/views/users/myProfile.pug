@@ -31,7 +31,7 @@ block content
         a(href="/locker").homeCard__shape
             span.locker__signup  사물함 신청하기
     else
-        a(href=`/users/${loggedInUser._id}/edit`).homeCard__shape
+        a(href=`/locker/${user.lockers._id}/return`).homeCard__shape
             span.locker__return  사물함 반납하기
 
     a(href=`/users/${loggedInUser._id}/edit`).homeCard__shape
