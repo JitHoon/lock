@@ -5,9 +5,6 @@ import Admin from "../models/Admin";
 export const mainLocker = async (req, res) => {
     const lockers = await Locker.find({}).sort({ lockerNum: "asc" });
 
-    console.log(lockers[0]._id);
-    console.log(Object.values(lockers[0].lockerNum));
-
     return res.render("locker/mainLocker", {pageTitle : "| 사물함 위치 및 신청 |", lockers,});
 };
 /* 사물함 db 불러오는 방법 참고
@@ -25,9 +22,12 @@ export const getSignup = async (req, res) => {
     const { id } = req.params;
     const locker = await Locker.findById(id);
     const lockers = await Locker.find({}).sort({ lockerNum: "asc" });
-    console.log(locker.lockerNum.substr(0, 1));
 
-    return res.render("locker/signUpLocker", {pageTitle : "| " +locker.lockerNum + " 사물함 신청 |", locker, lockers});
+    if(req.session.user.availableLocker){
+        return res.render("locker/signUpLocker", {pageTitle : "| " +locker.lockerNum + " 사물함 신청 |", locker, lockers});
+    }else{
+        return res.render("locker/alertLocker", {pageTitle : "| " +locker.lockerNum + " 사물함 신청 |", locker, lockers});
+    }
 };
 
 export const postSignup = async (req, res) => {
@@ -42,8 +42,8 @@ export const postSignup = async (req, res) => {
 
     if (locker.lockerNum !== lockerNum) {
         return res.status(400).render("locker/signUpLocker", {
-          pageTitle, locker, lockers,
-          errorMessage: "사물함 번호가 일치하지 않습니다.",
+        pageTitle, locker, lockers,
+        errorMessage: "사물함 번호가 일치하지 않습니다.",
         });
     }
 

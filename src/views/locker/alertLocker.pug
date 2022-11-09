@@ -62,11 +62,7 @@ block content
                 each i in [181,182,183,184,185,186,187,188,189]
                     +33box(i)
 
-    form(method="POST")
-        if errorMessage
-            span.signup__comment= errorMessage
-        else
-            span.signup__comment= "아래 칸에 " + locker.lockerNum + " 입력 후 신청 버튼을 클릭하세요."
+    span.signup__comment= "기존 사물함을 반납 후 신청하세요."
 
-        input(placeholder= locker.lockerNum, required, type="text", name="lockerNum")
-        input(value="사물함 신청하기", type="submit")
+    a(href="/").homeCard__shape
+        span.homeCard__join  사물함 반납하러 가기
