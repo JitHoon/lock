@@ -3,27 +3,39 @@ include ../mixins/questions
 
 block content
     form(method="POST")
-        div.profile__shape 
+        div.profile__shape
             div.profile__data
-                p=loggedInUser.userName
-            div.profile__data
-                h1 배정 사물함
-                p=user.lockers.lockerNum
-            div.profile__data
-                h1= user.lockers.lockerNum + " 사물함 비밀번호"
-                p=user.lockers.lockerPW
+                    p=loggedInUser.userName
+
             div.profile__data
                 h1 학번
                 p=loggedInUser.studentID
+
             div.profile__data
                 h1 전화번호
                 p="0"+loggedInUser.phoneNumber
+
+            if !user.availableLocker
+                div.profile__data
+                    h1 배정 사물함
+                    p=user.lockers.lockerNum
+                div.profile__data
+                    h1= user.lockers.lockerNum + " 사물함 비밀번호"
+                    p=user.lockers.lockerPW
+            else
+                div.profile__data
+                    h1 배정 사물함
+                    p 없음
+
+    if user.availableLocker
+        a(href="/locker").homeCard__shape
+            span.locker__signup  사물함 신청하기
+    else
+        a(href=`/users/${loggedInUser._id}/edit`).homeCard__shape
+            span.locker__return  사물함 반납하기
 
     a(href=`/users/${loggedInUser._id}/edit`).homeCard__shape
         span.phoneNum__change  폰 번호 변경
 
     a(href=`/users/${loggedInUser._id}/changePassword`).homeCard__shape
         span.PW__change  비밀번호 변경
-
-    div.arrow-switch
-        a(href="/").arrow-switch 뒤로가기 &larr;
