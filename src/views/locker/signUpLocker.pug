@@ -63,6 +63,9 @@ block content
                     +33box(i)
 
     form(method="POST")
-        span.signup__comment= "아래 칸에 " + locker.lockerNum + " 입력 후 신청 버튼을 클릭하세요."
-        input(placeholder= locker.lockerNum, required, type="text", name="lockerPW")
+        if errorMessage
+            span.signup__comment= errorMessage
+        else
+            span.signup__comment= "아래 칸에 " + locker.lockerNum + " 입력 후 신청 버튼을 클릭하세요."
+        input(placeholder= locker.lockerNum, required, type="text", name="lockerNum")
         input(value="사물함 신청하기", type="submit")

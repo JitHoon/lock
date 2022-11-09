@@ -1,5 +1,5 @@
-import Locker from "../models/Locker";
 import Admin from "../models/Admin";
+import Locker from "../models/Locker";
 import bcrypt from "bcrypt";
 
 export const getAdJoin = (req, res) => res.render("admin/adJoin", {pageTitle : "| Admin Join |"});

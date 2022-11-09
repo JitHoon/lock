@@ -31,5 +31,51 @@ export const getSignup = async (req, res) => {
 };
 
 export const postSignup = async (req, res) => {
-    return res.render("home", {pageTitle : "| 사물함 신청 페이지 |"});
+    const {
+        user: { _id },
+      } = req.session;
+    const { id } = req.params;
+    const locker = await Locker.findById(id);
+    const lockers = await Locker.find({}).sort({ lockerNum: "asc" });
+    const { lockerNum } = req.body;
+    const pageTitle = "| " +locker.lockerNum + " 사물함 신청 |";
+
+    if (locker.lockerNum !== lockerNum) {
+        return res.status(400).render("locker/signUpLocker", {
+          pageTitle, locker, lockers,
+          errorMessage: "사물함 번호가 일치하지 않습니다.",
+        });
+    }
+
+    try {
+            const signUpLocker = await Locker.findByIdAndUpdate(id,
+                {   
+                    owner: _id,
+                    available: false,
+                    signupAt: Date.now()
+                },
+                { new: true }
+            );
+            
+            req.session.locker = signUpLocker;
+
+            const signUpUser = await User.findByIdAndUpdate(_id,
+                {   
+                    lockers: id,
+                    availableLocker: false,
+                    signupLockerAt: Date.now()
+                },
+                { new: true }
+            );
+
+            req.session.user = signUpUser;
+
+            return res.redirect(`/users/${req.session.user._id}`);
+        } catch (error) {
+            console.log(error);
+            return res.status(400).render("locker/signUpLocker", { 
+                pageTitle, locker, lockers,
+                errorMessage: "사물함 신청 실패, 010-4671-0338 로 문의 주세요."
+            });
+        }
 };

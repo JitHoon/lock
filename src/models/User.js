@@ -6,8 +6,10 @@ const userSchema = new mongoose.Schema({
     studentID: {type: Number, required: true, trim:true, unique : true},
     password: {type: String, required: true, trim:true },
     phoneNumber: {type: Number, required: true, trim:true, unique : true },
-    questions: [{ type: mongoose.Schema.Types.ObjectId, ref: "Question" }],
     lockers: { type: mongoose.Schema.Types.ObjectId, ref: "Locker" }, 
+    availableLocker: { type: Boolean, default: true},
+    signupLockerAt: { type: Date, default: 0},
+    questions: [{ type: mongoose.Schema.Types.ObjectId, ref: "Question" }],
     comments: [{type:mongoose.Schema.Types.ObjectId, ref:"Comment"}], 
 
   /*
