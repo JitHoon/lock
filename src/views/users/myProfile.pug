@@ -6,16 +6,18 @@ block content
         div.profile__shape 
             div.profile__data
                 p=loggedInUser.userName
-                p A3
+            div.profile__data
+                h1 배정 사물함
+                p=user.lockers.lockerNum
+            div.profile__data
+                h1= user.lockers.lockerNum + " 사물함 비밀번호"
+                p=user.lockers.lockerPW
             div.profile__data
                 h1 학번
                 p=loggedInUser.studentID
             div.profile__data
                 h1 전화번호
                 p="0"+loggedInUser.phoneNumber
-
-    a(href=`/users/${loggedInUser._id}/edit`).homeCard__shape
-        span.phoneNum__change  사물함 반납
 
     a(href=`/users/${loggedInUser._id}/edit`).homeCard__shape
         span.phoneNum__change  폰 번호 변경

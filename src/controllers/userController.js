@@ -102,7 +102,7 @@ export const logout = async (req, res) => {
 
 export const myProfile = async (req, res) => {
   const { id } = req.params;
-  const user = await User.findById(id);
+  const user = await User.findById(id).populate("lockers");
 
   return res.render("users/myProfile", { pageTitle: "| " + user.userName + "'s Profile |", user, });
 };
