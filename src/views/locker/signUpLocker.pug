@@ -1,7 +1,68 @@
 extends ../base
+include ../mixins/33box
 
 block content
+    div.Numlocker__relative
+        case locker.lockerNum.substr(0, 1)
+            when "A"
+                each i in [1,2,3,4,5,6,7,8,9]
+                    +33box(i)
+            when "B"
+                each i in [11,12,13,14,15,16,17,18,19]
+                    +33box(i)
+            when "C"
+                each i in [21,22,23,24,25,26,27,28,29]
+                    +33box(i)
+            when "D"
+                each i in [31,32,33,34,35,36,37,38,39]
+                    +33box(i)
+            when "E"
+                each i in [41,42,43,44,45,46,47,48,49]
+                    +33box(i)
+            when "F"
+                each i in [51,52,53,54,55,56,57,58,59]
+                    +33box(i)
+            when "G"
+                each i in [61,62,63,64,65,66,67,68,69]
+                    +33box(i)
+            when "H"
+                each i in [71,72,73,74,75,76,77,78,79]
+                    +33box(i)
+            when "I"
+                each i in [81,82,83,84,85,86,87,88,89]
+                    +33box(i)
+            when "J"
+                each i in [91,92,93,94,95,96,97,98,99]
+                    +33box(i)
+            when "K"
+                each i in [101,102,103,104,105,106,107,108,109]
+                    +33box(i)
+            when "L"
+                each i in [111,112,113,114,115,116,117,118,119]
+                    +33box(i)
+            when "M"
+                each i in [121,122,123,124,125,126,127,128,129]
+                    +33box(i)
+            when "N"
+                each i in [131,132,133,134,135,136,137,138,139]
+                    +33box(i)
+            when "O"
+                each i in [141,142,143,144,145,146,147,148,149]
+                    +33box(i)
+            when "P"
+                each i in [151,152,153,154,155,156,157,158,159]
+                    +33box(i)
+            when "Q"
+                each i in [161,162,163,164,165,166,167,168,169]
+                    +33box(i)
+            when "R"
+                each i in [171,172,173,174,175,176,177,178,179]
+                    +33box(i)
+            when "S"
+                each i in [181,182,183,184,185,186,187,188,189]
+                    +33box(i)
+
     form(method="POST")
-        input(placeholder="사물함 번호 띄우고", required, type="text", name="lockerNum")
-        input(placeholder="사물함 번호 재확인", required, type="password", name="lockerPW")
+        span.signup__comment= "아래 칸에 " + locker.lockerNum + " 입력 후 신청 버튼을 클릭하세요."
+        input(placeholder= locker.lockerNum, required, type="text", name="lockerPW")
         input(value="사물함 신청하기", type="submit")

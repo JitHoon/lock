@@ -8,7 +8,7 @@ export const mainLocker = async (req, res) => {
     console.log(lockers[0]._id);
     console.log(Object.values(lockers[0].lockerNum));
 
-    return res.render("locker/mainLocker", {pageTitle : "| 사물함 신청 |", lockers,});
+    return res.render("locker/mainLocker", {pageTitle : "| 사물함 위치 및 신청 |", lockers,});
 };
 /* 사물함 db 불러오는 방법 참고
 
@@ -23,10 +23,11 @@ export const getMyQ = async(req, res) => {
 
 export const getSignup = async (req, res) => {
     const { id } = req.params;
-    
-    const locker = await Locker.findById(id); // 질문 데이터 object를 찾아 가져오는 model
+    const locker = await Locker.findById(id);
+    const lockers = await Locker.find({}).sort({ lockerNum: "asc" });
+    console.log(locker.lockerNum.substr(0, 1));
 
-    return res.render("locker/signUpLocker", {pageTitle : "| 사물함 신청 페이지 |", locker});
+    return res.render("locker/signUpLocker", {pageTitle : "| " +locker.lockerNum + " 사물함 신청 |", locker, lockers});
 };
 
 export const postSignup = async (req, res) => {

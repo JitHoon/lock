@@ -1,0 +1,7 @@
+mixin 33box(i)
+    if locker.lockerNum === Object.values(lockers[i].lockerNum).join("")
+        a(href="/locker/" + lockers[i]._id).Numlocker__point
+            p= Object.values(lockers[i].lockerNum).join("")
+    else
+        a(href="/locker/" + lockers[i]._id).Numlocker__absolute
+            p= Object.values(lockers[i].lockerNum).join("")
