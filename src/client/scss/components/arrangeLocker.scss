@@ -10,7 +10,7 @@
 .locker__area{
     box-sizing: content-box;
     width:85%;
-    height: 100vh;
+    height: 150vh;
 }
 
 .ASlocker__absolute{
@@ -25,20 +25,51 @@
     }
 
     .room{
-        font-size: 35px;
+        font-size: 30px;
+        text-align: center;
     }
 }
 
 .student-council-room{
-    padding: 150px 100px;
+    padding: 150px 150px;
 }
 
 .restRoomW{
-    padding: 30px 30px;
+    writing-mode: vertical-lr;
+    padding: 30px 20px;
+    top: 500px;
 }
 
 .restRoomM{
-    padding: 30px 30px;
+    writing-mode: vertical-lr;
+    padding: 30px 20px;
+    top: 720px;
+}
+
+.exhibitionRoom{
+    padding: 900px 110px;
+    top: 940px;
+}
+
+.room326{
+    writing-mode: vertical-lr;
+    padding: 200px 10px;
+    top: 2380px;
+    right: 0px;
+}
+
+.room327{
+    writing-mode: vertical-lr;
+    padding: 400px 10px;
+    top: 500px;
+    right: 0px;
+}
+
+.room328{
+    writing-mode: vertical-lr;
+    padding: 400px 10px;
+    top: 1400px;
+    right: 0px;
 }
 
 .Alocker{
@@ -48,33 +79,105 @@
 
 .Blocker{
     padding: 60px 30px;
-    right: 300px;
+    right: 280px;
 }
 
 .Clocker{
     padding: 60px 28px;
     top: 180px;
-    right: 300px;
+    right: 280px;
 }
 
 .Dlocker{
-    padding: 60px 30px;
-    right: 190px;
+    padding: 60px 28px;
+    right: 180px;
 }
 
 .Elocker{
-    padding: 60px 28px;
+    padding: 60px 30px;
     top: 180px;
-    right: 190px;
+    right: 180px;
 }
 
 .Flocker{
     padding: 60px 30px;
-    right: 40px;
+    right: 30px;
 }
 
 .Glocker{
     padding: 60px 28px;
-    right: 40px;
+    right: 30px;
+    top: 180px;
+}
+
+.Hlocker{
+    padding: 60px 28px;
+    right: 60px;
+    top: 550px;
+}
+
+.Ilocker{
+    padding: 60px 38px;
+    right: 60px;
+    top: 720px;
+}
+
+.Jlocker{
+    padding: 60px 28px;
+    right: 60px;
+    top: 180px;
+}
+
+.Klocker{
+    padding: 60px 28px;
+    right: 60px;
+    top: 180px;
+}
+
+.Llocker{
+    padding: 60px 28px;
+    right: 60px;
+    top: 180px;
+}
+
+.Mlocker{
+    padding: 60px 28px;
+    right: 60px;
+    top: 180px;
+}
+
+.Nlocker{
+    padding: 60px 28px;
+    right: 60px;
+    top: 180px;
+}
+
+.Olocker{
+    padding: 60px 28px;
+    right: 60px;
+    top: 180px;
+}
+
+.Plocker{
+    padding: 60px 28px;
+    right: 60px;
+    top: 180px;
+}
+
+.Qlocker{
+    padding: 60px 28px;
+    right: 60px;
+    top: 180px;
+}
+
+.Rlocker{
+    padding: 60px 28px;
+    right: 60px;
+    top: 180px;
+}
+
+.Slocker{
+    padding: 60px 28px;
+    right: 60px;
     top: 180px;
 }
