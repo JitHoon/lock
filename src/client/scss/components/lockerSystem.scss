@@ -1,8 +1,44 @@
-.signup__comment{
+.signup__shape{
+    position: relative;
+    display: flex;
+    flex-direction:column; 
+    justify-content:space-around;
+    align-items: center;
+  
+    max-width: 90%;
+    margin: 0px auto;
+    padding: 150px 0px;
+  
+    background-color: rgba($color: rgb(0, 0, 0), $alpha: 0.7);
+    border-radius: 10px;
+}
+
+.signup__comment, .signup__comment1, .signup__comment2, .signup__comment3{
     position: relative;
     font-size: 40px;
-    color: rgb(254, 213, 213);
     margin-top: 30px;
+    color: rgb(255, 191, 0);
+}
+
+.signup__comment1{
+    font-size: 45px;
+}
+
+.signup__comment2{
+    font-size: 80px;
+    margin: 40px;
+    color: white;
+}
+
+.signup__comment3{
+    font-size: 40px;
+    color: white;
+    margin: 50px 0px;
+}
+
+.signup__comment4{
+    font-size: 40px;
+    color: rgb(255, 191, 0);
 }
 
 .Numlocker__point{
@@ -17,4 +53,72 @@
         margin: 100px;
         font-size: 50px;
     }
+}
+
+.locker__relative, .locker__relative2{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    color: black;
+
+    background-color: rgba($color: rgb(255, 255, 255), $alpha: 0.6);
+    border-radius: 10px;
+    
+    max-width: 80%;
+    margin: 0px auto;
+    margin-bottom: 50px;
+}
+
+.locker__relative2{
+    color: white;
+    border-radius: 10px;
+    background-color: rgba($color: rgb(255, 255, 255), $alpha: 0.1);
+    border: 10px solid rgba($color: #fff, $alpha: 0.7); 
+    border-bottom: 0px;
+    
+    max-width: 90%;
+    margin-top: 100px;
+    margin-bottom: 0px;
+    padding-bottom: 20px;
+}
+
+.locker__title, .locker__title1, .locker__title2{
+    max-width: 85%;
+    margin: 50px auto;
+    font-size: 35px;
+}
+
+.locker__title1{
+    font-size: 50px;
+    margin: 30px auto;
+}
+
+.locker__title2{
+    font-size: 40px;
+}
+
+.locker__notice, .locker__notice1, .locker__notice2, .locker__notice3, .locker__notice4{
+    max-width: 90%;
+    margin: 0px auto;
+    margin-bottom: 50px;
+    font-size: 24px;
+}
+
+.locker__notice1{
+    color:rgba($color: rgb(160, 0, 0), $alpha: 1);
+}
+
+.locker__notice2{
+    color:rgba($color: rgb(255, 255, 255), $alpha: 1);
+}
+
+.locker__notice3{
+    font-size: 35px;
+    color:rgba($color: rgb(160, 0, 0), $alpha: 1);
+    margin-bottom: 50px;
+}
+
+.locker__notice4{
+    color:rgba($color: rgb(0, 0, 0), $alpha: 1);
+    font-size: 40px;
 }

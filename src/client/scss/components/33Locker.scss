@@ -11,21 +11,41 @@
 }
 
 .Numlocker__Alphabet{
-    max-width: 85%;
-    margin: 50px 85%;
-    margin-top: 200px;
+    margin-top: 100px;
+    margin-bottom: 20px;
     font-size: 50px;
+
+    background-color: rgba($color: rgb(255, 255, 255), $alpha: 0.1);
+    border-radius: 10px;
 
     p{
         flex-direction: low;
+        margin: 0px 350px;
+        padding: 40px;
     }
 }
 
-.Numlocker__absolute{
+.Numlocker__absolute-true{
     max-width: 30%;
     margin: 10px;
 
     background-color: rgba($color: rgb(150, 151, 233), $alpha: 0.1);
+    // background-color: rgba($color: rgb(125, 0, 0), $alpha: 0.7);
+    border-radius: 10px;
+    border: 3px solid rgba($color: #fff, $alpha: 0.7); 
+
+    p {
+        margin: 100px;
+        font-size: 50px;
+    }
+}
+
+.Numlocker__absolute-false{
+    max-width: 30%;
+    margin: 10px;
+
+    //background-color: rgba($color: rgb(150, 151, 233), $alpha: 0.1);
+    background-color: rgba($color: rgb(125, 0, 0), $alpha: 0.7);
     border-radius: 10px;
     border: 3px solid rgba($color: #fff, $alpha: 0.7); 
 
