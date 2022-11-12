@@ -1,33 +1,26 @@
 extends ../base
 
 block content
+    div.locker__relative
+        p.locker__title2 | 회원가입 주의사항 |
+        p.locker__notice3 *가입 후 학번과 이름 수정이 불가능하오니
+        p.locker__notice3 정확히 입력해 주세요.
+
     if errorMessage
         div.error-message
             span=errorMessage
         
-        form(method="POST")
-            input(name="userName", placeholder="이름", type="text", required)
-            input(name="studentID", placeholder="학번", type="number", required)
-            input(name="password", placeholder="비밀번호", type="password", required)
-            input(name="password2", placeholder="비밀번호 재확인", type="password", required)
-            input(name="phoneNumber", placeholder="핸드폰 번호", type="number", required)
-            input(type="submit", value="회원가입하기")
+    form(method="POST")
+        input(name="userName", placeholder="이름", type="text", required)
+        input(name="studentID", placeholder="학번", type="number", required)
+        input(name="password", placeholder="비밀번호", type="password", required)
+        input(name="password2", placeholder="비밀번호 재확인", type="password", required)
+        input(name="phoneNumber", placeholder="핸드폰 번호", type="number", required)
+        input(type="submit", value="회원가입하기")
     
-        div.center
-            div.arrow-switch
-                span 계정이 있다면? 
-                a(href="/login")  로그인하기 &rarr; 
-                
-    else
-        form(method="POST")
-            input(name="userName", placeholder="이름", type="text", required)
-            input(name="studentID", placeholder="학번", type="number", required)
-            input(name="password", placeholder="비밀번호", type="password", required)
-            input(name="password2", placeholder="비밀번호 재확인", type="password", required)
-            input(name="phoneNumber", placeholder="핸드폰 번호", type="number", required)
-            input(type="submit", value="회원가입하기")
-        
-        div.center
-            div.arrow-switch
-                span 계정이 있다면? 
-                a(href="/login")  로그인하기 &rarr; 
+
+    div.center
+        div.arrow-switch
+            span 계정이 있다면? 
+            a(href="/login")  로그인하기 &rarr; 
+    

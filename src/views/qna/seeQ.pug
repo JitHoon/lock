@@ -1,8 +1,9 @@
 extends ../base
 
 block content
-    div.seeQ-grid
-        p= "Q. " + question.content 
+    div.locker__relative
+        p.locker__title1= "Q" 
+        p.locker__notice4= question.content 
 
     if String(question.owner.id) === String(loggedInUser._id)
         div.bnt__postQ

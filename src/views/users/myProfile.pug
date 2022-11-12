@@ -22,6 +22,9 @@ block content
                 div.profile__data
                     h1= user.lockers.lockerNum + " 사물함 비밀번호"
                     p=user.lockers.lockerPW
+                div.profile__data
+                    h1 사물함 반납 기한
+                    p=user.returnDate.toISOString().substr(0, 10)
             else
                 div.profile__data
                     h1 배정 사물함

@@ -1,5 +1,3 @@
 mixin questions(questions)
     a(href="/qna/" + questions.id).question-grid
-        div.question-content= "Q. " + questions.content
-        
-        div.question-views="views"
+        p.question-content= "Q. " + questions.content

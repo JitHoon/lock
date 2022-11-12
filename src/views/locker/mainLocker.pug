@@ -1,6 +1,18 @@
 extends ../base
 
 block content
+    div.locker__relative
+        p.locker__title < 사물함 신청 방법 >
+        p.locker__notice 1. 배치도 위, 원하는 위치의 사물함(예: A)을 누르면 
+        p.locker__notice 2. 해당 사물함 목록(예: A1 ~ A9)으로 이동
+        p.locker__notice 3. 원하는 사물함 번호(예: A1)를 선택 후 신청
+        p.locker__notice1 * 빨간색 사물함은 이미 사용 중입니다.
+        p.locker__notice1 * 1인 1사물함만 사용 가능합니다.
+
+    div.locker__relative2
+        p.locker__title < 사물함 배치도 >
+        p.locker__notice2 충남대학교 공대 2호관 3층
+
     div.ASlocker__relative
         div.locker__area
         include roomLocker

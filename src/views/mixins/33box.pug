@@ -1,7 +1,10 @@
 mixin 33box(i)
-    if locker.lockerNum === Object.values(lockers[i].lockerNum).join("")
+    if (lockers[i].available === true) && (locker.lockerNum === Object.values(lockers[i].lockerNum).join(""))
         a(href="/locker/" + lockers[i]._id).Numlocker__point
             p= Object.values(lockers[i].lockerNum).join("")
-    else
-        a(href="/locker/" + lockers[i]._id).Numlocker__absolute
+    else if lockers[i].available === false
+        div.Numlocker__absolute-false 
+            p= Object.values(lockers[i].lockerNum).join("")
+    else if lockers[i].available === true
+        a(href="/locker/" + lockers[i]._id).Numlocker__absolute-true
             p= Object.values(lockers[i].lockerNum).join("")

@@ -1,11 +1,17 @@
 extends ../base
 
 block content
+    div.locker__relative
+        p.locker__title2 | 사물함 반납 주의사항 |
+        p.locker__notice3 *사물함 반납 전 사물함을 반드시 비워주세요.
+        p.locker__notice3 적발시 사물함 사용 금지 및 벌금
+
     form(method="POST")
         if errorMessage
             span.signup__comment= errorMessage
         else
-            span.signup__comment= "아래 칸에 " + locker.lockerNum + " 입력 후 반납 버튼을 클릭"
+            span.signup__comment= "아래 빈칸에 " + locker.lockerNum + " 입력 후 반납 버튼을 클릭"
 
         input(placeholder= user.lockers.lockerNum, required, type="text", name="lockerNum")
+
         input(value="사물함 반납하기", type="submit")

@@ -1,0 +1,19 @@
+extends ../base
+
+block content
+    div.signup__shape
+        span.signup__comment1= user.userName + " 학우님의 " + locker.lockerNum + " 사물함"
+        span.signup__comment2= "신청 완료😆"
+        
+    div.form
+        span.signup__comment3= "사물함 반납 기한 : " + end.substr(0, 10) + " (3개월 후)"
+        span.signup__comment4= "사물함 비밀번호 변경 금지"
+
+    a(href=`/users/${user._id}`).homeCard__shape
+        span.homeCard__join  사물함 비밀번호 확인하기
+
+    a(href=`/locker/${locker._id}/return`).homeCard__shape
+        span.homeCard__join  사물함 반납하기
+
+    a(href="/").homeCard__shape
+        span.homeCard__join  홈으로

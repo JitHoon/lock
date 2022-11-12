@@ -61,8 +61,9 @@ block content
             when "S"
                 each i in [181,182,183,184,185,186,187,188,189]
                     +33box(i)
-
-    div.signup__comment= "기존 사물함을 반납 후 신청하세요."
+    
+    div.form
+        span.signup__comment= "1인 1사물함만 신청 가능합니다."
 
     a(href=`/users/${user._id}`).homeCard__shape
         span.homeCard__join  사물함 반납하러 가기

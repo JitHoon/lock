@@ -1,26 +1,24 @@
 extends ../base
 
 block content
+    div.locker__relative
+        p.locker__title2 | 로그인 주의사항 |
+        p.locker__notice3 *비밀번호 잊어버린 경우
+        p.locker__notice3 학생회 임원에게 문의하시길 바랍니다.
+
     if errorMessage
         div.error-message
             span=errorMessage
-            
-        form(method="POST")
-            input(name="studentID", placeholder="학번", type="number", required)
-            input(name="password", placeholder="비밀번호", type="password", required)
-            input(type="submit", value="로그인하기")
+    
+    form(method="POST")
+        input(name="studentID", placeholder="학번", type="number", required)
+        input(name="password", placeholder="비밀번호", type="password", required)
+        input(type="submit", value="로그인하기")
 
+    a(href="/admin/adlogin").homeCard__shape
+        span.homeCard__login  관리자 로그인
 
-        div.arrow-switch
-            span 계정이 없다면?
-            a(href="/join")  회원가입하기 &rarr;
-        
-    else    
-        form(method="POST")
-            input(name="studentID", placeholder="학번", type="number", required)
-            input(name="password", placeholder="비밀번호", type="password", required)
-            input(type="submit", value="로그인하기")
-
-        div.arrow-switch
-            span 계정이 없다면?
-            a(href="/join")  회원가입하기 &rarr;
+    div.arrow-switch
+        span 계정이 없다면?
+        a(href="/join")  회원가입하기 &rarr;
+    
