@@ -1,7 +1,7 @@
 import User from "../models/User";
 
 export const home = async(req, res) => {
-    return res.render("home", {pageTitle : "| HOME |"});
+    return res.render("home");
 };
 
 export const postReturn = (req, res) => {

@@ -9,8 +9,8 @@
     margin: 0px auto;
     padding: 150px 0px;
   
-    background-color: rgba($color: rgb(0, 0, 0), $alpha: 0.7);
-    border-radius: 10px;
+    background-color: rgba($color: rgba(0, 0, 0, 0.467), $alpha: 0.5);
+    border-radius: 30px;
 }
 
 .signup__comment, .signup__comment1, .signup__comment2, .signup__comment3{
@@ -25,7 +25,7 @@
 }
 
 .signup__comment2{
-    font-size: 80px;
+    font-size: 60px;
     margin: 40px;
     color: white;
 }
@@ -33,7 +33,7 @@
 .signup__comment3{
     font-size: 40px;
     color: white;
-    margin: 50px 0px;
+    margin-bottom: 30px;
 }
 
 .signup__comment4{

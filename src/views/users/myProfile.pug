@@ -30,6 +30,9 @@ block content
                     h1 배정 사물함
                     p 없음
 
+        div.form
+            span.signup__comment= "*사물함 비밀번호 변경 금지"
+
     if user.availableLocker
         a(href="/locker").homeCard__shape
             span.locker__signup  사물함 신청하기
@@ -41,4 +44,4 @@ block content
         span.phoneNum__change  폰 번호 변경
 
     a(href=`/users/${loggedInUser._id}/changePassword`).homeCard__shape
-        span.PW__change  비밀번호 변경
+        span.PW__change  사용자 비밀번호 변경
