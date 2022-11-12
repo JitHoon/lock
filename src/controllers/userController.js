@@ -57,7 +57,7 @@ export const postLogin = async (req, res) => {
     if (!user) {
       return res.status(400).render("users/login", {
         pageTitle,
-        errorMessage: "존재하지 않는 아이디 입니다.",
+        errorMessage: "존재하지 않는 학번입니다.",
       });
     }
     

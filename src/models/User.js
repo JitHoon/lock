@@ -9,6 +9,7 @@ const userSchema = new mongoose.Schema({
     lockers: { type: mongoose.Schema.Types.ObjectId, ref: "Locker" }, 
     availableLocker: { type: Boolean, default: true},
     signupLockerAt: { type: Date, default: 0},
+    returnDate: { type: Date, default: 0},
     questions: [{ type: mongoose.Schema.Types.ObjectId, ref: "Question" }],
     comments: [{type:mongoose.Schema.Types.ObjectId, ref:"Comment"}], 
 

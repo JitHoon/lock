@@ -1,7 +1,8 @@
 import express from "express";
 import { mainLocker,
     getSignup, postSignup,
-    getReturn, postReturn } from "../controllers/lockerController";
+    getReturn, postReturn,
+    getSuccess } from "../controllers/lockerController";
 import { publicOnlyMiddleware, protectorMiddleware } from "../middlewares";
 
 const lockerRouter = express.Router();
@@ -20,5 +21,9 @@ lockerRouter
 .all(protectorMiddleware)
 .get(getReturn)
 .post(postReturn);
+lockerRouter
+.route("/alert") // 사물함 신청 완료 후 알림 페이지
+.all(protectorMiddleware)
+.get(getSuccess);
 
 export default lockerRouter;

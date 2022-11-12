@@ -32,7 +32,7 @@ export const getSignup = async (req, res) => {
     if(req.session.user.availableLocker){
         return res.render("locker/signUpLocker", {pageTitle : "| " +locker.lockerNum + " 사물함 신청 |", locker, lockers});
     }else{
-        return res.render("locker/alertLocker", {pageTitle : "| " +locker.lockerNum + " 사물함 반납 |", locker, lockers, user});
+        return res.render("locker/youHaveLocker", {pageTitle : "사물함 신청 완료 안내문", locker, lockers, user});
     }
 };
 
@@ -44,6 +44,10 @@ export const postSignup = async (req, res) => {
     const locker = await Locker.findById(id);
     const lockers = await Locker.find({}).sort({ lockerNum: "asc" });
     const { lockerNum } = req.body;
+
+    const now = new Date();
+    const end = new Date(now.setMonth(now.getMonth() + 3)).toISOString();
+
     const pageTitle = "| " +locker.lockerNum + " 사물함 신청 |";
 
     if (locker.lockerNum !== lockerNum) {
@@ -69,14 +73,15 @@ export const postSignup = async (req, res) => {
                 {   
                     lockers: id,
                     availableLocker: false,
-                    signupLockerAt: Date.now()
+                    signupLockerAt: Date.now(),
+                    returnDate: end
                 },
                 { new: true }
             );
 
             req.session.user = signUpUser;
 
-            return res.redirect(`/users/${req.session.user._id}`);
+            return res.redirect("/locker/alert");
         } catch (error) {
             console.log(error);
             return res.status(400).render("locker/signUpLocker", { 
@@ -106,6 +111,7 @@ export const postReturn = async (req, res) => {
     const user = await User.findById(_id).populate("lockers");
     const locker = await Locker.findById(id);
     const { lockerNum } = req.body;
+
     const pageTitle = "| " + user.userName + "님의 " + locker.lockerNum + " 사물함 반납 |";
 
     if (locker.lockerNum !== lockerNum) {
@@ -131,6 +137,7 @@ export const postReturn = async (req, res) => {
             {   
                 lockers: null,
                 availableLocker: true,
+                returnDate: 0
             },
             { new: true }
         );
@@ -145,4 +152,18 @@ export const postReturn = async (req, res) => {
             errorMessage: "사물함 반납 실패, 010-4671-0338 로 문의 주세요."
         });
     }
+};
+
+
+export const getSuccess = async (req, res) => {
+    const {
+        user: { _id },
+      } = req.session;
+    const user = await User.findById(_id);
+
+    const locker = req.session.locker;
+    const now = new Date();
+    const end = new Date(now.setMonth(now.getMonth() + 3)).toISOString();
+
+    return res.render("locker/successLocker", {pageTitle : "| 사물함 신청 완료 |", locker, user, end});
 };
