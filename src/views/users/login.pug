@@ -15,10 +15,7 @@ block content
         input(name="password", placeholder="비밀번호", type="password", required)
         input(type="submit", value="로그인하기")
 
-    a(href="/admin/adlogin").homeCard__shape
-        span.homeCard__login  관리자 로그인
-
     div.arrow-switch
-        span 계정이 없다면?
+        a(href="/admin/adlogin") 관리자 로그인 &rarr;
         a(href="/join")  회원가입하기 &rarr;
     
