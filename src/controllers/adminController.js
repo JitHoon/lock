@@ -64,7 +64,7 @@ export const postAdLogin = async (req, res) => {
     req.session.save(function(err) {
       if (err) {
         return res.status(500).render("/500", { pageTitle: "500 loginSeverError" });
-      } else return res.redirect("/");
+      } else return res.redirect("/admin");
     });
 };
 
@@ -98,4 +98,14 @@ export const postAdLocker = async (req, res) => {
                 errorMessage: error._message
             });
         }
+};
+
+export const getAdHome = async (req, res) => {
+  return res.render("admin/adHome", {pageTitle : "CNU 전자공학과 사물함 신청 시스템"});
+};
+
+export const getDBLocker = async (req, res) => {
+  const lockers = await Locker.find({}).sort({ lockerNum: "asc" });
+
+  return res.render("locker/mainLocker", {pageTitle : "사물함 배치도 및 리스트", lockers});
 };

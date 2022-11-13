@@ -3,9 +3,12 @@ import User from "../models/User";
 import Admin from "../models/Admin";
 
 export const mainLocker = async (req, res) => {
+    const {
+        user: { _id },
+      } = req.session;
     const lockers = await Locker.find({}).sort({ lockerNum: "asc" });
 
-    return res.render("locker/mainLocker", {pageTitle : "사물함 배치도 및 신청", lockers});
+    return res.render("locker/mainLocker", {pageTitle : "사물함 배치도 및 신청", lockers, _id});
 };
 /* 사물함 db 불러오는 방법 참고
 

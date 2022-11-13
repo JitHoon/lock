@@ -1,0 +1,23 @@
+extends ../base
+
+block content
+    if loggedIn
+        a(href="admin/dblocker").homeCard__shape
+            i.fa-solid.fa-unlock-keyhole.homeCard__locker
+                span  사물함 배치도 | 데이터
+
+        a(href=`/users/${loggedInUser._id}`).homeCard__shape
+            i.fa-solid.fa-user.homeCard__imf
+                span= " " + loggedInUser.userName + "님의 정보"
+                span  | 사물함 반납
+
+        a(href="/qna").homeCard__shape
+            span.homeCard__qna  Q & A
+    else
+        img(src='public/CNU-logo.png' href="/users/login" style='width:100%; height:100%; object-fit:cover;').homeLogo
+        
+        a(href="/users/login").homeCard__shape
+            span.homeCard__login  로그인
+
+        a(href="/join").homeCard__shape
+            span.homeCard__join  회원가입
