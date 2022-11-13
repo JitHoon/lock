@@ -5,17 +5,19 @@ export const localsMiddleware = (req, res, next) => {
     next();
 };
 
+// 로그인후만 접속 가능
 export const protectorMiddleware = (req, res, next) => {
   if (req.session.loggedIn) {
-    return next(); // 유저가 사용을 계속 유지
+    return next();
   } else {
     return res.redirect("/login");
   }
 };
 
+// 로그인전만 접속 가능
 export const publicOnlyMiddleware = (req, res, next) => {
   if (!req.session.loggedIn) {
-    return next(); // 유저가 사용을 계속 유지
+    return next();
   } else {
     return res.redirect("/");
   }

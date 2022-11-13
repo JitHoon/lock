@@ -2,26 +2,25 @@ import express from "express";
 import { logout,
     myProfile, 
     getEdit, postEdit,
-    getChangePassword, postChangePassword,
-    startGithubLogin, finishGithubLogin } from "../controllers/userController";
+    getChangePassword, postChangePassword,} from "../controllers/userController";
 import { protectorMiddleware, publicOnlyMiddleware } from "../middlewares"
 
 const userRouter = express.Router();
 
-userRouter.get("/logout", protectorMiddleware, logout);
-userRouter.route("/:id")
+userRouter.get("/logout") // 로그아웃
 .all(protectorMiddleware)
-    .get(myProfile)
-userRouter.route("/:id/edit")
-    .all(protectorMiddleware)
-    .get(getEdit)
-    .post(postEdit);
+.get(logout);
+userRouter.route("/:id") // 유저 프로필
+.all(protectorMiddleware)
+.get(myProfile)
+userRouter.route("/:id/edit") // 유저 번호 변경
+.all(protectorMiddleware)
+.get(getEdit)
+.post(postEdit);
 userRouter
-    .route("/:id/changePassword")
-    .all(protectorMiddleware)
-    .get(getChangePassword)
-    .post(postChangePassword);
-userRouter.get("/github/start", startGithubLogin);
-userRouter.get("/github/finish", finishGithubLogin);
+.route("/:id/changePassword") // 유저 아이디 변경
+.all(protectorMiddleware)
+.get(getChangePassword)
+.post(postChangePassword);
 
 export default userRouter;
