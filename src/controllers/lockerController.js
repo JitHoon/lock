@@ -5,7 +5,7 @@ import Admin from "../models/Admin";
 export const mainLocker = async (req, res) => {
     const lockers = await Locker.find({}).sort({ lockerNum: "asc" });
 
-    return res.render("locker/mainLocker", {pageTitle : "| 사물함 배치도 및 신청 |", lockers});
+    return res.render("locker/mainLocker", {pageTitle : "사물함 배치도 및 신청", lockers});
 };
 /* 사물함 db 불러오는 방법 참고
 
@@ -26,11 +26,12 @@ export const getSignup = async (req, res) => {
     const user = await User.findById(_id);
     const locker = await Locker.findById(id);
     const lockers = await Locker.find({}).sort({ lockerNum: "asc" });
+    const pageTitle = locker.lockerNum + " 사물함 신청"
 
     if(req.session.user.availableLocker){
-        return res.render("locker/signUpLocker", {pageTitle : "| " +locker.lockerNum + " 사물함 신청 |", locker, lockers});
+        return res.render("locker/signUpLocker", {pageTitle, locker, lockers});
     }else{
-        return res.render("locker/youHaveLocker", {pageTitle : "사물함 신청 완료 안내문", locker, lockers, user});
+        return res.render("locker/youHaveLocker", {pageTitle, locker, lockers, user});
     }
 };
 
@@ -42,11 +43,11 @@ export const postSignup = async (req, res) => {
     const locker = await Locker.findById(id);
     const lockers = await Locker.find({}).sort({ lockerNum: "asc" });
     const { lockerNum } = req.body;
+    const pageTitle = locker.lockerNum + " 사물함 신청";
 
     const now = new Date();
     const end = new Date(now.setMonth(now.getMonth() + 3)).toISOString();
 
-    const pageTitle = "| " +locker.lockerNum + " 사물함 신청 |";
 
     if (locker.lockerNum !== lockerNum) {
         return res.status(400).render("locker/signUpLocker", {
@@ -96,7 +97,7 @@ export const getReturn = async (req, res) => {
     const { id } = req.params;
     const user = await User.findById(_id).populate("lockers");
     const locker = await Locker.findById(id);
-    const pageTitle = "| " + user.userName + "님의 " + locker.lockerNum + " 사물함 반납 |";
+    const pageTitle = user.userName + "님의 " + locker.lockerNum + " 사물함 반납";
 
     return res.render("locker/returnLocker", {pageTitle, locker, user});
 };
@@ -109,8 +110,7 @@ export const postReturn = async (req, res) => {
     const user = await User.findById(_id).populate("lockers");
     const locker = await Locker.findById(id);
     const { lockerNum } = req.body;
-
-    const pageTitle = "| " + user.userName + "님의 " + locker.lockerNum + " 사물함 반납 |";
+    const pageTitle = user.userName + "님의 " + locker.lockerNum + " 사물함 반납";
 
     if (locker.lockerNum !== lockerNum) {
         return res.status(400).render("locker/returnLocker", {
@@ -163,5 +163,5 @@ export const getSuccess = async (req, res) => {
     const now = new Date();
     const end = new Date(now.setMonth(now.getMonth() + 3)).toISOString();
 
-    return res.render("locker/successLocker", {pageTitle : "| 사물함 신청 완료 |", locker, user, end});
+    return res.render("locker/successLocker", {pageTitle : "사물함 신청 완료", locker, user, end});
 };

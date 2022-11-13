@@ -6,7 +6,7 @@ export const getAdJoin = (req, res) => res.render("admin/adJoin", {pageTitle : "
 
 export const postAdJoin = async (req, res) => {
     const { userName, studentID, password, password2, phoneNumber } = req.body;
-    const pageTitle = "| Admin Join |";
+    const pageTitle = "관리자 가입";
 
     // 비밀번호 재확인 오류 메시지 
     if (password !== password2) {
@@ -27,17 +27,17 @@ export const postAdJoin = async (req, res) => {
         return res.redirect("/admin/adlogin");
     } catch (error) {
         return res.status(400).render("admin/adJoin", {
-            pageTitle: "| Admin Join |", 
+            pageTitle, 
             errorMessage: error._message 
         });
     }
 };
 
-export const getAdLogin = (req, res) => res.render("admin/adLogin", {pageTitle: "| Admin Login |"});
+export const getAdLogin = (req, res) => res.render("admin/adLogin", {pageTitle: "관리자 로그인"});
 
 export const postAdLogin = async (req, res) => {
     const { studentID, password } = req.body;
-    const pageTitle = "| Admin Login |";
+    const pageTitle = "관리자 로그인";
 
     // 존재하지 않는 아이디 에러 메시지
     const admin = await Admin.findOne({ studentID });
@@ -69,7 +69,7 @@ export const postAdLogin = async (req, res) => {
 };
 
 export const getAdLocker = (req, res) => {
-  res.render("admin/adLocker", {pageTitle: "| POST Locker DB |"});
+  res.render("admin/adLocker", {pageTitle: "사물함 DB 업로드"});
 };
 
 export const postAdLocker = async (req, res) => {
@@ -94,7 +94,7 @@ export const postAdLocker = async (req, res) => {
         } catch (error) {
             console.log(error._message)
             return res.status(400).render("admin/adLocker", { 
-                pageTitle: "| POST Locker DB |", 
+                pageTitle: "사물함 DB 업로드", 
                 errorMessage: error._message
             });
         }

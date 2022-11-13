@@ -3,11 +3,11 @@ import bcrypt from "bcrypt";
 // import fetch from "node-fetch";
 
 // [rootRouter]
-export const getJoin = (req, res) => res.render("users/join", { pageTitle: "| Join |" });
+export const getJoin = (req, res) => res.render("users/join", { pageTitle: "회원가입" });
 
 export const postJoin = async (req, res) => {
     const { userName, studentID, password, password2, phoneNumber } = req.body;
-    const pageTitle = "| Join |";
+    const pageTitle = "회원가입";
 
     // 비밀번호 재확인 오류 메시지 
     if (password !== password2) {
@@ -36,24 +36,24 @@ export const postJoin = async (req, res) => {
         });
 
         return res.render("users/join", {
-          pageTitle: "| Join |", 
+          pageTitle, 
           errorMessage: "회원 가입이 완료되었습니다."
       });
     } catch (error) {
         return res.status(400).render("users/join", {
-            pageTitle: "| Join |", 
+            pageTitle, 
             errorMessage: error._message 
         });
     }
 };
 
 export const getLogin = (req, res) => {
-    res.render("users/login", {pageTitle: "| Login |"});
+    res.render("users/login", {pageTitle: "로그인"});
 };
 
 export const postLogin = async (req, res) => {
     const { studentID, password } = req.body;
-    const pageTitle = "| Login |";
+    const pageTitle = "로그인";
 
     // 존재하지 않는 아이디 에러 메시지
     const user = await User.findOne({ studentID });
@@ -79,27 +79,15 @@ export const postLogin = async (req, res) => {
     req.session.user = user;
     req.session.save(function(err) {
       if (err) {
-        return res.status(500).render("/500", { pageTitle: "500 loginSeverError" });
+        return res.status(500).render("/500", { pageTitle: "500 로그인 서버 에러" });
       } else return res.redirect("/");
     });
-    
-    /*
-    if (req.session.loggedIn) {
-      console.log("wait1");
-      req.session.user = user;
-      console.log("wait2");
-      await new Promise(r => setTimeout(r, 1500));
-      console.log("wait3");
-      return res.redirect("/");
-    }
-    */
 };
 
-// [useRouter]
 export const logout = async (req, res) => {
   req.session.destroy(function(err) {
     if (err) {
-      return res.status(500).render("/500", { pageTitle: "500 logoutSeverError" });
+      return res.status(500).render("/500", { pageTitle: "500 로그인 서버 에러" });
     } else return res.redirect("/");
   })
 };
@@ -108,12 +96,12 @@ export const myProfile = async (req, res) => {
   const { id } = req.params;
   const user = await User.findById(id).populate("lockers");
 
-  return res.render("users/myProfile", { pageTitle: "| " + user.userName + "'s Profile |", user, });
+  return res.render("users/myProfile", { pageTitle: user.userName + "님의 프로필", user, });
 };
 
 // edit-profile 
 export const getEdit = (req, res) => {
-  return res.render("users/editProfile", { pageTitle: "| Edit Phone Num |" });
+  return res.render("users/editProfile", { pageTitle: "전화번호 변경" });
 };
 
 export const postEdit = async (req, res) => {
@@ -140,7 +128,7 @@ export const postEdit = async (req, res) => {
 
 // change password
 export const getChangePassword = (req, res) => {
-  return res.render("users/changePassword", { pageTitle: "| Change Password |" });
+  return res.render("users/changePassword", { pageTitle: "비밀번호 변경" });
 };
 
 export const postChangePassword = async (req, res) => {
@@ -151,6 +139,7 @@ export const postChangePassword = async (req, res) => {
     },
     body: { oldPW, newPW1, newPW2 },
   } = req;
+  const pageTitle = "비밀번호 변경";
 
   // db에서 user id 찾아오기 
   const user = await User.findById(_id);
@@ -166,7 +155,7 @@ export const postChangePassword = async (req, res) => {
   // 기존 비번이 일치하지 않을 때 에러문
   if (!ok) {
     return res.status(400).render("users/changePassword", {
-      pageTitle: "| Change Password |",
+      pageTitle,
       errorMessage: "현재 비밀번호와 일치하지 않습니다.",
     });
   }
@@ -174,14 +163,14 @@ export const postChangePassword = async (req, res) => {
   // 새비밀번호 확인이 일치하지 않을 때 에러문
   if (newPW1 != newPW2) {
     return res.status(400).render("users/changePassword", {
-      pageTitle: "| Change Password |",
+      pageTitle,
       errorMessage: "재확인 비밀번호가 일치하지 않습니다.",
     });
   }
 
   if ((oldPW == newPW1) && (newPW1 == newPW2)) {
     return res.status(400).render("users/changePassword", {
-      pageTitle: "Change Password",
+      pageTitle,
       errorMessage: "Nothing change",
     });
   }

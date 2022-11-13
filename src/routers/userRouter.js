@@ -7,7 +7,7 @@ import { protectorMiddleware, publicOnlyMiddleware } from "../middlewares"
 
 const userRouter = express.Router();
 
-userRouter.get("/logout") // 로그아웃
+userRouter.route("/logout") // 로그아웃
 .all(protectorMiddleware)
 .get(logout);
 userRouter.route("/:id") // 유저 프로필
