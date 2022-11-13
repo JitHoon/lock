@@ -34,7 +34,11 @@ export const postJoin = async (req, res) => {
             password,
             phoneNumber,
         });
-        return res.redirect("/login");
+
+        return res.render("users/join", {
+          pageTitle: "| Join |", 
+          errorMessage: "회원 가입이 완료되었습니다."
+      });
     } catch (error) {
         return res.status(400).render("users/join", {
             pageTitle: "| Join |", 
