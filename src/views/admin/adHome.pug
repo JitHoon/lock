@@ -2,7 +2,7 @@ extends ../base
 
 block content
     if loggedIn
-        a(href="admin/dblocker").homeCard__shape
+        a(href=`/admin/${_id}/dblocker`).homeCard__shape
             i.fa-solid.fa-unlock-keyhole.homeCard__locker
                 span  사물함 배치도 | 데이터
 

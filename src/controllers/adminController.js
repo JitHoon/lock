@@ -64,7 +64,7 @@ export const postAdLogin = async (req, res) => {
     req.session.save(function(err) {
       if (err) {
         return res.status(500).render("/500", { pageTitle: "500 loginSeverError" });
-      } else return res.redirect("/admin");
+      } else return res.redirect(`/admin/${req.session.admin._id}`);
     });
 };
 
@@ -101,7 +101,11 @@ export const postAdLocker = async (req, res) => {
 };
 
 export const getAdHome = async (req, res) => {
-  return res.render("admin/adHome", {pageTitle : "CNU 전자공학과 사물함 신청 시스템"});
+  const {
+    admin: { _id },
+  } = req.session;
+
+  return res.render("admin/adHome", {pageTitle : "CNU 전자공학과 사물함 신청 시스템", _id});
 };
 
 export const getDBLocker = async (req, res) => {
