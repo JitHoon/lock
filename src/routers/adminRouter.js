@@ -24,7 +24,6 @@ adminRouter.route("/adlogin") // 관리자 로그인
 .all(publicOnlyMiddleware)
 .get(getAdLogin)
 .post(postAdLogin);
-
 adminRouter.route("/:id([0-9a-f]{24})") // 관리자 홈
 .get(getAdHome);
 adminRouter.route("/:id([0-9a-f]{24})/dblocker") // 사물함 데이터
