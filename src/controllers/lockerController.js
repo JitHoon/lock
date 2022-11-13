@@ -5,7 +5,7 @@ import Admin from "../models/Admin";
 export const mainLocker = async (req, res) => {
     const lockers = await Locker.find({}).sort({ lockerNum: "asc" });
 
-    return res.render("locker/mainLocker", {pageTitle : "| 사물함 배치도 및 신청 |", lockers,});
+    return res.render("locker/mainLocker", {pageTitle : "| 사물함 배치도 및 신청 |", lockers});
 };
 /* 사물함 db 불러오는 방법 참고
 
@@ -26,8 +26,6 @@ export const getSignup = async (req, res) => {
     const user = await User.findById(_id);
     const locker = await Locker.findById(id);
     const lockers = await Locker.find({}).sort({ lockerNum: "asc" });
-
-    console.log(user);
 
     if(req.session.user.availableLocker){
         return res.render("locker/signUpLocker", {pageTitle : "| " +locker.lockerNum + " 사물함 신청 |", locker, lockers});
