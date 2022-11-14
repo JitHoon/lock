@@ -1,0 +1,7 @@
+extends ../base
+
+block content
+    form(method="POST")
+        input(placeholder="새로운 사물함 번호", required, type="text", name="lockerNum")
+        input(placeholder="서로 다른 숫자 4자리 자물쇠 비밀번호(0 제외)", required, type="password", name="lockerPW", maxlength="4")
+        input(value="사물함 등록하기", type="submit")

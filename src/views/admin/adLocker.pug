@@ -1,7 +1,34 @@
 extends ../base
 
 block content
-    form(method="POST")
-        input(placeholder="사물함 번호", required, type="text", name="lockerNum")
-        input(placeholder="서로 다른 숫자 4자리 자물쇠 비밀번호(0 제외)", required, type="password", name="lockerPW", maxlength="4")
-        input(value="사물함 등록하기", type="submit")
+    div.form
+        div.profile__shape2
+            div.profile__data
+                P= locker.lockerNum 
+
+            div.profile__data
+                h1 사물함 비밀번호
+                p=locker.lockerPW
+
+            if locker.available
+                div.profile__data
+                    p 사용자 없음
+            else 
+                div.profile__data
+                    h1 사용자
+                    p= locker.owner.userName
+                div.profile__data
+                    h1 학번
+                    p= locker.owner.studentID
+                div.profile__data
+                    h1 전화번호
+                    p= "0" + locker.owner.phoneNumber
+                    h1.profile__data--error 사물함 반납 기한
+                    p= locker.owner.returnDate.toISOString().substr(0, 10)
+
+    div.form
+        span.signup__comment= "오프라인 사물함 비밀번호를 먼저 변경 한 후"
+        span.signup__comment= "온라인 사물함 비밀번호를 변경하세요."
+
+    a(href=`/admin/${_id}/dblocker/${locker._id}/changepw`).homeCard__shape
+        span.PW__change= locker.lockerNum + " 사물함 비밀번호 변경"

@@ -1,4 +1,4 @@
-.profile__shape {
+.profile__shape, .profile__shape2 {
   position: relative;
   display: flex;
   flex-direction:column; 
@@ -14,6 +14,10 @@
   border: 3px solid rgba($color: #fff, $alpha: 0.7); 
 }
 
+.profile__shape2{
+  margin-bottom: 20px;
+}
+
 .profile__data {
     text-align: center;
     font-size: 40px;
@@ -23,10 +27,14 @@
       font-size: 50px;
       margin: 10px 50px;
     }
-  }
+}
+
+.profile__data--error{
+  margin-top: 60px;
+}
 
 .edit__phonenum {
-  all: unset;
+    all: unset;
     padding: 8px;
     border-radius: 5px;
     border: 1px solid rgba(255, 255, 255, 0.2);

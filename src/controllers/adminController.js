@@ -42,17 +42,10 @@ export const postAdJoin = async (req, res) => {
 };
 
 export const getAdLogin = (req, res) => {
-  const {
-    admin: { _id },
-  } = req.session;
-
-  res.render("admin/adLogin", {pageTitle: "관리자 로그인", _id});
+  res.render("admin/adLogin", {pageTitle: "관리자 로그인", });
 };
 
 export const postAdLogin = async (req, res) => {
-    const {
-      admin: { _id },
-    } = req.session;
     const { studentID, password } = req.body;
     const pageTitle = "관리자 로그인";
 
@@ -62,7 +55,7 @@ export const postAdLogin = async (req, res) => {
     if (!admin) {
       return res.status(400).render("admin/adLogin", {
         pageTitle,
-        errorMessage: "존재하지 않는 아이디 입니다.", _id
+        errorMessage: "존재하지 않는 아이디 입니다.",
       });
     }
     
@@ -72,7 +65,7 @@ export const postAdLogin = async (req, res) => {
     if (!ok) {
       return res.status(400).render("admin/adLogin", {
         pageTitle,
-        errorMessage: "잘못된 비밀번호 입니다.", _id
+        errorMessage: "잘못된 비밀번호 입니다.",
       });
     }
 
@@ -85,14 +78,14 @@ export const postAdLogin = async (req, res) => {
     });
 };
 
-export const getAdLocker = (req, res) => {
+export const getAdPOSTLocker = (req, res) => {
   const {
     admin: { _id },
   } = req.session;
-  res.render("admin/adLocker", {pageTitle: "사물함 DB 업로드",_id});
+  res.render("admin/adPOSTLocker", {pageTitle: "사물함 DB 업로드"});
 };
 
-export const postAdLocker = async (req, res) => {
+export const postAdPOSTLocker = async (req, res) => {
     const {
         admin: { _id },
       } = req.session;
@@ -113,7 +106,7 @@ export const postAdLocker = async (req, res) => {
 
         } catch (error) {
             console.log(error._message)
-            return res.status(400).render("admin/adLocker", { 
+            return res.status(400).render("admin/adPOSTLocker", { 
                 pageTitle: "사물함 DB 업로드", 
                 errorMessage: error._message, _id
             });
@@ -125,12 +118,10 @@ export const getAdHome = async (req, res) => {
     admin: { _id },
   } = req.session;
 
-  console.log(_id);
-
   return res.render("admin/adHome", {pageTitle : "CNU 전자공학과 사물함 신청 시스템", _id});
 };
 
-export const getDBLocker = async (req, res) => {
+export const getDBLockers = async (req, res) => {
   const {
     admin: { _id },
   } = req.session;
@@ -138,4 +129,53 @@ export const getDBLocker = async (req, res) => {
   const lockers = await Locker.find({}).sort({ lockerNum: "asc" });
 
   return res.render("locker/mainLocker", {pageTitle : "사물함 배치도 및 리스트", lockers, _id});
+};
+
+export const getDBLocker = async (req, res) => {
+  const {
+    admin: { _id },
+  } = req.session;
+  const { id } = req.params;
+  const locker = await Locker.findById(id).populate("owner");
+  const pageTitle = locker.lockerNum + " 사물함 데이터";
+
+  return res.render("admin/adLocker", {pageTitle, locker, _id});
+};
+
+//
+
+export const getPWLocker = async (req, res) => {
+  const {
+    admin: { _id },
+  } = req.session;
+  const lockers = await Locker.find({}).sort({ lockerNum: "asc" });
+
+  return res.render("admin/adLocker", {pageTitle : "사물함 배치도 및 리스트", lockers, _id});
+};
+
+export const postPWLocker = async (req, res) => {
+  const {
+    admin: { _id },
+  } = req.session;
+  const lockers = await Locker.find({}).sort({ lockerNum: "asc" });
+
+  return res.render("admin/adLocker", {pageTitle : "사물함 배치도 및 리스트", lockers, _id});
+};
+
+export const getTerminateLocker = async (req, res) => {
+  const {
+    admin: { _id },
+  } = req.session;
+  const lockers = await Locker.find({}).sort({ lockerNum: "asc" });
+
+  return res.render("admin/adLocker", {pageTitle : "사물함 배치도 및 리스트", lockers, _id});
+};
+
+export const postTerminateLocker = async (req, res) => {
+  const {
+    admin: { _id },
+  } = req.session;
+  const lockers = await Locker.find({}).sort({ lockerNum: "asc" });
+
+  return res.render("admin/adLocker", {pageTitle : "사물함 배치도 및 리스트", lockers, _id});
 };
