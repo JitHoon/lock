@@ -1,19 +1,23 @@
 import express from "express";
-import { getAdLocker, postAdLocker,
+import { getAdPOSTLocker, postAdPOSTLocker,
     getAdJoin, postAdJoin,
     getAdLogin, postAdLogin,
     getAdHome,
-    getDBLocker } from "../controllers/adminController";
+    getDBLockers, 
+    getDBLocker,
+    getPWLocker, postPWLocker,
+    getTerminateLocker, postTerminateLocker} from "../controllers/adminController";
 import { protectorMiddleware, publicOnlyMiddleware,} from "../middlewares";
 
 const adminRouter = express.Router();
 
-/*
+
 adminRouter.route("/adlocker") // 사물함 db 업로드 (임시)
 .all(protectorMiddleware)
-.get(getAdLocker)
-.post(postAdLocker);
+.get(getAdPOSTLocker)
+.post(postAdPOSTLocker);
 
+/*
 adminRouter.route("/adjoin") // 관리자 회원가입 (임시)
 .all(publicOnlyMiddleware)
 .get(getAdJoin)
@@ -28,7 +32,17 @@ adminRouter.route("/:id([0-9a-f]{24})") // 관리자 홈
 .get(getAdHome);
 adminRouter.route("/:id([0-9a-f]{24})/dblocker") // 사물함 데이터
 .all(protectorMiddleware)
-.get(getDBLocker);
-
+.get(getDBLockers);
+adminRouter.route("/:id([0-9a-f]{24})/dblocker/:id([0-9a-f]{24})") // 각 사물함 데이터
+.all(protectorMiddleware)
+.get(getDBLocker)
+adminRouter.route("/:id([0-9a-f]{24})/dblocker/:id([0-9a-f]{24})/changepw") // 각 사물함 비밀번호 변경
+.all(protectorMiddleware)
+.get(getPWLocker)
+.post(postPWLocker);
+adminRouter.route("/:id([0-9a-f]{24})/dblocker/:id([0-9a-f]{24})/terminate") // 각 사물함 강제 해지
+.all(protectorMiddleware)
+.get(getTerminateLocker)
+.post(postTerminateLocker);
 
 export default adminRouter;
