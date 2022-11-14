@@ -11,6 +11,7 @@ const userSchema = new mongoose.Schema({
     signupLockerAt: { type: Date, default: 0},
     returnDate: { type: Date, default: 0},
     questions: [{ type: mongoose.Schema.Types.ObjectId, ref: "Question" }],
+    records: { type: mongoose.Schema.Types.ObjectId, ref: "Record" },
     comments: [{type:mongoose.Schema.Types.ObjectId, ref:"Comment"}], 
 
   /*
