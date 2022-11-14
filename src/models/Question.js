@@ -4,9 +4,9 @@ import mongoose from "mongoose";
 const questionSchema = new mongoose.Schema({
   content: { type: String, required: true },
   createdAt: { type: Date, required: true, default: Date.now  },
-  admin: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "Admin" }, 
-  owner: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "User" }, 
-  comments: [{type:mongoose.Schema.Types.ObjectId, required:true, ref:"Comment"}],
+  admin: { type: mongoose.Schema.Types.ObjectId, ref: "Admin" }, 
+  owner: { type: mongoose.Schema.Types.ObjectId, ref: "User" }, 
+  comments: [{type:mongoose.Schema.Types.ObjectId, ref:"Comment"}],
 });
 // 우리가 제공해주는 데이터 : number, createdAt, views
 // 사용자가 제공하는 데이터 : title, writer, content, hashtags : array 형태

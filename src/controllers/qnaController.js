@@ -1,3 +1,5 @@
+import req from "express/lib/request";
+import res from "express/lib/response";
 import Question from "../models/Question";
 import User from "../models/User";
 import Comment from "../models/Comment";
@@ -61,9 +63,10 @@ export const postUploadQ = async (req, res) => {
         return res.redirect("/qna");
 
         } catch (error) {
+            console.log(error);
             return res.status(400).render("qna/uploadQ", { 
                 pageTitle: "질문 업로드", 
-                errorMessage: error._message 
+                errorMessage: error
             });
         }
 };
