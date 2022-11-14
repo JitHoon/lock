@@ -21,10 +21,15 @@
   font-size: 40px;
 }
 
-.Menu__home{
+.Menu__home, .Menu__home2{
   font-size: 50px;
   margin-right: 250px;
   margin-left: 200px;
+}
+
+.Menu__home2{
+  margin-right: 0px;
+  margin-left: 0px;
 }
 
 .Menu__back{
