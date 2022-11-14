@@ -1,5 +1,6 @@
 import Admin from "../models/Admin";
 import Locker from "../models/Locker";
+import Record from "../models/Record";
 import bcrypt from "bcrypt";
 
 export const getAdJoin = (req, res) => {
@@ -142,24 +143,67 @@ export const getDBLocker = async (req, res) => {
   return res.render("admin/adLocker", {pageTitle, locker, _id});
 };
 
-//
-
 export const getPWLocker = async (req, res) => {
   const {
     admin: { _id },
   } = req.session;
-  const lockers = await Locker.find({}).sort({ lockerNum: "asc" });
+  const { id } = req.params;
+  const locker = await Locker.findById(id).populate("owner");
+  const pageTitle = locker.lockerNum + " 사물함 비밀번호 변경";
 
-  return res.render("admin/adLocker", {pageTitle : "사물함 배치도 및 리스트", lockers, _id});
+  return res.render("admin/adPWLocker", {pageTitle, locker, _id});
 };
 
 export const postPWLocker = async (req, res) => {
   const {
     admin: { _id },
   } = req.session;
-  const lockers = await Locker.find({}).sort({ lockerNum: "asc" });
+  const { id } = req.params;
+  const locker = await Locker.findById(id).populate("owner");
+  const { newPW1, newPW2 } = req.body;
+  const pageTitle = locker.lockerNum + " 사물함 비밀번호 변경";
 
-  return res.render("admin/adLocker", {pageTitle : "사물함 배치도 및 리스트", lockers, _id});
+  if (newPW1 !== newPW2) {
+    return res.status(400).render("admin/adPWLocker", {
+      pageTitle, locker, _id,
+      errorMessage: "재확인 비밀번호가 일치하지 않습니다.",
+    });
+  }
+
+  const arr = newPW1.split('');
+  const set = new Set(arr);
+  
+  if(arr.includes('0')) {
+    return res.status(400).render("admin/adPWLocker", {
+      pageTitle, locker, _id,
+      errorMessage: "0을 포함할 수 없습니다.",
+    });
+  }
+
+  if(arr.length !== set.size) {
+    return res.status(400).render("admin/adPWLocker", {
+      pageTitle, locker, _id,
+      errorMessage: "중복된 숫자가 포함되어 있습니다.",
+    });
+  }
+
+
+  try {
+      const changePWLocker = await Locker.findByIdAndUpdate(id,
+          { lockerPW: newPW1 },
+          { new: true }
+      );
+    
+      req.session.locker = changePWLocker;
+
+      return res.redirect(`/admin/${_id}/dblocker/${locker._id}`);
+    } catch (error) {
+      console.log(error);
+      return res.status(400).render("admin/adPWLocker", { 
+          pageTitle, locker, _id,
+          errorMessage: "사물함 비밀번호 변경 실패, 010-4671-0338 로 문의 주세요."
+      });
+    }
 };
 
 export const getTerminateLocker = async (req, res) => {

@@ -1,0 +1,15 @@
+extends ../base
+
+block content
+    div.locker__relative
+        p.locker__title2 | 회원가입 주의사항 |
+        p.locker__notice3 *비밀번호는 중복없는 1~9 네자리 숫자*
+        p.locker__notice3 누르는 자물쇠 이므로 순서는 무관
+
+    form(method="post")
+        div.input= "현재 비밀번호: " + locker.lockerPW
+        if errorMessage
+            span.error-message=errorMessage
+        input(name="newPW1", placeholder="새비밀번호 네자리", type="text", minlength='4', maxlength='4', required)
+        input(name="newPW2", placeholder="새비밀번호 네자리 재확인", type="text", minlength='4', maxlength='4', required)
+        input(value="사물함 비밀번호 변경", type="submit")
