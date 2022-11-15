@@ -1,0 +1,14 @@
+extends ../base
+include ../mixins/records
+
+block content
+    div.locker__relative
+        p.locker__title2 | 사물함 비밀번호 변경시 주의사항 |
+        p.locker__notice3 *비밀번호 형식은 중복없는 1~9 네자리 숫자*
+        p.locker__notice3 누르는 자물쇠 이므로 순서는 무관
+
+    each record in records
+        +records(record)
+
+    else
+        p.search__nothing 반납 기록이 없습니다.🥲

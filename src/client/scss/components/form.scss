@@ -1,4 +1,4 @@
-form, .form {
+form, .form, .form-change {
   max-width:85%;
   margin: 0px auto;
   display: flex;
@@ -6,7 +6,7 @@ form, .form {
   flex-direction:column; 
   align-items: center;
 
-  input, .input {
+  input, .input, .input-change{
     all: unset;
     margin: 25px;
     padding: 35px;
@@ -26,6 +26,22 @@ form, .form {
     padding-top: 0px;
     font-size: 50px;
   }
+
+  .input-change, .input-change2{
+    margin: 0px 10px;
+    padding: 25px 0px;
+    font-size: 30px;
+  }
+
+  .input-change2{
+    padding: 25px 40px;
+  }
+}
+
+.form-change{
+  flex-direction:row; 
+  margin: 25px 0px;
+  margin-bottom: 20px;
 }
 
 

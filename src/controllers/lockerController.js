@@ -1,6 +1,7 @@
 import Locker from "../models/Locker";
 import User from "../models/User";
 import Admin from "../models/Admin";
+import Record from "../models/Record";
 
 export const mainLocker = async (req, res) => {
     const {
@@ -100,9 +101,10 @@ export const getReturn = async (req, res) => {
     const { id } = req.params;
     const user = await User.findById(_id).populate("lockers");
     const locker = await Locker.findById(id);
+    const lockers = await Locker.find({}).sort({ lockerNum: "asc" });
     const pageTitle = user.userName + "님의 " + locker.lockerNum + " 사물함 반납";
 
-    return res.render("locker/returnLocker", {pageTitle, locker, user});
+    return res.render("locker/returnLocker", {pageTitle, locker, lockers, user});
 };
 
 export const postReturn = async (req, res) => {
@@ -112,6 +114,7 @@ export const postReturn = async (req, res) => {
     const { id } = req.params;
     const user = await User.findById(_id).populate("lockers");
     const locker = await Locker.findById(id);
+    const lockers = await Locker.find({}).sort({ lockerNum: "asc" });
     const { lockerNum } = req.body;
     const pageTitle = user.userName + "님의 " + locker.lockerNum + " 사물함 반납";
 
@@ -133,23 +136,36 @@ export const postReturn = async (req, res) => {
         );
         
         req.session.locker = returnLocker;
+        
+        const filter = { locker_id: id };
+        await Record.findOneAndRemove(filter);
 
+        const newRec = await Record.create({
+            lockerNum: lockerNum,
+            locker_id: id,
+            lockerPW: locker.lockerPW,
+            returnAt: Date.now(),
+            owner: _id,
+        });
+        
         const returnUser = await User.findByIdAndUpdate(_id,
             {   
                 lockers: null,
                 availableLocker: true,
-                returnDate: 0
+                returnDate: 0,
+                records: newRec._id
             },
             { new: true }
         );
 
         req.session.user = returnUser;
 
+
         return res.redirect(`/users/${req.session.user._id}`);
     } catch (error) {
         console.log(error);
         return res.status(400).render("locker/returnLocker", { 
-            pageTitle, locker, user,
+            pageTitle, locker, lockers, user,
             errorMessage: "사물함 반납 실패, 010-4671-0338 로 문의 주세요."
         });
     }

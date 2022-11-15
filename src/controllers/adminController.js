@@ -187,7 +187,6 @@ export const postPWLocker = async (req, res) => {
     });
   }
 
-
   try {
       const changePWLocker = await Locker.findByIdAndUpdate(id,
           { lockerPW: newPW1 },
@@ -206,20 +205,94 @@ export const postPWLocker = async (req, res) => {
     }
 };
 
-export const getTerminateLocker = async (req, res) => {
+export const getRec = async (req, res) => {
   const {
     admin: { _id },
   } = req.session;
-  const lockers = await Locker.find({}).sort({ lockerNum: "asc" });
+  const records = await Record.find({}).populate("owner").sort({ returnAt: "asc" });
 
-  return res.render("admin/adLocker", {pageTitle : "사물함 배치도 및 리스트", lockers, _id});
+  return res.render("admin/adRec", {pageTitle : "사물함 반납 기록 및 비번 변경", records, _id});
 };
 
-export const postTerminateLocker = async (req, res) => {
+export const postRec = async (req, res) => {
+  const {
+    admin: { _id },
+  } = req.session;
+  const records = await Record.find({}).populate("owner").sort({ returnAt: "asc" });
+  const { newPW, lockerNum } = req.body;
+  const pageTitle = "사물함 반납 기록 및 비번 변경";
+
+  const arr = newPW.split('');
+  const set = new Set(arr);
+  
+  if(arr.includes('0')) {
+    return res.status(400).render("admin/adRec", {
+      pageTitle, records, _id,
+      errorMessage: "0을 포함할 수 없습니다.",
+    });
+  }
+
+  if(arr.length !== set.size) {
+    return res.status(400).render("admin/adRec", {
+      pageTitle, records, _id,
+      errorMessage: "중복된 숫자가 포함되어 있습니다.",
+    });
+  }
+
+  try {
+    const locker = await Locker.findOne({lockerNum});
+
+    if(locker === null) {
+      return res.status(400).render("admin/adRec", {
+        pageTitle, records, _id,
+        errorMessage: "사물함 번호가 일치하지 않습니다.",
+      });
+    }
+
+    if(lockerNum === locker.lockerNum) {
+      return res.status(400).render("admin/adRec", {
+        pageTitle, records, _id,
+        errorMessage: "사물함 번호가 일치하지 않습니다.",
+      });
+    }
+    const filter = { lockerNum: lockerNum };
+
+    const changePWLocker = await Locker.findOneAndUpdate(filter,
+        { lockerPW: newPW },
+        { new: true }
+    );
+    req.session.locker = changePWLocker;
+
+    const changeRecord = await Record.findOneAndUpdate(filter,
+      { change: true, lockerPW: newPW  },
+      { new: true }
+    );
+    req.session.record = changeRecord;
+
+    return res.redirect(`/admin/${_id}/reclocker`);
+  } catch (error) {
+    console.log(error);
+    return res.status(400).render("admin/adRec", { 
+        pageTitle, records, _id,
+        errorMessage: "사물함 비밀번호 변경 실패, 010-4671-0338 로 문의 주세요."
+    });
+  }
+};
+
+export const getTerLocker = async (req, res) => {
   const {
     admin: { _id },
   } = req.session;
   const lockers = await Locker.find({}).sort({ lockerNum: "asc" });
 
-  return res.render("admin/adLocker", {pageTitle : "사물함 배치도 및 리스트", lockers, _id});
+  return res.render("admin/adRec", {pageTitle : "사물함 반납 기록", lockers, _id});
+};
+
+export const postTerLocker = async (req, res) => {
+  const {
+    admin: { _id },
+  } = req.session;
+  const lockers = await Locker.find({}).sort({ lockerNum: "asc" });
+
+  return res.render("admin/adRec", {pageTitle : "사물함 반납 기록", lockers, _id});
 };

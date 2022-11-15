@@ -1,5 +1,3 @@
-import req from "express/lib/request";
-import res from "express/lib/response";
 import Question from "../models/Question";
 import User from "../models/User";
 import Comment from "../models/Comment";

@@ -1,0 +1,34 @@
+mixin records(records)
+    div.adRecord__layout
+        if records.change
+            div.change-message
+                span 사물함 비밀번호 변경이 완료되었습니다.
+        else
+            div.change-message
+                span 사물함 비밀번호 변경이 필요합니다.
+        div.adRecord__content
+            h1.question-content= "사물함 번호"
+            p.question-content= records.lockerNum
+        div.adRecord__content
+            h1.question-content= "반납자"
+            p.question-content= records.owner.userName
+        div.adRecord__content
+            h1.question-content= "반납일"
+            p.question-content= records.returnAt.toISOString().substr(0, 10)
+        if records.change
+            div.adRecord__content
+                h1.question-content= "변경된 비번"
+                p.question-content= records.lockerPW
+        else
+            div.adRecord__content
+                h1.question-content= "현재 비번"
+                p.question-content= records.lockerPW
+        
+        if !records.change
+            form(method="POST").form-change
+                input(name="lockerNum", placeholder= records.lockerNum, type="text", minlength='2', maxlength='2', required).input-change
+                input(name="newPW", placeholder="새비밀번호", type="text", pattern="[1-9]+", minlength='4', maxlength='4', required).input-change2
+                input(type="submit", value="변경").change__done
+            if errorMessage
+                div.error-message
+                    span=errorMessage
