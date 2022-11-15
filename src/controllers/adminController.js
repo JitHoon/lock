@@ -7,7 +7,7 @@ export const getAdJoin = (req, res) => {
   const {
     admin: { _id },
   } = req.session;
-  res.render("admin/adJoin", {pageTitle : "| Admin Join |", _id});
+  res.render("admin/adJoin", {pageTitle : "관리자 가입"});
 };
 
 export const postAdJoin = async (req, res) => {
@@ -21,7 +21,7 @@ export const postAdJoin = async (req, res) => {
     if (password !== password2) {
         return res.status(400).render("admin/adJoin", {
           pageTitle,
-          errorMessage: "재확인 비밀번호가 일치하지 않습니다.", _id
+          errorMessage: "재확인 비밀번호가 일치하지 않습니다."
         });
     }
 
@@ -37,13 +37,13 @@ export const postAdJoin = async (req, res) => {
     } catch (error) {
         return res.status(400).render("admin/adJoin", {
             pageTitle, 
-            errorMessage: error._message, _id
+            errorMessage: error._message
         });
     }
 };
 
 export const getAdLogin = (req, res) => {
-  res.render("admin/adLogin", {pageTitle: "관리자 로그인", });
+  res.render("admin/adLogin", {pageTitle: "관리자 로그인"});
 };
 
 export const postAdLogin = async (req, res) => {
@@ -56,7 +56,7 @@ export const postAdLogin = async (req, res) => {
     if (!admin) {
       return res.status(400).render("admin/adLogin", {
         pageTitle,
-        errorMessage: "존재하지 않는 아이디 입니다.",
+        errorMessage: "존재하지 않는 아이디 입니다."
       });
     }
     
@@ -66,7 +66,7 @@ export const postAdLogin = async (req, res) => {
     if (!ok) {
       return res.status(400).render("admin/adLogin", {
         pageTitle,
-        errorMessage: "잘못된 비밀번호 입니다.",
+        errorMessage: "잘못된 비밀번호 입니다."
       });
     }
 
@@ -83,7 +83,7 @@ export const getAdPOSTLocker = (req, res) => {
   const {
     admin: { _id },
   } = req.session;
-  res.render("admin/adPOSTLocker", {pageTitle: "사물함 DB 업로드"});
+  res.render("admin/adPOSTLocker", {pageTitle: "사물함 DB 업로드", _id});
 };
 
 export const postAdPOSTLocker = async (req, res) => {
@@ -103,10 +103,10 @@ export const postAdPOSTLocker = async (req, res) => {
         admin.lockers.push(newLocker._id);
         admin.save(); 
 
-        return res.redirect("/locker");
+        return res.redirect(`/admin/${_id}/dblocker/`);
 
         } catch (error) {
-            console.log(error._message)
+            console.log(error)
             return res.status(400).render("admin/adPOSTLocker", { 
                 pageTitle: "사물함 DB 업로드", 
                 errorMessage: error._message, _id

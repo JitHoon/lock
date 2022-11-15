@@ -1,7 +1,12 @@
 extends ../base
 
 block content
+    div.locker__relative
+        p.locker__title2 | 사물함 데이터 등록시 주의사항 |
+        p.locker__notice3 새로운 사물함이 생길 때만 사용하세요.
+        p.locker__notice3 *비밀번호 형식은 중복없는 1~9 네자리 숫자*
+
     form(method="POST")
-        input(placeholder="새로운 사물함 번호", required, type="text", name="lockerNum")
-        input(placeholder="서로 다른 숫자 4자리 자물쇠 비밀번호(0 제외)", required, type="password", name="lockerPW", maxlength="4")
+        input(placeholder="새로운 사물함 번호", required, type="text", name="lockerNum" minlength='2', maxlength='2')
+        input(name="lockerPW", placeholder="비밀번호 네자리", type="text", pattern="[1-9]+", minlength='4', maxlength='4', required)
         input(value="사물함 등록하기", type="submit")
