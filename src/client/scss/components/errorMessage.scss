@@ -1,7 +1,12 @@
-.error-message {
+.error-message, .error-changeLPW {
     display: flex;
     flex-direction: column;
     align-items: center;
+    align-content: center;
     font-size: 35px;
     color: rgb(255, 191, 0);
+}
+
+.error-changeLPW {
+    margin-top: 40px;
 }
