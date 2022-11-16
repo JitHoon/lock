@@ -1,5 +1,5 @@
 mixin users(user)
-    div.adRecord__layout
+    div.adUsers__layout
         div.change-message
             p.question-content2=user.userName
 
@@ -10,17 +10,20 @@ mixin users(user)
         div.adRecord__content
             h1.question-content 전화번호
             p.question-content="0"+user.phoneNumber
-
+        
         if !user.availableLocker
             div.adRecord__content
                 h1.question-content 배정 사물함
                 p.question-content Y
-            form(method="POST").form-change
-                input(type="submit", value="사물함 강제 해지").input-change2
         else
             div.adRecord__content
                 h1.question-content 배정 사물함
                 p.question-content N
 
-        form(method="POST").form-change
-                input(type="submit", value="시용자 비밀번호 초기화").input-change2
+    div.adUser__layout
+        form(method="POST" action="/admin/"+_id+"/dbusers").form-adUser
+            input(placeholder="사용자 학번",name="studentID", type="text", pattern="[0-9]+", minlength='9', maxlength='9', required).input-change3
+            input(type="submit", value="사물함 강제 해지").input-change4
+        form(method="POST" action="/admin/"+_id+"/dbuser").form-adUser
+            input(placeholder="사용자 학번",name="studentID", type="text", pattern="[0-9]+", minlength='9', maxlength='9', required).input-change3
+            input(type="submit", value="사용자 비밀번호 초기화").input-change5

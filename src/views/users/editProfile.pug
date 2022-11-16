@@ -4,7 +4,3 @@ block content
     form(method="POST")
         input(placeholder="phoneNumber", name="phoneNumber", type="number", required, value="0"+loggedInUser.phoneNumber)
         input(type="submit", value="수정하기")
-        
-    div.center    
-        div.arrow-switch
-            a(href=`/users/${loggedInUser._id}`) 뒤로가기 &larr;

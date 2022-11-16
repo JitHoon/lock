@@ -305,7 +305,7 @@ export const getDBUserS = async (req, res) => {
     }).populate("lockers");
   }
   
-  return res.render("admin/dbUser", {pageTitle : "사용자 데이터", users, _id});
+  return res.render("admin/dbUserS", {pageTitle : "사용자 데이터", users, keyword, _id});
 };
 
 export const postRePW = async (req, res) => {
@@ -313,15 +313,39 @@ export const postRePW = async (req, res) => {
     admin: { _id },
   } = req.session;
   const users = await User.find({}).sort({ lockerNum: "asc" });
+  const { studentID } = req.body;
+  const user = await User.findOne({studentID:studentID});
+  const pageTitle = "사용자 데이터";
+  const resetPW = "0000";
 
-  return res.render("admin/dbUser", {pageTitle : "사용자 데이터", users, _id});
+  console.log(user);
+
+  if (user) {
+    user.password = resetPW;
+    if (studentID != user.studentID) {
+      return res.status(400).render("admin/dbUser", {
+        pageTitle, users, _id,
+        errorMessage: "학번을 정확히 입력하세요.",
+      });
+    }
+    await user.save();
+  } else {
+    return res.status(400).render("admin/dbUser", {
+      pageTitle, users, _id,
+      errorMessage: "학번을 정확히 입력하세요.",
+    });
+  }
+
+  return res.render("admin/dbUser", {pageTitle, users, _id,
+    errorMessage: user.userName + " 사용자 비밀번호 초기화 완료.",
+  });
 };
 
 export const postTerLocker = async (req, res) => {
   const {
     admin: { _id },
   } = req.session;
-  const lockers = await Locker.find({}).sort({ lockerNum: "asc" });
+  const users = await User.find({}).sort({ lockerNum: "asc" });
 
-  return res.render("admin/adRec", {pageTitle : "사물함 반납 기록", lockers, _id});
+  return res.render("admin/dbUsers", {pageTitle : "사물함 반납 기록", users, _id});
 };

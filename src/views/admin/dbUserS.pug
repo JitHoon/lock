@@ -6,10 +6,10 @@ block content
         input(placeholder="이름으로 사용자 검색하기",name="keyword", type="text")
         button
             i.fas.fa-search
-
+                
     div.bnt__postQ
         a(href="/admin/"+_id+"/dbuser")
-            span 모든 사용지
+            span 모든 사용자 &rarr;
 
     each user in users 
         +users(user)
