@@ -30,7 +30,7 @@ export const seeQ = async (req, res) => {
         return res.status(404).render("404", { pageTitle: "질문을 찾을 수 없습니다." });
     }
 
-    return res.render("qna/seeQ", {pageTitle : "Q&A 자세히보기", question });
+    return res.render("qna/seeQ", {pageTitle : "Q&A 자세히 보기", question });
 
 };
 
@@ -43,12 +43,15 @@ export const postUploadQ = async (req, res) => {
     const {
         user: { _id },
       } = req.session;
-
     const { content } = req.body;
+
+    const now = new Date();
+    const kr = new Date(now.setHours(now.getHours() + 9));
 
     try { 
         const newQuestion = await Question.create({
             content,
+            createdAt: kr,
             owner: _id,
         });
 

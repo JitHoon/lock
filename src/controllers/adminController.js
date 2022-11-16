@@ -221,6 +221,7 @@ export const postRec = async (req, res) => {
   } = req.session;
   const records = await Record.find({}).populate("owner").sort({ returnAt: "asc" });
   const { newPW, lockerNum } = req.body;
+  const filter = { lockerNum: lockerNum };
   const pageTitle = "사물함 반납 기록 및 비번 변경";
 
   const arr = newPW.split('');
@@ -240,7 +241,8 @@ export const postRec = async (req, res) => {
     });
   }
 
-  const locker = await Locker.findOne({lockerNum});
+  const locker = await Locker.findOne(filter);
+  const record = await Record.findOne(filter);
 
   if(locker === null) {
     return res.status(400).render("admin/adRec", {
@@ -248,8 +250,8 @@ export const postRec = async (req, res) => {
       errorMessage: "사물함 번호가 일치하지 않습니다.",
     });
   }
-
-  if(lockerNum === locker.lockerNum) {
+  
+  if(record === null) {
     return res.status(400).render("admin/adRec", {
       pageTitle, records, _id,
       errorMessage: "사물함 번호가 일치하지 않습니다.",
@@ -257,8 +259,6 @@ export const postRec = async (req, res) => {
   }
   
   try {
-    const filter = { lockerNum: lockerNum };
-
     const changePWLocker = await Locker.findOneAndUpdate(filter,
         { lockerPW: newPW },
         { new: true }
@@ -318,16 +318,14 @@ export const postRePW = async (req, res) => {
   const pageTitle = "사용자 데이터";
   const resetPW = "0000";
 
-  console.log(user);
-
   if (user) {
-    user.password = resetPW;
     if (studentID != user.studentID) {
       return res.status(400).render("admin/dbUser", {
         pageTitle, users, _id,
         errorMessage: "학번을 정확히 입력하세요.",
       });
     }
+    user.password = resetPW;
     await user.save();
   } else {
     return res.status(400).render("admin/dbUser", {
@@ -346,6 +344,50 @@ export const postTerLocker = async (req, res) => {
     admin: { _id },
   } = req.session;
   const users = await User.find({}).sort({ lockerNum: "asc" });
+  const { studentID } = req.body;
+  const user = await User.findOne({studentID:studentID}).populate("lockers");
+  const pageTitle = "사용자 데이터";
 
-  return res.render("admin/dbUsers", {pageTitle : "사물함 반납 기록", users, _id});
+  const now = new Date();
+  const kr = new Date(now.setHours(now.getHours() + 9));
+
+  if (user) {
+    if (studentID != user.studentID) {
+      return res.status(400).render("admin/dbUser", {
+        pageTitle, users, _id,
+        errorMessage: "학번을 정확히 입력하세요.",
+      });
+    }
+
+    if(user.lockers !== null){
+      const terLocker = await Locker.findByIdAndUpdate(user.lockers._id,
+        {   
+            owner: null,
+            available: true,
+            returnAt: kr
+        },
+        { new: true }
+      );
+      req.session.locker = terLocker;
+    }else{
+      return res.render("admin/dbUser", {pageTitle, users, _id});
+    }
+    
+
+    const terUser = await User.findByIdAndUpdate(user._id,
+      {   
+          lockers: null,
+          availableLocker: true,
+      },
+      { new: true }
+    );
+      
+    req.session.user = terUser;
+    return res.redirect("/admin/"+_id+"/dbusers?keyword="+user.userName);
+  } else {
+    return res.status(400).render("admin/dbUser", {
+      pageTitle, users, _id,
+      errorMessage: "학번을 정확히 입력하세요.",
+    });
+  }
 };

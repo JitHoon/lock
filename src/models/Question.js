@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 // 질문 데이터 : 번호, 제목, 작성자, 내용, 등록일, meta : 조회수 // hashtags 고민
 const questionSchema = new mongoose.Schema({
   content: { type: String, required: true },
-  createdAt: { type: Date, required: true, default: Date.now  },
+  createdAt: { type: Date, required: true, default: 0 },
   admin: { type: mongoose.Schema.Types.ObjectId, ref: "Admin" }, 
   owner: { type: mongoose.Schema.Types.ObjectId, ref: "User" }, 
   comments: [{type:mongoose.Schema.Types.ObjectId, ref:"Comment"}],

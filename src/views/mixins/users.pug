@@ -20,10 +20,14 @@ mixin users(user)
                 h1.question-content 배정 사물함
                 p.question-content N
 
-    div.adUser__layout
-        form(method="POST" action="/admin/"+_id+"/dbusers").form-adUser
-            input(placeholder="사용자 학번",name="studentID", type="text", pattern="[0-9]+", minlength='9', maxlength='9', required).input-change3
-            input(type="submit", value="사물함 강제 해지").input-change4
-        form(method="POST" action="/admin/"+_id+"/dbuser").form-adUser
-            input(placeholder="사용자 학번",name="studentID", type="text", pattern="[0-9]+", minlength='9', maxlength='9', required).input-change3
-            input(type="submit", value="사용자 비밀번호 초기화").input-change5
+        if !user.availableLocker
+            form(method="POST" action="/admin/"+_id+"/dbuser").form-adUser
+                input(placeholder="사용자 학번",name="studentID", type="text", pattern="[0-9]+", minlength='9', maxlength='9', required).input-change3
+                input(type="submit", value="사용자 비밀번호 초기화").input-change5
+            form(method="POST" action="/admin/"+_id+"/dbusers").form-adUser
+                input(placeholder="사용자 학번",name="studentID", type="text", pattern="[0-9]+", minlength='9', maxlength='9', required).input-change3
+                input(type="submit", value="사물함 강제 해지").input-change4
+        else
+            form(method="POST" action="/admin/"+_id+"/dbuser").form-adUser
+                input(placeholder="사용자 학번",name="studentID", type="text", pattern="[0-9]+", minlength='9', maxlength='9', required).input-change3
+                input(type="submit", value="사용자 비밀번호 초기화").input-change5

@@ -50,8 +50,8 @@ export const postSignup = async (req, res) => {
     const pageTitle = locker.lockerNum + " 사물함 신청";
 
     const now = new Date();
-    const end = new Date(now.setMonth(now.getMonth() + 3)).toISOString();
-
+    const kr = new Date(now.setHours(now.getHours() + 9));
+    const end = new Date(kr.setMonth(kr.getMonth() + 3)).toISOString();
 
     if (locker.lockerNum !== lockerNum) {
         return res.status(400).render("locker/signUpLocker", {
@@ -65,7 +65,7 @@ export const postSignup = async (req, res) => {
                 {   
                     owner: _id,
                     available: false,
-                    signupAt: Date.now()
+                    signupAt: kr
                 },
                 { new: true }
             );
@@ -76,7 +76,7 @@ export const postSignup = async (req, res) => {
                 {   
                     lockers: id,
                     availableLocker: false,
-                    signupLockerAt: Date.now(),
+                    signupLockerAt: kr,
                     returnDate: end
                 },
                 { new: true }
@@ -118,6 +118,9 @@ export const postReturn = async (req, res) => {
     const { lockerNum } = req.body;
     const pageTitle = user.userName + "님의 " + locker.lockerNum + " 사물함 반납";
 
+    const now = new Date();
+    const kr = new Date(now.setHours(now.getHours() + 9));
+
     if (locker.lockerNum !== lockerNum) {
         return res.status(400).render("locker/returnLocker", {
         pageTitle, locker, user,
@@ -130,7 +133,7 @@ export const postReturn = async (req, res) => {
             {   
                 owner: null,
                 available: true,
-                returnAt: Date.now()
+                returnAt: kr
             },
             { new: true }
         );
@@ -144,7 +147,7 @@ export const postReturn = async (req, res) => {
             lockerNum: lockerNum,
             locker_id: id,
             lockerPW: locker.lockerPW,
-            returnAt: Date.now(),
+            returnAt: kr,
             owner: _id,
         });
         
@@ -159,7 +162,6 @@ export const postReturn = async (req, res) => {
         );
 
         req.session.user = returnUser;
-
 
         return res.redirect(`/users/${req.session.user._id}`);
     } catch (error) {
@@ -180,7 +182,8 @@ export const getSuccess = async (req, res) => {
 
     const locker = req.session.locker;
     const now = new Date();
-    const end = new Date(now.setMonth(now.getMonth() + 3)).toISOString();
+    const kr = new Date(now.setHours(now.getHours() + 9));
+    const end = new Date(kr.setMonth(kr.getMonth() + 3)).toISOString();
 
     return res.render("locker/successLocker", {pageTitle : "사물함 신청 완료", locker, user, end});
 };

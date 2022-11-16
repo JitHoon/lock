@@ -26,7 +26,7 @@ mixin records(record)
         
         if !record.change
             form(method="POST").form-change
-                input(name="lockerNum", placeholder= record.lockerNum, type="text", minlength='2', maxlength='2', required).input-change
+                input(name="lockerNum", value= record.lockerNum, readonly, type="text", minlength='2', maxlength='2', required).input-change
                 input(name="newPW", placeholder="새비밀번호", type="text", pattern="[1-9]+", minlength='4', maxlength='4', required).input-change2
                 input(type="submit", value="변경").change__done
             if errorMessage
