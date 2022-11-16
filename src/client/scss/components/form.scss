@@ -1,12 +1,12 @@
-form, .form, .form-change {
-  max-width:85%;
+form, .form, .form-change, .form-adUser {
+  max-width: 90%;
   margin: 0px auto;
   display: flex;
   position: relative;
   flex-direction:column; 
   align-items: center;
 
-  input, .input, .input-change{
+  input, .input, .input-change, .input-change2, .input-change3{
     all: unset;
     margin: 25px;
     padding: 35px;
@@ -27,7 +27,7 @@ form, .form, .form-change {
     font-size: 50px;
   }
 
-  .input-change, .input-change2{
+  .input-change{
     margin: 0px 10px;
     padding: 25px 0px;
     font-size: 30px;
@@ -35,6 +35,15 @@ form, .form, .form-change {
 
   .input-change2{
     padding: 25px 40px;
+    margin: 0px 10px;
+    font-size: 30px;
+  }
+
+  .input-change3{
+    font-size: 30px;
+    padding: 20px 20px;
+    margin: 20px;
+    margin-top: 0px;
   }
 }
 
@@ -44,8 +53,11 @@ form, .form, .form-change {
   margin-bottom: 20px;
 }
 
+.form-adUser{
+  margin: 0px 15px;
+}
 
-input[type="submit"] {
+input[type="submit"], .input-change4[type="submit"], .input-change5[type="submit"] {
   margin: 50px;
   padding: 40px;
   font-size: 45px;
@@ -55,4 +67,16 @@ input[type="submit"] {
   text-align: center;
   cursor: pointer;
   display: block;
+}
+
+.input-change4[type="submit"]{
+  margin: 0px;
+  padding: 20px;
+  font-size: 30px;
+}
+
+.input-change5[type="submit"]{
+  margin: 0px;
+  padding: 20px;
+  font-size: 30px;
 }
