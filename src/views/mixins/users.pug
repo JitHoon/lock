@@ -1,0 +1,26 @@
+mixin users(user)
+    div.adRecord__layout
+        div.change-message
+            p.question-content2=user.userName
+
+        div.adRecord__content
+            h1.question-content 학번
+            p.question-content=user.studentID
+
+        div.adRecord__content
+            h1.question-content 전화번호
+            p.question-content="0"+user.phoneNumber
+
+        if !user.availableLocker
+            div.adRecord__content
+                h1.question-content 배정 사물함
+                p.question-content Y
+            form(method="POST").form-change
+                input(type="submit", value="사물함 강제 해지").input-change2
+        else
+            div.adRecord__content
+                h1.question-content 배정 사물함
+                p.question-content N
+
+        form(method="POST").form-change
+                input(type="submit", value="시용자 비번 초기화").input-change2

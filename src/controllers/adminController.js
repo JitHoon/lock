@@ -1,4 +1,5 @@
 import Admin from "../models/Admin";
+import User from "../models/User";
 import Locker from "../models/Locker";
 import Record from "../models/Record";
 import bcrypt from "bcrypt";
@@ -239,22 +240,23 @@ export const postRec = async (req, res) => {
     });
   }
 
+  const locker = await Locker.findOne({lockerNum});
+
+  if(locker === null) {
+    return res.status(400).render("admin/adRec", {
+      pageTitle, records, _id,
+      errorMessage: "사물함 번호가 일치하지 않습니다.",
+    });
+  }
+
+  if(lockerNum === locker.lockerNum) {
+    return res.status(400).render("admin/adRec", {
+      pageTitle, records, _id,
+      errorMessage: "사물함 번호가 일치하지 않습니다.",
+    });
+  }
+  
   try {
-    const locker = await Locker.findOne({lockerNum});
-
-    if(locker === null) {
-      return res.status(400).render("admin/adRec", {
-        pageTitle, records, _id,
-        errorMessage: "사물함 번호가 일치하지 않습니다.",
-      });
-    }
-
-    if(lockerNum === locker.lockerNum) {
-      return res.status(400).render("admin/adRec", {
-        pageTitle, records, _id,
-        errorMessage: "사물함 번호가 일치하지 않습니다.",
-      });
-    }
     const filter = { lockerNum: lockerNum };
 
     const changePWLocker = await Locker.findOneAndUpdate(filter,
@@ -277,6 +279,42 @@ export const postRec = async (req, res) => {
         errorMessage: "사물함 비밀번호 변경 실패, 010-4671-0338 로 문의 주세요."
     });
   }
+};
+
+export const getDBUser = async (req, res) => {
+  const {
+    admin: { _id },
+  } = req.session;
+  const users = await User.find({}).populate("lockers").sort({ studentID: "asc" });
+  
+  return res.render("admin/dbUser", {pageTitle : "사용자 데이터", users, _id});
+};
+
+export const getDBUserS = async (req, res) => {
+  const {
+    admin: { _id },
+  } = req.session;
+  const { keyword } = req.query;
+
+  let users = [];
+  if (keyword) {
+    users = await User.find({
+        userName: {
+          $regex: new RegExp(keyword, "ig"),
+        },
+    }).populate("lockers");
+  }
+  
+  return res.render("admin/dbUser", {pageTitle : "사용자 데이터", users, _id});
+};
+
+export const postDBUser = async (req, res) => {
+  const {
+    admin: { _id },
+  } = req.session;
+  const users = await User.find({}).sort({ lockerNum: "asc" });
+
+  return res.render("admin/dbUser", {pageTitle : "사용자 데이터", users, _id});
 };
 
 export const getTerLocker = async (req, res) => {

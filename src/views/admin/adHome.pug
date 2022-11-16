@@ -8,12 +8,11 @@ block content
         
         a(href=`/admin/${_id}/reclocker`).homeCard__shape
             i.fa-solid.fa-pen-nib.homeCard__imf
-                span  사물함 반납 기록 및 비번 변경
+                span  사물함 반납 기록 | 비번 변경
 
-        a(href=`/users/${loggedInUser._id}`).homeCard__shape
-            i.fa-solid.fa-user.homeCard__imf
-                span= " " + loggedInUser.userName + "님의 정보"
-                span  | 사물함 반납
+        a(href=`/admin/${_id}/dbuser`).homeCard__shape
+            i.fa-solid.fa-users.homeCard__imf
+                span  사용자 데이터
 
         a(href="/qna").homeCard__shape
             span.homeCard__imf  Q & A
