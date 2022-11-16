@@ -7,8 +7,8 @@ import { getAdPOSTLocker, postAdPOSTLocker,
     getDBLocker,
     getPWLocker, postPWLocker,
     getRec, postRec,
-    getDBUser, getDBUserS,
-    getTerLocker, postTerLocker} from "../controllers/adminController";
+    getDBUser, 
+    getDBUserS, postRePW, postTerLocker} from "../controllers/adminController";
 import { protectorMiddleware, publicOnlyMiddleware,} from "../middlewares";
 
 const adminRouter = express.Router();
@@ -48,12 +48,9 @@ adminRouter.route("/:id([0-9a-f]{24})/reclocker") // 사물함 반납 기록
 adminRouter.route("/:id([0-9a-f]{24})/dbuser") // 사용자 데이터 전체
 .all(protectorMiddleware)
 .get(getDBUser)
-adminRouter.route("/:id([0-9a-f]{24})/dbusers") // 사용자 데이터 검색
+adminRouter.route("/:id([0-9a-f]{24})/dbusers") // 사용자 데이터 검색 및 비번 초기화, 사물함 강제 해지
 .all(protectorMiddleware)
 .get(getDBUserS)
-adminRouter.route("/:id([0-9a-f]{24})/dblocker/:id([0-9a-f]{24})/terminate") // 각 사물함 강제 해지
-.all(protectorMiddleware)
-.get(getTerLocker)
-.post(postTerLocker);
+.post(postRePW, postTerLocker)
 
 export default adminRouter;

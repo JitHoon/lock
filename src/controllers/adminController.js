@@ -308,22 +308,13 @@ export const getDBUserS = async (req, res) => {
   return res.render("admin/dbUser", {pageTitle : "사용자 데이터", users, _id});
 };
 
-export const postDBUser = async (req, res) => {
+export const postRePW = async (req, res) => {
   const {
     admin: { _id },
   } = req.session;
   const users = await User.find({}).sort({ lockerNum: "asc" });
 
   return res.render("admin/dbUser", {pageTitle : "사용자 데이터", users, _id});
-};
-
-export const getTerLocker = async (req, res) => {
-  const {
-    admin: { _id },
-  } = req.session;
-  const lockers = await Locker.find({}).sort({ lockerNum: "asc" });
-
-  return res.render("admin/adRec", {pageTitle : "사물함 반납 기록", lockers, _id});
 };
 
 export const postTerLocker = async (req, res) => {
