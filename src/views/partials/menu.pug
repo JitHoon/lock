@@ -5,7 +5,7 @@ if loggedIn
                 a(href="/users/logout").Menu__logout
                     i.logout__btn 로그아웃
                 if _id === process.env.ADMIN
-                    a(href="/admin/63661a25d7dd4e62c4d9d445").Menu__home
+                    a(href="/admin/" + process.env.ADMIN).Menu__home
                         i.fa-solid.fa-house
                 else
                    a(href="/").Menu__home
