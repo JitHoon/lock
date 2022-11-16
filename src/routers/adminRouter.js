@@ -7,6 +7,7 @@ import { getAdPOSTLocker, postAdPOSTLocker,
     getDBLocker,
     getPWLocker, postPWLocker,
     getRec, postRec,
+    getDBUser, getDBUserS,
     getTerLocker, postTerLocker} from "../controllers/adminController";
 import { protectorMiddleware, publicOnlyMiddleware,} from "../middlewares";
 
@@ -44,6 +45,12 @@ adminRouter.route("/:id([0-9a-f]{24})/reclocker") // 사물함 반납 기록
 .all(protectorMiddleware)
 .get(getRec)
 .post(postRec); // 사물함 비밀번호 변경 완료 버튼
+adminRouter.route("/:id([0-9a-f]{24})/dbuser") // 사용자 데이터 전체
+.all(protectorMiddleware)
+.get(getDBUser)
+adminRouter.route("/:id([0-9a-f]{24})/dbusers") // 사용자 데이터 검색
+.all(protectorMiddleware)
+.get(getDBUserS)
 adminRouter.route("/:id([0-9a-f]{24})/dblocker/:id([0-9a-f]{24})/terminate") // 각 사물함 강제 해지
 .all(protectorMiddleware)
 .get(getTerLocker)

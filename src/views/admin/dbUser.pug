@@ -1,0 +1,17 @@
+extends ../base
+include ../mixins/users
+
+block content
+    form(method="GET" action="/admin/"+_id+"/dbusers").search__form
+        input(placeholder="이름으로 사용자 검색하기",name="keyword", type="text")
+        button
+            i.fas.fa-search
+
+    div.bnt__postQ
+        a(href="/admin/"+_id+"/dbuser")
+            span 모든 사용자
+
+    each user in users
+        +users(user)
+    else
+        p.search__nothing 존재하지 않는 사용자입니다.
