@@ -1,0 +1,8 @@
+mixin adQuestions(question)
+    if question.admin
+        if _id === process.env.ADMIN
+            a(href="/admin/"+_id+"/qna/"+question._id).adQuestion-grid
+                p.question-content= "[공지] " + question.content
+        else
+            a(href="/qna/" + question._id).adQuestion-grid
+                p.question-content= "[공지] " + question.content

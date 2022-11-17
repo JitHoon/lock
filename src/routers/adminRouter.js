@@ -9,7 +9,11 @@ import { getAdPOSTLocker, postAdPOSTLocker,
     getRec, postRec,
     getDBUser, postRePW,
     getDBUserS, postTerLocker,
-    getAdQna,} from "../controllers/adminController";
+    getAdQna, getAdQnaS,
+    getAdUploadQ, postAdUploadQ,
+    getAdEditQ, postAdEditQ,
+    getAdSeeQ,
+    deleteAdQ} from "../controllers/adminController";
 import { protectorMiddleware, publicOnlyMiddleware,} from "../middlewares";
 
 const adminRouter = express.Router();
@@ -54,8 +58,25 @@ adminRouter.route("/:id([0-9a-f]{24})/dbusers") // 사용자 데이터 검색 �
 .all(protectorMiddleware)
 .get(getDBUserS)
 .post(postTerLocker)
-adminRouter.route("/:id([0-9a-f]{24})/qna") // 사물함 데이터
+adminRouter.route("/:id([0-9a-f]{24})/qna") // Q&A | 공지
 .all(protectorMiddleware)
 .get(getAdQna);
+adminRouter.route("/:id([0-9a-f]{24})/qna/searchQ") // Q&A | 공지 검색
+.all(protectorMiddleware)
+.get(getAdQnaS);
+adminRouter.route("/:id([0-9a-f]{24})/uploadq") // 공지 업로드
+.all(protectorMiddleware)
+.get(getAdUploadQ)
+.post(postAdUploadQ);
+adminRouter.route("/:id([0-9a-f]{24})/qna/:id([0-9a-f]{24})") // 질문 확인, 강제 삭제
+.all(protectorMiddleware)
+.get(getAdSeeQ);
+adminRouter.route("/:id([0-9a-f]{24})/qna/:id([0-9a-f]{24})/editq") // 공지 수정
+.all(protectorMiddleware)
+.get(getAdEditQ)
+.post(postAdEditQ);
+adminRouter.route("/:id([0-9a-f]{24})/qna/:id([0-9a-f]{24})/delete") // 공지 삭제
+.all(protectorMiddleware)
+.get(deleteAdQ);
 
 export default adminRouter;

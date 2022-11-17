@@ -397,6 +397,130 @@ export const getAdQna = async (req, res) => {
   const {
     admin: { _id },
   } = req.session;
-  const questions = await Question.find({}).sort({ createdAt: "desc" });
+  const questions = await Question.find({}).populate("admin").sort({ createdAt: "desc" });
   return res.render("qna/mainQ", {pageTitle : "Q&A", questions, _id});
+};
+
+export const getAdQnaS = async (req, res) => {
+  const {
+    admin: { _id },
+  } = req.session;
+  const { keyword } = req.query;
+
+  let questions = [];
+  if (keyword) {
+      questions = await Question.find({
+          content: {
+            $regex: new RegExp(keyword, "ig"),
+          },
+      }).populate("owner").populate("admin");
+  }
+  
+  return res.render("qna/searchQ", {pageTitle : "Q&A", questions, _id});
+};
+
+export const getAdUploadQ = async (req, res) => {
+  const {
+    admin: { _id },
+  } = req.session;
+  return res.render("qna/uploadQ", {pageTitle : "공지 업로드", _id});
+};
+
+export const postAdUploadQ = async (req, res) => {
+  // user id를 question db에 추가
+  const {
+      admin: { _id },
+    } = req.session;
+  const { content } = req.body;
+
+  const now = new Date();
+  const kr = new Date(now.setHours(now.getHours() + 9));
+
+  try { 
+      const newQuestion = await Question.create({
+          content,
+          createdAt: kr,
+          admin: _id,
+      });
+
+      // user 불러와서 User에 추가한 questions의 list에 해당 유저가 업로드한 비디오 정보 추가 
+      const admin = await Admin.findById(_id);
+      admin.questions.push(newQuestion._id);
+      // save 함수가 불러오면서 비밀번호가 또 해싱되는 문제 발생
+      admin.save(); 
+
+      return res.redirect("/admin/"+_id+"/qna");
+
+      } catch (error) {
+          console.log(error);
+          return res.status(400).render("/admin/"+_id+"/uploadq", { 
+              pageTitle: "공지 업로드", _id,
+              errorMessage: error
+          });
+      }
+};
+
+export const getAdSeeQ = async (req, res) => {
+  const {
+    admin: { _id },
+  } = req.session;
+  const { id } = req.params;
+  const question = await Question.findById(id).populate("owner").populate("comments");
+
+  if (!question) {
+    return res.status(404).render("404", { pageTitle: "질문을 찾을 수 없습니다." });
+  }
+
+  return res.render("qna/seeQ", {pageTitle : "Q&A", question, _id});
+};
+
+export const getAdEditQ = async (req, res) => {
+  const {
+    admin: { _id },
+  } = req.session;
+  const { id } = req.params;
+  const question = await Question.findById(id);
+
+  if (!question) {
+    return res.status(404).render("404", { pageTitle: "공지를 찾을 수 없습니다." });
+  }
+
+  return res.render("qna/editQ", {pageTitle : "공지 수정", question, _id});
+};
+
+export const postAdEditQ = async (req, res) => {
+  const {
+    admin: { _id },
+  } = req.session;
+  const { id } = req.params;
+  const { content } = req.body;
+  const question = await Question.findById(id);
+  if (!question) {
+    return res.status(404).render("404", { pageTitle: "공지를 찾을 수 없습니다." });
+  }
+
+  const editQ = await Question.findByIdAndUpdate(id, 
+    { content }, 
+    { new: true }
+  );
+
+  req.session.question = editQ;
+
+  return res.redirect("/admin/"+_id+"/qna");
+};
+
+export const deleteAdQ = async (req, res) => {
+  const {
+      admin: { _id },
+  } = req.session;
+  const { id } = req.params;
+  const question = await Question.findById(id);
+
+  if (!question) {
+      return res.status(404).render("404", { pageTitle: "질문을 찾을 수 없습니다." });
+  }
+
+  await Question.findByIdAndRemove(id);
+  
+  return res.redirect("/admin/"+_id+"/qna");
 };

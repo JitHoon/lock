@@ -1,17 +1,31 @@
 extends ../base
 include ../mixins/questions
+include ../mixins/adQuestions
 
 block content
-    form(method="GET").search__form
-        input(placeholder="제목으로 질문 검색하기",name="keyword", type="text")
-        button
-            i.fas.fa-search
+    if _id === process.env.ADMIN
+        form(method="GET" action="/admin/"+_id+"/qna/searchQ").search__form
+            input(placeholder="제목으로 질문 검색하기",name="keyword", type="text")
+            button
+                i.fas.fa-search
+    else
+        form(method="GET" action="/qna/searchQ").search__form
+            input(placeholder="제목으로 질문 검색하기",name="keyword", type="text")
+            button
+                i.fas.fa-search
 
     div.bnt__postQ
         a(href="/qna")
             span 모든 질문
-        a(href="/qna/uploadq")
-            span 질문하기
+        if _id === process.env.ADMIN
+            a(href="/admin/"+_id+"/uploadq")
+                span 공지하기
+        else
+            a(href="/qna/uploadq")
+                span 질문하기
+
+    each question in questions 
+        +adQuestions(question)
 
     each question in questions 
         +questions(question)

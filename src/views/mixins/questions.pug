@@ -1,3 +1,8 @@
-mixin questions(questions)
-    a(href="/qna/" + questions.id).question-grid
-        p.question-content= "Q. " + questions.content
+mixin questions(question)
+    if !question.admin
+        if _id === process.env.ADMIN
+            a(href="/admin/"+_id+"/qna/"+question._id).question-grid
+                p.question-content= "Q. " + question.content
+        else
+            a(href="/qna/" + question._id).question-grid
+                p.question-content= "Q. " + question.content

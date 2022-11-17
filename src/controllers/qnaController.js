@@ -8,6 +8,9 @@ export const mainQ = async (req, res) => {
 };
 
 export const searchQ = async (req, res) => {
+    const {
+        user: { _id },
+      } = req.session;
     const { keyword } = req.query;
 
     let questions = [];
@@ -16,7 +19,7 @@ export const searchQ = async (req, res) => {
             content: {
               $regex: new RegExp(keyword, "ig"),
             },
-        }).populate("owner");
+        }).populate("owner").populate("admin");
     }
 
     return res.render("qna/searchQ", { pageTitle: "Q&A", questions});
@@ -30,7 +33,7 @@ export const seeQ = async (req, res) => {
         return res.status(404).render("404", { pageTitle: "질문을 찾을 수 없습니다." });
     }
 
-    return res.render("qna/seeQ", {pageTitle : "Q&A 자세히 보기", question });
+    return res.render("qna/seeQ", {pageTitle : "Q&A", question });
 
 };
 
@@ -95,53 +98,46 @@ export const getEditQ = async (req, res) => {
 export const postEditQ = async (req, res) => {
     // Question : 우리가 만든 질문 model
     // question : 데이터베이스에서 검색한 질문 object
-    const { id } = req.params;
-    const { content } = req.body;
-    await Question.findByIdAndUpdate(id, {
-        content,
-    });
-
-    // 질문 데이터 존재 여부만 판단하는 model
-    const question = await Question.findById(id);
-    if (!question) {
-        return res.status(404).render("404", { pageTitle: "질문을 찾을 수 없습니다." });
-    }
-    
-    // 프론트에서는 링크를 숨겼지만 백엔드에서 추가로 보호해줘야함
     const {
         user: { _id },
     } = req.session;
+    const { id } = req.params;
+    const { content } = req.body;
+    const question = await Question.findById(id);
+
+    if (!question) {
+        return res.status(404).render("404", { pageTitle: "질문을 찾을 수 없습니다." });
+    }
 
     if (String(question.owner) !== String(_id)) {
         return res.status(403).redirect("/");
     }
 
+    await Question.findByIdAndUpdate(id, 
+        { content }, 
+        { new: true }
+      );
+
     return res.redirect("/qna");
 };
 
 export const deleteQ = async (req, res) => {
+    const {
+        user: { _id },
+    } = req.session;
     const { id } = req.params;
-    // console.log(id);
-
     const question = await Question.findById(id);
-    console.log(question);
-    // console.log(question.owner);
 
     if (!question) {
         return res.status(404).render("404", { pageTitle: "질문을 찾을 수 없습니다." });
     }
     
-    // 프론트에서는 링크를 숨겼지만 백엔드에서 추가로 보호해줘야함
-    const {
-        user: { _id },
-    } = req.session;
 
     if (String(question.owner) !== String(_id)) {
      return res.status(403).redirect("/");
     }
 
     await Question.findByIdAndRemove(id);
-    //console.log(question);
     
     return res.redirect("/qna");
   };

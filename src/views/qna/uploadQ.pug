@@ -1,9 +1,14 @@
 extends ../base
 
 block content
-    form(method="POST")
-        input(placeholder="질문 내용", required, type="text", name="content")
-        input(value="질문하기", type="submit")
+    if _id === process.env.ADMIN
+        form(method="POST" action="/admin/"+_id+"/uploadq")
+            input(placeholder="공지 내용", required, type="text", name="content")
+            input(value="공지하기", type="submit")
+    else
+        form(method="POST")
+            input(placeholder="질문 내용", required, type="text", name="content")
+            input(value="질문하기", type="submit")
 
     if errorMessage
         span=errorMessage

@@ -1,4 +1,4 @@
-.question-grid{
+.question-grid, .adQuestion-grid{
     position: relative;
     display: flex;
     flex-direction:row; 
@@ -6,8 +6,8 @@
     align-items: center;
     text-align: center;
 
-    max-width: 85%;
-    margin: 50px auto;
+    max-width: 80%;
+    margin: 0px auto;
     padding: 40px;
     border-radius: 10px;
     border-bottom: 10px solid rgba($color: #fff, $alpha: 0.7); 
@@ -19,7 +19,13 @@
       color: white;
       width: 100%;
     }
-}  
+}
+
+.adQuestion-grid{
+  margin: 20px auto;
+  background-color: rgba($color: rgb(255, 153, 0), $alpha: 0.4);
+  border-bottom: 0px;
+}
 
 .question-content{
     margin-right: 15px;
@@ -32,7 +38,7 @@
 }
 
 .bnt__postQ {
-    margin: 50px;
+    margin: 30px;
     display: flex;
     justify-content:space-evenly;
     flex-direction:row;
