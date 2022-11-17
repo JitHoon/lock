@@ -1,6 +1,7 @@
 import Admin from "../models/Admin";
 import User from "../models/User";
 import Locker from "../models/Locker";
+import Question from "../models/Question";
 import Record from "../models/Record";
 import bcrypt from "bcrypt";
 
@@ -390,4 +391,12 @@ export const postTerLocker = async (req, res) => {
       errorMessage: "학번을 정확히 입력하세요.",
     });
   }
+};
+
+export const getAdQna = async (req, res) => {
+  const {
+    admin: { _id },
+  } = req.session;
+  const questions = await Question.find({}).sort({ createdAt: "desc" });
+  return res.render("qna/mainQ", {pageTitle : "Q&A", questions, _id});
 };

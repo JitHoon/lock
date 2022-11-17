@@ -8,7 +8,8 @@ import { getAdPOSTLocker, postAdPOSTLocker,
     getPWLocker, postPWLocker,
     getRec, postRec,
     getDBUser, postRePW,
-    getDBUserS, postTerLocker} from "../controllers/adminController";
+    getDBUserS, postTerLocker,
+    getAdQna,} from "../controllers/adminController";
 import { protectorMiddleware, publicOnlyMiddleware,} from "../middlewares";
 
 const adminRouter = express.Router();
@@ -53,5 +54,8 @@ adminRouter.route("/:id([0-9a-f]{24})/dbusers") // 사용자 데이터 검색 �
 .all(protectorMiddleware)
 .get(getDBUserS)
 .post(postTerLocker)
+adminRouter.route("/:id([0-9a-f]{24})/qna") // 사물함 데이터
+.all(protectorMiddleware)
+.get(getAdQna);
 
 export default adminRouter;
