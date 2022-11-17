@@ -5,14 +5,24 @@ html(lang="ko")
         title #{siteName}
         link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css")
         link(rel="stylesheet", href="/static/css/styles.css")
-    body
-        include partials/header
-        main
-            block content
+    
+    if loggedIn
+        if _id === process.env.ADMIN
+            body.ad
+        else
+            body
+    else
+        body
         
-        footer
-            include partials/footer
-        include partials/menu
+    include partials/header
+    main
+        block content
+    
+    footer
+        include partials/footer
+    include partials/menu
+
+
 
     script(src="/static/js/main.js")
     script(src="https://kit.fontawesome.com/d552185620.js" crossorigin="anonymous")
