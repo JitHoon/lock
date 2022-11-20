@@ -8,8 +8,6 @@ module.exports = {
     main: BASE_JS + "main.js",
     commentSection: BASE_JS + "commentSection.js",
   },
-    mode: "development",
-    watch: true,
     plugins: [
         new MiniCssExtractPlugin({
           filename: "css/styles.css",

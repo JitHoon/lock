@@ -5,8 +5,9 @@
   "scripts": {
     "start": "node build/init.js",
     "build:server": "babel src -d build",
+    "build:assets": "webpack --mode=production",
     "lock:server": "nodemon",
-    "lock:assets": "webpack",
+    "lock:assets": "webpack --mode=development -w",
     "p": "git push origin master"
   },
   "repository": {
