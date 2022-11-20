@@ -4,6 +4,7 @@
   "description": "lock system for Electronic Engineering",
   "scripts": {
     "start": "node build/init.js",
+    "build": "npm run build:server && npm run build:assets",
     "build:server": "babel src -d build",
     "build:assets": "webpack --mode=production",
     "lock:server": "nodemon",
