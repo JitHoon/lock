@@ -1,27 +1,27 @@
 // Config (변수, 리셋)
-@import "./config/_variables.scss";
-@import "./config/_reset.scss";
+@import "config/_variables.scss";
+@import "config/_reset.scss";
 
 // Conponents (블락)
-@import "./components/header.scss";
-@import "./components/menu.scss";
-@import "./components/pageTitle.scss";
-@import "./components/footer.scss";
-@import "./components/form.scss";
-@import "./components/lockerSystem.scss";
-@import "./components/arrangeLocker.scss";
-@import "./components/33locker.scss";
-@import "./components/questions.scss";
-@import "./components/arrowSwitch.scss";
-@import "./components/errorMessage.scss";
+@import "components/header.scss";
+@import "components/menu.scss";
+@import "components/pageTitle.scss";
+@import "components/footer.scss";
+@import "components/form.scss";
+@import "components/lockerSystem.scss";
+@import "components/arrangeLocker.scss";
+@import "components/33locker.scss";
+@import "components/questions.scss";
+@import "components/arrowSwitch.scss";
+@import "components/errorMessage.scss";
 
 // Screens
-@import "./screens/home.scss";
-@import "./screens/search.scss";
-@import "./screens/myProfile.scss";
-@import "./screens/comment.scss";
-@import "./screens/adRecord.scss";
-@import "./screens/adUser.scss";
+@import "screens/home.scss";
+@import "screens/search.scss";
+@import "screens/myProfile.scss";
+@import "screens/comment.scss";
+@import "screens/adRecord.scss";
+@import "screens/adUser.scss";
 
 //Defaults
 a {
