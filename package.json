@@ -13,8 +13,8 @@
   },
   "engines": {
     "node": "18.2.0",
-    "npm" : "8.9.0"
-    },
+    "npm": "8.9.0"
+  },
   "repository": {
     "type": "git",
     "url": "(https://github.com/JitHoon/lock)"
@@ -22,6 +22,7 @@
   "author": "jithub <imessi0336@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@babel/runtime": "^7.20.1",
     "bcrypt": "^5.0.1",
     "connect-mongo": "^4.6.0",
     "dotenv": "^16.0.1",
@@ -37,6 +38,7 @@
     "@babel/cli": "^7.19.3",
     "@babel/core": "^7.20.2",
     "@babel/node": "^7.17.10",
+    "@babel/plugin-transform-runtime": "^7.19.6",
     "@babel/preset-env": "^7.18.2",
     "babel-loader": "^8.2.5",
     "css-loader": "^6.7.1",
