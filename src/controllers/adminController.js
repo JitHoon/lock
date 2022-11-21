@@ -6,23 +6,17 @@ import Record from "../models/Record";
 import bcrypt from "bcrypt";
 
 export const getAdJoin = (req, res) => {
-  const {
-    admin: { _id },
-  } = req.session;
-  res.render("admin/adJoin", {pageTitle : "관리자 가입", _id});
+  res.render("admin/adJoin", {pageTitle : "관리자 가입"});
 };
 
 export const postAdJoin = async (req, res) => {
-    const {
-      admin: { _id },
-    } = req.session;
     const { userName, studentID, password, password2, phoneNumber } = req.body;
     const pageTitle = "관리자 가입";
 
     // 비밀번호 재확인 오류 메시지 
     if (password !== password2) {
         return res.status(400).render("admin/adJoin", {
-          pageTitle, _id,
+          pageTitle,
           errorMessage: "재확인 비밀번호가 일치하지 않습니다."
         });
     }
@@ -38,7 +32,7 @@ export const postAdJoin = async (req, res) => {
         return res.redirect("/admin/adlogin");
     } catch (error) {
         return res.status(400).render("admin/adJoin", {
-            pageTitle, _id,
+            pageTitle,
             errorMessage: error._message
         });
     }
