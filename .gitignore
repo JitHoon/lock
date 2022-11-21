@@ -1,7 +1,3 @@
 /node_modules
 .env
 /assets
-/build
-/public
-/assets/js
-.DS_Store
