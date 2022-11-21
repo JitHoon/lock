@@ -16,7 +16,6 @@ function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyri
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 var getAdJoin = function getAdJoin(req, res) {
-  var _id = req.session.admin._id;
   res.render("admin/adJoin", {
     pageTitle: "관리자 가입"
   });
@@ -24,46 +23,45 @@ var getAdJoin = function getAdJoin(req, res) {
 exports.getAdJoin = getAdJoin;
 var postAdJoin = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(req, res) {
-    var _id, _req$body, userName, studentID, password, password2, phoneNumber, pageTitle;
+    var _req$body, userName, studentID, password, password2, phoneNumber, pageTitle;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            _id = req.session.admin._id;
             _req$body = req.body, userName = _req$body.userName, studentID = _req$body.studentID, password = _req$body.password, password2 = _req$body.password2, phoneNumber = _req$body.phoneNumber;
             pageTitle = "관리자 가입"; // 비밀번호 재확인 오류 메시지 
             if (!(password !== password2)) {
-              _context.next = 5;
+              _context.next = 4;
               break;
             }
             return _context.abrupt("return", res.status(400).render("admin/adJoin", {
               pageTitle: pageTitle,
               errorMessage: "재확인 비밀번호가 일치하지 않습니다."
             }));
-          case 5:
-            _context.prev = 5;
-            _context.next = 8;
+          case 4:
+            _context.prev = 4;
+            _context.next = 7;
             return _Admin["default"].create({
               userName: userName,
               studentID: studentID,
               password: password,
               phoneNumber: phoneNumber
             });
-          case 8:
+          case 7:
             return _context.abrupt("return", res.redirect("/admin/adlogin"));
-          case 11:
-            _context.prev = 11;
-            _context.t0 = _context["catch"](5);
+          case 10:
+            _context.prev = 10;
+            _context.t0 = _context["catch"](4);
             return _context.abrupt("return", res.status(400).render("admin/adJoin", {
               pageTitle: pageTitle,
               errorMessage: _context.t0._message
             }));
-          case 14:
+          case 13:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[5, 11]]);
+    }, _callee, null, [[4, 10]]);
   }));
   return function postAdJoin(_x, _x2) {
     return _ref.apply(this, arguments);
@@ -166,7 +164,7 @@ var postAdPOSTLocker = /*#__PURE__*/function () {
             admin = _context3.sent;
             admin.lockers.push(newLocker._id);
             admin.save();
-            return _context3.abrupt("return", res.redirect("/admin/".concat(_id, "/dblocker/")));
+            return _context3.abrupt("return", res.redirect("/admin/adlocker"));
           case 14:
             _context3.prev = 14;
             _context3.t0 = _context3["catch"](2);
