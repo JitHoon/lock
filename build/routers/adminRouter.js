@@ -11,14 +11,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 var adminRouter = _express["default"].Router();
 adminRouter.route("/adlocker") // 사물함 db 업로드 (임시)
 .all(_middlewares.protectorMiddleware).get(_adminController.getAdPOSTLocker).post(_adminController.postAdPOSTLocker);
-
-/*
 adminRouter.route("/adjoin") // 관리자 회원가입 (임시)
-.all(publicOnlyMiddleware)
-.get(getAdJoin)
-.post(postAdJoin);
-*/
-
+.all(_middlewares.publicOnlyMiddleware).get(_adminController.getAdJoin).post(_adminController.postAdJoin);
 adminRouter.route("/adlogin") // 관리자 로그인
 .all(_middlewares.publicOnlyMiddleware).get(_adminController.getAdLogin).post(_adminController.postAdLogin);
 adminRouter.route("/:id([0-9a-f]{24})") // 관리자 홈

@@ -15,8 +15,6 @@ var _lockerRouter = _interopRequireDefault(require("./routers/lockerRouter"));
 var _qnaRouter = _interopRequireDefault(require("./routers/qnaRouter"));
 var _middlewares = require("./middlewares");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-// adminRouter 추가후 201701703 유저만 post 가능하도록 만드는 middleware 만들기
-
 var app = (0, _express["default"])();
 
 /*
