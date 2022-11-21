@@ -99,7 +99,7 @@ export const postAdPOSTLocker = async (req, res) => {
         admin.lockers.push(newLocker._id);
         admin.save(); 
 
-        return res.redirect(`/admin/${_id}/dblocker/`);
+        return res.redirect(`/admin/adlocker`);
 
         } catch (error) {
             console.log(error)
