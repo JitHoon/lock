@@ -1,7 +1,7 @@
 extends ../base
 
 block content
-    if _id !== process.env.ADMIN
+    if _id != process.env.ADMIN
         div.locker__relative
             p.locker__title < 사물함 신청 방법 >
             p.locker__notice 1. 배치도 위, 원하는 위치의 사물함(예: A)을 누르면 
