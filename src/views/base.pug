@@ -7,7 +7,7 @@ html(lang="ko")
         link(rel="stylesheet", href="/static/css/styles.css")
     
     if loggedIn
-        if _id === process.env.ADMIN
+        if _id == process.env.ADMIN
             body.ad
         else
             body
