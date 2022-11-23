@@ -12,7 +12,7 @@ block content
         
     form(method="POST")
         input(name="userName", placeholder="이름", type="text", required)
-        input(name="studentID", placeholder="학번", type="number", required)
+        input(name="studentID", placeholder="학번", type="text", pattern="[0-9]+", minlength='9', maxlength='9', required)
         input(name="password", placeholder="비밀번호", type="password", required)
         input(name="password2", placeholder="비밀번호 재확인", type="password", required)
         input(name="phoneNumber", placeholder="핸드폰 번호", type="number", required)
