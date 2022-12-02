@@ -39,12 +39,17 @@ export const getSignup = async (req, res) => {
     }
 };
 
+// 사물함 신청 함수명 : postSignup
 export const postSignup = async (req, res) => {
     const {
-        user: { _id },
-      } = req.session;
-    const { id } = req.params;
-    const locker = await Locker.findById(id);
+        user: { _id },  // user: { _id } : 사용자의 고유 식별자 _id를 가져옴
+      } = req.session;  // session : 서버에 저장되어 있는 사용자, 사물함 등의 데이터
+                        // req.session : 서버에 있는 데이터를 가져옴
+
+    const { id } = req.params; // req.params : url에 있는 데이터를 가져옴 (사물함 고유 식별자 id)
+
+    const locker = await Locker.findById(id); // findById(id) : url에서 가져온 id로 사물함 db 검색
+
     const lockers = await Locker.find({}).sort({ lockerNum: "asc" });
     const { lockerNum } = req.body;
     const pageTitle = locker.lockerNum + " 사물함 신청";
@@ -61,6 +66,10 @@ export const postSignup = async (req, res) => {
     }
 
     try {
+            // 변수 이름 : signUpLocker
+            // await : 데이터를 불러올 때까지 기다림
+            // 사물함 데이터 베이스 이름.finfByIdAndUpdate(검색 id, db 변경 사항)
+            // url에서 가져온 id로 사물함 db를 검색, owner = 유저 _id, 사용 = 불가능, 신청 날짜 = 현재날짜로 업데이트
             const signUpLocker = await Locker.findByIdAndUpdate(id,
                 {   
                     owner: _id,
@@ -70,6 +79,7 @@ export const postSignup = async (req, res) => {
                 { new: true }
             );
             
+            // 서버에 사물함 데이터를 signUpLocker 동작을 저장
             req.session.locker = signUpLocker;
 
             const signUpUser = await User.findByIdAndUpdate(_id,

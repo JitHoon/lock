@@ -27,6 +27,11 @@ const userSchema = new mongoose.Schema({
 */
 });
 
+// .pre() : 데이터가 저장("save")되기 전 동작하는 함수
+// async : function() {} 동작이 완료되기까지 기다림
+// this : 데이터 모델 = 사용자
+// .isModified : user 생성 시 true 반환 후 {}안 알고리즘 동작, 변동 없을 시 false 반환
+// 아이디 생서 시 입력 받은 passward를  bcrypt.hash() 함수로 2의 5승 만큼 해싱
 userSchema.pre("save", async function () {
   if (this.isModified("password")) {
       this.password = await bcrypt.hash(this.password, 5);

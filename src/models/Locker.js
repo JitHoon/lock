@@ -1,19 +1,13 @@
 import mongoose from "mongoose";
 
 const lockerSchema = new mongoose.Schema({
-  lockerNum: {type: String, required: true, trim:true, unique : true},// A2
-  lockerPW: {type: Number, required: true, trim:true, unique : true}, // 1234
-  admin: { type: mongoose.Schema.Types.ObjectId, ref: "Admin" },
-  available: { type: Boolean, default: true},
-  signupAt: { type: Date, default: 0},
-  returnAt: { type: Date, default: 0},
-  owner: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-  // alphabet: String, // 새로 추가했으므로 db 등록시 주의하기
-  // number: Number,
-  // appPW: {type: Number, required: true, trim:true, unique : true },
-  
-  // const locker = await Locker.findById(id).populate("owner");
-  // if(locker) 사물함 신청 버튼 숨기기 (사물함 버튼 색깔 변화)
+  lockerNum: {type: String, required: true, trim:true, unique : true}, // A8
+  lockerPW: {type: Number, required: true, trim:true, unique : true}, // 1346
+  admin: { type: mongoose.Schema.Types.ObjectId, ref: "Admin" }, // id
+  available: { type: Boolean, default: true}, // 사용가능
+  signupAt: { type: Date, default: 0}, // 신청일
+  returnAt: { type: Date, default: 0}, // 반납일
+  owner: { type: mongoose.Schema.Types.ObjectId, ref: "User" }, //id
 });
 
 // <1>
