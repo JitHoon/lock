@@ -2,7 +2,7 @@
   <img src="https://github.com/JitHoon/lock/assets/101972330/2dc82cea-d352-4759-b6cb-8924d8bdf933">
 </p>
 
-## Lock & Lock
+## 🔒 Lock & Lock
 > 스마트한 사물함 관리 시스템! Lock & Lock.  <br />
 <p>"락앤락"은 충남대 전자공학과 학우들을 위한 실시간 사물함 관리 및 신청 서비스입니다.<br /> 락앤락을 통해 실시간 사물함 대여 및 반납, 효율적인 사물함 관리 및 인수인계가 가능합니다.</p>
 
@@ -13,7 +13,7 @@
 |[최지훈](https://github.com/JitHoon)|[손정원](https://github.com/songarden)
 
 
-## 락앤락 기술 스택
+## 기술 스택
 ### 언어
 <div style="display:flex;">
   <img src="https://img.shields.io/badge/javascript-F7DF1E.svg?&style=for-the-badge&logo=javascript&logoColor=white">
