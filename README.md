@@ -18,21 +18,21 @@
   <img src="https://github.com/JitHoon/lock/assets/101972330/86f641ce-1918-4cc0-9b75-0db3756a0fc3">
 </p>
 
-<div style="display:flex;flex-wrap:wrap;">
-  <div>
-    <h4>언어</h4>
-    <img src="https://img.shields.io/badge/javascript-F7DF1E.svg?&style=for-the-badge&logo=javascript&logoColor=white">
+#### 언어
+<div style="display:flex;">
+  <img src="https://img.shields.io/badge/javascript-F7DF1E.svg?&style=for-the-badge&logo=javascript&logoColor=white">
     <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white">
     <img src="https://img.shields.io/badge/sass-CC6699.svg?&style=for-the-badge&logo=sass&logoColor=white">
-  </div>
-  <div>
-    <h4>런타임</h4>
-    <img src="https://img.shields.io/badge/nodedotjs-339933.svg?&style=for-the-badge&logo=nodedotjs&logoColor=white">
-  </div>
-  <div>
-    <h4>프레임워크</h4>
-    <img src="https://img.shields.io/badge/express-000000.svg?&style=for-the-badge&logo=express&logoColor=white">
-  </div>
+</div>
+
+#### 런타임
+<div style="display:flex;">
+  <img src="https://img.shields.io/badge/nodedotjs-339933.svg?&style=for-the-badge&logo=nodedotjs&logoColor=white">
+</div>
+
+#### 프레임워크
+<div style="display:flex;">
+  <img src="https://img.shields.io/badge/express-000000.svg?&style=for-the-badge&logo=express&logoColor=white">
 </div>
 
 #### 뷰 엔진
@@ -57,3 +57,5 @@
 </div>
 
 ## 페이지 및 기능 소개
+## 관련 링크
+## How to run in local
