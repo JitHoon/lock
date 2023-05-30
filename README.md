@@ -14,34 +14,34 @@
 
 
 ## 기술 스택
-### 언어
+#### 언어
 <div style="display:flex;">
   <img src="https://img.shields.io/badge/javascript-F7DF1E.svg?&style=for-the-badge&logo=javascript&logoColor=white">
   <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white">
   <img src="https://img.shields.io/badge/sass-CC6699.svg?&style=for-the-badge&logo=sass&logoColor=white">
 </div>
 
-### 런타임
+#### 런타임
 <div style="display:flex;">
   <img src="https://img.shields.io/badge/nodedotjs-339933.svg?&style=for-the-badge&logo=nodedotjs&logoColor=white">
 </div>
 
-### 프레임워크
+#### 프레임워크
 <div style="display:flex;">
   <img src="https://img.shields.io/badge/express-000000.svg?&style=for-the-badge&logo=express&logoColor=white">
 </div>
 
-### 뷰 엔진
+#### 뷰 엔진
 <div style="display:flex;">
   <img src="https://img.shields.io/badge/pug-A86454.svg?&style=for-the-badge&logo=pug&logoColor=white">
 </div>
 
-### 데이터 플랫폼
+#### 데이터 플랫폼
 <div style="display:flex;">
   <img src="https://img.shields.io/badge/mongodb-47A248.svg?&style=for-the-badge&logo=mongodb&logoColor=white">
 </div>
 
-### 배포
+#### 배포
 <div style="display:flex;">
   <img src="https://img.shields.io/badge/heroku-430098?style=for-the-badge&logo=heroku&logoColor=white" alt="heroku">
 </div>
