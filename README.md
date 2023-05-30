@@ -14,6 +14,10 @@
 
 
 ## 기술 스택
+<p align="center">
+  <img src="https://github.com/JitHoon/lock/assets/101972330/86f641ce-1918-4cc0-9b75-0db3756a0fc3">
+</p>
+
 #### 언어
 <div style="display:flex;">
   <img src="https://img.shields.io/badge/javascript-F7DF1E.svg?&style=for-the-badge&logo=javascript&logoColor=white">
@@ -46,8 +50,10 @@
   <img src="https://img.shields.io/badge/heroku-430098?style=for-the-badge&logo=heroku&logoColor=white" alt="heroku">
 </div>
 
-### 협업툴
+#### 협업툴
 <div style="display:flex;">
   <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white"/>
       <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"/>
 </div>
+
+## 페이지 및 기능 소개
