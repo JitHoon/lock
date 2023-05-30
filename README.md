@@ -18,7 +18,7 @@
   <img src="https://github.com/JitHoon/lock/assets/101972330/86f641ce-1918-4cc0-9b75-0db3756a0fc3">
 </p>
 
-<div style="display:inline-flex;">
+<div style="display:flex;flex-wrap: wrap;">
   <div>
     <h4>언어</h4>
     <img src="https://img.shields.io/badge/javascript-F7DF1E.svg?&style=for-the-badge&logo=javascript&logoColor=white">
