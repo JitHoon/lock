@@ -19,14 +19,14 @@
 </p>
 
 #### 언어
-<div style="display:flex;">
+<div style="display:inline;">
   <img src="https://img.shields.io/badge/javascript-F7DF1E.svg?&style=for-the-badge&logo=javascript&logoColor=white">
   <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white">
   <img src="https://img.shields.io/badge/sass-CC6699.svg?&style=for-the-badge&logo=sass&logoColor=white">
 </div>
 
 #### 런타임
-<div style="display:flex;">
+<div style="display:inline;">
   <img src="https://img.shields.io/badge/nodedotjs-339933.svg?&style=for-the-badge&logo=nodedotjs&logoColor=white">
 </div>
 
