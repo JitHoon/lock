@@ -10,7 +10,7 @@
 |팀장|팀원|
 |:---:|:---:|
 |<img src="https://github.com/JitHoon/lock/assets/101972330/47ac5876-2dbd-432c-a440-44f9d0336bcf" width="150"/>|<img src="[https://avatars.githubusercontent.com/u/67576476?v=4](https://github.com/JitHoon/lock/assets/101972330/47ac5876-2dbd-432c-a440-44f9d0336bcf)" width="150"/>
-|[최지훈](https://github.com/JitHoon)|[손정원](https://github.com/songarden)
+|[Jit Hoon](https://github.com/JitHoon)|[손정원](https://github.com/songarden)
 
 
 ## 기술 스택
