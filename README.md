@@ -55,9 +55,3 @@
   <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white"/>
       <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"/>
 </div>
-
-## 기능 소개
-## 관련 링크
-## How to run in local
-## 성과
-## 회고 및 평가
