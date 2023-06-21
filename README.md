@@ -27,7 +27,7 @@
 
 #### 런타임
 <div style="display:flex;">
-  <img src="https://img.shields.io/badge/nodedotjs-339933.svg?&style=for-the-badge&logo=nodedotjs&logoColor=white">
+  <img src="https://img.shields.io/badge/node.js-339933.svg?&style=for-the-badge&logo=nodedotjs&logoColor=white">
 </div>
 
 #### 프레임워크
