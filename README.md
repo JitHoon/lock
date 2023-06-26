@@ -36,9 +36,7 @@
 </div>
 
 #### 뷰 엔진
-<div style="display:flex;">
-  <img src="https://img.shields.io/badge/pug-A86454.svg?&style=for-the-badge&logo=pug&logoColor=white">
-</div>
+pug
 
 #### 데이터 플랫폼
 <div style="display:flex;">
