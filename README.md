@@ -6,7 +6,7 @@
   <img src="https://github.com/JitHoon/lock/assets/101972330/2dc82cea-d352-4759-b6cb-8924d8bdf933">
 </p>
 
-## 🧑🏻‍💻 팀원
+## 🧑🏻‍💻 Team
 |팀장|팀원|
 |:---:|:---:|
 |<img src="https://github.com/JitHoon/lock/assets/101972330/47ac5876-2dbd-432c-a440-44f9d0336bcf" width="150"/>|<img src="[https://avatars.githubusercontent.com/u/67576476?v=4](https://github.com/JitHoon/lock/assets/101972330/47ac5876-2dbd-432c-a440-44f9d0336bcf)" width="150"/>
