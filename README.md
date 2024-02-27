@@ -9,7 +9,7 @@
 ## 🧑🏻‍💻 Team 
 |팀장|팀원|
 |:---:|:---:|
-|<img src="https://github.com/JitHoon/lock/assets/101972330/47ac5876-2dbd-432c-a440-44f9d0336bcf" width="150"/>|<img src="assets/songarden.jpeg" width="150"/>
+|<img src="https://github.com/JitHoon/lock/assets/101972330/47ac5876-2dbd-432c-a440-44f9d0336bcf" width="150"/>|<img src="assets/photo/songarden.jpeg" width="150"/>
 |[Jit Hoon](https://github.com/JitHoon)|[손정원](https://github.com/songarden)
 
 

@@ -2,4 +2,4 @@
 .env
 /assets
 .gitignore
-!assets/songarden.jpeg
+!assets/photo/songarden.jpeg
